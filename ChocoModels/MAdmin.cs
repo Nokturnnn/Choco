@@ -26,7 +26,6 @@ public class MAdministrator
         string login = Console.ReadLine();
         Console.WriteLine("Enter your password :");
         string password = Console.ReadLine();
-        CheckPassword(password);
         return (login, password);
     }
     public (string login, string password) RegisterAdmin()
@@ -54,7 +53,7 @@ public class MAdministrator
         }
         return false;
     }
-    public (string reference, float price) AddArticle()
+    public (string reference, float price) AdminAddArticle()
     {
         Console.WriteLine("Enter the reference of the article :");
         string reference = Console.ReadLine();

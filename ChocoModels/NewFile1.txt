@@ -1,9 +1,9 @@
 Créer un programme de gestion de commande de chocolat.
 
 Votre DB en Json :
-1 fichier des administrateurs : Guid Id, Login (string), Password (string)
+1 fichier des administrateurs : Guid Id, Login (string), Password (string) = DONE
 1 fichier des acheteurs contenant: GUID Id, adresse (string), nom(string), prenom (string), telephone (int)
-1 fichier des articles contenant : Guid Id, Reference (string), prix (float)
+1 fichier des articles contenant : Guid Id, Reference (string), prix (float) = DONE
 1 fichier des ArticlesAchetés contenant: Guid idAcheteur, Guid IdChocolat, Quantité (int), DateAchat (datetime)
 
 
@@ -158,3 +158,45 @@ public class AdminService : IAdmin
 
     // Rest of your code...
 }
+
+--------------------------------------------
+
+    _articles.Add(article);
+        // Create the log entry =>
+        string logEntry = $"[Administrateur : {admin.Login}] add a [{article.Reference}] a {DateTime.Now.Hour}h{DateTime.Now.Minute}m{DateTime.Now.Minute} on {DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year} to the list of articles";
+        _logger.Log(logEntry);
+        Console.WriteLine("----");
+        // Create a file with article added =>
+        string path = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/articles.json";
+        _fileAppend.AppendFile(path, JsonSerializer.Serialize(_articles));
+        Console.WriteLine("Article added");
+
+public void AddLoginToFile(string login, string password)
+    {
+        // Path to the JSON file =>
+        string path = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/admin.json";
+        // Create a new admin =>
+        Admin admin = new Admin(login, password);
+        // Read the current content of the file =>
+        string? jsonFile = _fileRead.ReadFile(path);
+        // Deserialize the JSON file into a list of Admin objects =>
+        List<Admin>? admins = new List<Admin>();
+        if (!string.IsNullOrWhiteSpace(jsonFile))
+        {
+            admins = JsonSerializer.Deserialize<List<Admin>>(jsonFile);
+        }
+        // Add the new admin to the list =>
+        if (admins != null)
+        {
+            admins.Add(admin);
+            // Serialize the list of admins into a JSON string =>
+            string updatedJson = JsonSerializer.Serialize(admins);
+            // Write the updated JSON string to the file =>
+            _fileWrite.WriteFile(path, updatedJson);
+        }
+        // Create the log entry =>
+        string logEntry = $"Admin added = Login : {login} and Password : {password},";
+        _logger.Log(logEntry);
+        Console.WriteLine("----");
+        Console.WriteLine("Your account has been created");
+    }

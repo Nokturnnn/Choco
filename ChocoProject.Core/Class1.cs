@@ -1,4 +1,5 @@
-﻿using ChocoList;
+﻿using ChocoInteraction;
+using ChocoList;
 using ChocoLog;
 using ManagementPeople;
 
@@ -11,6 +12,7 @@ namespace ChocoProject.Core
         private readonly ILogger _logger;
         private MAdministrator _adminMenu;
         private MStart _startMenu;
+        private ClearDB _clearDB;
 
         public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger)
         {
@@ -19,6 +21,30 @@ namespace ChocoProject.Core
             _logger = logger;
             _adminMenu = new MAdministrator();
             _startMenu = new MStart();
+            _clearDB = new ClearDB(logger, new Interaction.FileService());
+        }
+        public bool Clear()
+        {
+            _startMenu.DisplayMenuClearDB();
+            bool clear = false;
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    _clearDB.ClearFileJson();
+                    Start();
+                    break;
+                case "2":
+                    Start();
+                    break;
+                case "3":
+                    Console.WriteLine("\nGoodbye");
+                    break;
+                default:
+                    Console.WriteLine("\nInvalid choice, Please try again !");
+                    break;
+            }
+            return false;
         }
         public void Start()
         {
@@ -48,7 +74,7 @@ namespace ChocoProject.Core
             switch (adminChoice)
             {
                 case "1":
-                    var article = _adminMenu.AddArticle();
+                    var article = _adminMenu.AdminAddArticle();
                     _adminService.AddArticle(new Article(article.reference, article.price), new Admin(adminLogin, adminLogin));
                     HandleAdminConnected(adminLogin);
                     break;

@@ -10,8 +10,8 @@ public interface IAdmin
     bool ValidateLogin(string login, string password);
     void AddArticle(Article article, Admin admin);
     void AddLoginToFile(string login2, string password2);
+    // bool VerifiedFileAdminJson(string login, string password);
 }
-
 public class AdminService : IAdmin
 {
     private List<Admin> _admins = new();
@@ -20,26 +20,25 @@ public class AdminService : IAdmin
     private ILogger _logger;
     private Interaction.IFileRead _fileRead;
     private Interaction.IFileWrite _fileWrite;
-    public AdminService(FileLogger logger, Interaction.IFileRead fileRead, Interaction.IFileWrite fileWrite)
+    private Interaction.IFileAppend _fileAppend;
+    private readonly string _pathAdminJson = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/admin.json";
+    public AdminService(FileLogger logger, Interaction.IFileRead fileRead, Interaction.IFileWrite fileWrite, Interaction.IFileAppend fileAppend) => (_logger, _fileRead, _fileWrite, _fileAppend) = (logger, fileRead, fileWrite, fileAppend);
+
+    public void LogAndConsole(string message)
     {
-        _logger = logger;
-        _fileRead = fileRead;
-        _fileWrite = fileWrite;
+        Console.WriteLine(message);
+        _logger.Log(message);
     }
     public void AddLoginToFile(string login, string password)
     {
-        // Path to the JSON file =>
-        string path = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/admin.json";
         // Create a new admin =>
         Admin admin = new Admin(login, password);
         // Read the current content of the file =>
-        string? jsonFile = _fileRead.ReadFile(path);
+        string? jsonFile = _fileRead.ReadFile(_pathAdminJson);
         // Deserialize the JSON file into a list of Admin objects =>
         List<Admin>? admins = new List<Admin>();
         if (!string.IsNullOrWhiteSpace(jsonFile))
-        {
             admins = JsonSerializer.Deserialize<List<Admin>>(jsonFile);
-        }
         // Add the new admin to the list =>
         if (admins != null)
         {
@@ -47,50 +46,45 @@ public class AdminService : IAdmin
             // Serialize the list of admins into a JSON string =>
             string updatedJson = JsonSerializer.Serialize(admins);
             // Write the updated JSON string to the file =>
-            _fileWrite.WriteFile(path, updatedJson);
+            _fileWrite.WriteFile(_pathAdminJson, updatedJson);
         }
-        // Create the log entry =>
-        string logEntry = $"Admin added = Login : {login} and Password : {password},";
-        _logger.Log(logEntry);
-        Console.WriteLine("----");
-        Console.WriteLine("Your account has been created");
+        LogAndConsole($"Admin added = Login : {login} and Password : {password}");
     }
 
     public bool ValidateLogin(string login, string password)
     {
-        string pathAdmin = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/admin.json";
-        string jsonFile = _fileRead.ReadFile(pathAdmin);
+        string jsonFile = _fileRead.ReadFile(_pathAdminJson);
         // Deserialize the JSON file into a list of Admin objects =>
-        List<Admin> admins = JsonSerializer.Deserialize<List<Admin>>(jsonFile);
+        List<Admin>? admins = JsonSerializer.Deserialize<List<Admin>>(jsonFile);
         // Find the admin with matching login and password =>
         Admin matchedAdmin = admins.FirstOrDefault(admin => admin.Login == login && admin.Password == password);
         
         if (matchedAdmin != null)
         {
-            Console.WriteLine("----");
-            Console.WriteLine("Login success");
-            string logEntry = $"Admin connected = Login : {login} and Password : {password},";
-            _logger.Log(logEntry);
-            Console.WriteLine("----");
+            LogAndConsole($"----\nLogin success\n\"Admin connected = Login : {login} and Password : {password}\"\n----");
             return true;
         }
         else
         {
-            Console.WriteLine("Your login or password is incorrect");
+            LogAndConsole("Your login or password is incorrect");
             return false;
         }
     }
     public void AddArticle(Article article, Admin admin)
     {
+        // Ajouter un article a une liste d'articles sans ecraser la liste existante =>
         _articles.Add(article);
-        // Create the log entry =>
-        string logEntry = $"[Administrateur : {admin.Login}] add a [{article.Reference}] a {DateTime.Now.Hour}h{DateTime.Now.Minute}m{DateTime.Now.Minute} on {DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year} to the list of articles";
-        _logger.Log(logEntry);
-        Console.WriteLine("----");
-        // Create a file with article added =>
-        string path = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/articles.json";
-        _fileWrite.WriteFile(path, JsonSerializer.Serialize(_articles));
-        Console.WriteLine("Article added");
+        // Lire le contenu du fichier =>
+        string jsonFile = _fileRead.ReadFile(_pathAdminJson);
+        // Deserialiser le contenu du fichier en une liste d'articles =>
+        List<Article>? articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
+        // Ajouter le nouvel article a la liste =>
+        articles.Add(article);
+        // Serialiser la liste d'articles en une chaine de caracteres JSON =>
+        string updatedJson = JsonSerializer.Serialize(articles);
+        // Ecrire la chaine de caracteres JSON dans le fichier =>
+        _fileWrite.WriteFile(_pathAdminJson, updatedJson);
+        LogAndConsole($"\"[Administrateur : {admin.Login}] add a [{article.Reference}] a {DateTime.Now.Hour}h{DateTime.Now.Minute}m{DateTime.Now.Minute} on {DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year} to the list of articles\n----\"");
     }
 }
 public interface IBuyersService

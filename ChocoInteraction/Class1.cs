@@ -10,7 +10,11 @@ public class Interaction
     {
         bool WriteFile(string path, string content);
     }
-    public class FileService : IFileRead, IFileWrite
+    public interface IFileAppend
+    {
+        bool AppendFile(string path, string content);
+    }
+    public class FileService : IFileRead, IFileWrite, IFileAppend
     {
         public string ReadFile(string filePath)
         {
@@ -34,6 +38,19 @@ public class Interaction
             catch (Exception ex)
             {
                 Console.WriteLine($"File Write Error : {ex.Message}");
+                return false;
+            }
+        }
+        public bool AppendFile(string filePath, string content)
+        {
+            try
+            {
+                File.AppendAllText(filePath, content);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"File Append Error : {ex.Message}");
                 return false;
             }
         }
