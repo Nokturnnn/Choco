@@ -1,0 +1,200 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "ChocoInteraction/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/ChocoInteraction.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChocoInteraction.dll": {}
+        }
+      },
+      "ChocoList/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ChocoInteraction": "1.0.0",
+          "ChocoLog": "1.0.0",
+          "ChocoModels": "1.0.0",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "bin/placeholder/ChocoList.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChocoList.dll": {}
+        }
+      },
+      "ChocoLog/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/ChocoLog.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChocoLog.dll": {}
+        }
+      },
+      "ChocoModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ChocoInteraction": "1.0.0",
+          "ChocoLog": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ChocoModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChocoModels.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "ChocoInteraction/1.0.0": {
+      "type": "project",
+      "path": "../ChocoInteraction/ChocoInteraction.csproj",
+      "msbuildProject": "../ChocoInteraction/ChocoInteraction.csproj"
+    },
+    "ChocoList/1.0.0": {
+      "type": "project",
+      "path": "../ChocoList/ChocoList.csproj",
+      "msbuildProject": "../ChocoList/ChocoList.csproj"
+    },
+    "ChocoLog/1.0.0": {
+      "type": "project",
+      "path": "../ChocoLog/ChocoLog.csproj",
+      "msbuildProject": "../ChocoLog/ChocoLog.csproj"
+    },
+    "ChocoModels/1.0.0": {
+      "type": "project",
+      "path": "../ChocoModels/ChocoModels.csproj",
+      "msbuildProject": "../ChocoModels/ChocoModels.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "ChocoInteraction >= 1.0.0",
+      "ChocoList >= 1.0.0",
+      "ChocoLog >= 1.0.0",
+      "ChocoModels >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/thomas/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoProject.Core/ChocoProject.Core.csproj",
+      "projectName": "ChocoProject.Core",
+      "projectPath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoProject.Core/ChocoProject.Core.csproj",
+      "packagesPath": "/Users/thomas/.nuget/packages/",
+      "outputPath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoProject.Core/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/thomas/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/ChocoInteraction.csproj": {
+              "projectPath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/ChocoInteraction.csproj"
+            },
+            "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoList/ChocoList.csproj": {
+              "projectPath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoList/ChocoList.csproj"
+            },
+            "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/ChocoLog.csproj": {
+              "projectPath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/ChocoLog.csproj"
+            },
+            "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/ChocoModels.csproj": {
+              "projectPath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/ChocoModels.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.401/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

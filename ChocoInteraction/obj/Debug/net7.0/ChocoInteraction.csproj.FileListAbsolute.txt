@@ -1,0 +1,11 @@
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/bin/Debug/net7.0/ChocoInteraction.deps.json
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/bin/Debug/net7.0/ChocoInteraction.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/bin/Debug/net7.0/ChocoInteraction.pdb
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ChocoInteraction.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ChocoInteraction.AssemblyInfoInputs.cache
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ChocoInteraction.AssemblyInfo.cs
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ChocoInteraction.csproj.CoreCompileInputs.cache
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ChocoInteraction.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/refint/ChocoInteraction.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ChocoInteraction.pdb
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ref/ChocoInteraction.dll

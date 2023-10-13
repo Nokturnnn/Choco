@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocoConsole", "ChocoConsole\ChocoConsole.csproj", "{4C445CEB-D303-4378-B997-A447844643AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocoModels", "ChocoModels\ChocoModels.csproj", "{2706F48E-99E0-4427-B303-5B60DB8D0BA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocoProject.Core", "ChocoProject.Core\ChocoProject.Core.csproj", "{F9139CC7-46B0-43FB-8CBF-5A1208F9A709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocoLog", "ChocoLog\ChocoLog.csproj", "{A9205095-C8D7-4F50-AB7A-15147B12E140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocoInteraction", "ChocoInteraction\ChocoInteraction.csproj", "{2614EE5D-E911-4CB0-81EA-6D543F31A8A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocoList", "ChocoList\ChocoList.csproj", "{3ED5AE80-47A5-472E-9DD6-459C53F13376}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C445CEB-D303-4378-B997-A447844643AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C445CEB-D303-4378-B997-A447844643AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C445CEB-D303-4378-B997-A447844643AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C445CEB-D303-4378-B997-A447844643AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2706F48E-99E0-4427-B303-5B60DB8D0BA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2706F48E-99E0-4427-B303-5B60DB8D0BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2706F48E-99E0-4427-B303-5B60DB8D0BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2706F48E-99E0-4427-B303-5B60DB8D0BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9139CC7-46B0-43FB-8CBF-5A1208F9A709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9139CC7-46B0-43FB-8CBF-5A1208F9A709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9139CC7-46B0-43FB-8CBF-5A1208F9A709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9139CC7-46B0-43FB-8CBF-5A1208F9A709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9205095-C8D7-4F50-AB7A-15147B12E140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9205095-C8D7-4F50-AB7A-15147B12E140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9205095-C8D7-4F50-AB7A-15147B12E140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9205095-C8D7-4F50-AB7A-15147B12E140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2614EE5D-E911-4CB0-81EA-6D543F31A8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2614EE5D-E911-4CB0-81EA-6D543F31A8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2614EE5D-E911-4CB0-81EA-6D543F31A8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2614EE5D-E911-4CB0-81EA-6D543F31A8A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ED5AE80-47A5-472E-9DD6-459C53F13376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED5AE80-47A5-472E-9DD6-459C53F13376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED5AE80-47A5-472E-9DD6-459C53F13376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED5AE80-47A5-472E-9DD6-459C53F13376}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

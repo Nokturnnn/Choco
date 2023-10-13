@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Choco</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ChocoInteraction\ChocoInteraction.csproj" />
+      <ProjectReference Include="..\ChocoList\ChocoList.csproj" />
+      <ProjectReference Include="..\ChocoLog\ChocoLog.csproj" />
+      <ProjectReference Include="..\ChocoModels\ChocoModels.csproj" />
+      <ProjectReference Include="..\ChocoProject.Core\ChocoProject.Core.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,11 @@
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/bin/Debug/net7.0/ChocoLog.deps.json
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/bin/Debug/net7.0/ChocoLog.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/bin/Debug/net7.0/ChocoLog.pdb
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.AssemblyInfoInputs.cache
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.AssemblyInfo.cs
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.csproj.CoreCompileInputs.cache
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/refint/ChocoLog.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.pdb
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ref/ChocoLog.dll

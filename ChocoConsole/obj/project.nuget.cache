@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ewu2GMonABJqR0NvL0id1pK24RsFyuqmjyyD1IE79NCnls0MLvJJYDQXRxYKrhHBU/1nPHLcc2rZXruZ+kvcxw==",
+  "success": true,
+  "projectFilePath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoConsole/ChocoConsole.csproj",
+  "expectedPackageFiles": [
+    "/Users/thomas/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
