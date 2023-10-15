@@ -1,0 +1,21 @@
+----
+- Reference = dd 
+- Price = 11,11
+--------
+- Reference = choco 
+- Price = 10,11
+--------
+- Reference = testad 
+- Price = 11,11
+--------
+- Reference = dd 
+- Price = 11,11
+--------
+- Reference = aa 
+- Price = 11,11
+--------
+- Reference = aa 
+- Price = 11,11
+--------
+Total = 65,659996
+----

@@ -10,7 +10,8 @@ public interface IAdmin
     bool ValidateLogin(string login, string password);
     void AddArticle(Article article, Admin admin);
     void AddLoginToFile(string login2, string password2);
-    // bool VerifiedFileAdminJson(string login, string password);
+    void GetArticles(Admin admin);
+    // void CreateBill();
 }
 public class AdminService : IAdmin
 {
@@ -22,6 +23,7 @@ public class AdminService : IAdmin
     private Interaction.IFileWrite _fileWrite;
     private Interaction.IFileAppend _fileAppend;
     private readonly string _pathAdminJson = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/admin.json";
+    private readonly string _pathArticleJson = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/article.json";
     public AdminService(FileLogger logger, Interaction.IFileRead fileRead, Interaction.IFileWrite fileWrite, Interaction.IFileAppend fileAppend) => (_logger, _fileRead, _fileWrite, _fileAppend) = (logger, fileRead, fileWrite, fileAppend);
 
     public void LogAndConsole(string message)
@@ -48,12 +50,18 @@ public class AdminService : IAdmin
             // Write the updated JSON string to the file =>
             _fileWrite.WriteFile(_pathAdminJson, updatedJson);
         }
-        LogAndConsole($"Admin added = Login : {login} and Password : {password}");
+        LogAndConsole($"----\nAdmin added = Login : {login} and Password : {password}");
     }
 
     public bool ValidateLogin(string login, string password)
     {
         string jsonFile = _fileRead.ReadFile(_pathAdminJson);
+
+        if (string.IsNullOrEmpty(jsonFile))
+        {
+            LogAndConsole("The Json file is empty or missing.");
+            return false; 
+        }
         // Deserialize the JSON file into a list of Admin objects =>
         List<Admin>? admins = JsonSerializer.Deserialize<List<Admin>>(jsonFile);
         // Find the admin with matching login and password =>
@@ -72,19 +80,48 @@ public class AdminService : IAdmin
     }
     public void AddArticle(Article article, Admin admin)
     {
-        // Ajouter un article a une liste d'articles sans ecraser la liste existante =>
-        _articles.Add(article);
-        // Lire le contenu du fichier =>
-        string jsonFile = _fileRead.ReadFile(_pathAdminJson);
-        // Deserialiser le contenu du fichier en une liste d'articles =>
-        List<Article>? articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
-        // Ajouter le nouvel article a la liste =>
-        articles.Add(article);
-        // Serialiser la liste d'articles en une chaine de caracteres JSON =>
-        string updatedJson = JsonSerializer.Serialize(articles);
-        // Ecrire la chaine de caracteres JSON dans le fichier =>
-        _fileWrite.WriteFile(_pathAdminJson, updatedJson);
-        LogAndConsole($"\"[Administrateur : {admin.Login}] add a [{article.Reference}] a {DateTime.Now.Hour}h{DateTime.Now.Minute}m{DateTime.Now.Minute} on {DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year} to the list of articles\n----\"");
+        // Create a new article =>
+        Article newArticle = new Article(article.Reference, article.Price);
+        // Read the current content of the file =>
+        string? jsonFile = _fileRead.ReadFile(_pathArticleJson);
+        // Deserialize the JSON file into a list of Article objects =>
+        List<Article>? articles = new List<Article>();
+        if (!string.IsNullOrWhiteSpace(jsonFile))
+            articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
+        // Add the new article to the list =>
+        if (articles != null)
+        {
+            articles.Add(newArticle);
+            // Serialize the list of articles into a JSON string =>
+            string updatedJson = JsonSerializer.Serialize(articles);
+            // Write the updated JSON string to the file =>
+            _fileWrite.WriteFile(_pathArticleJson, updatedJson);
+        }
+        LogAndConsole($"----\n- {admin.Login} add an article ==> \n- Reference = {article.Reference} \n- Price = {article.Price}\n----");
+    }
+    public void GetArticles(Admin admin)
+    {
+        float total = 0;
+        string _testBill = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{admin.Login}-SumOfArticlesSold.txt";
+        // Read the current content of the file =>
+        string? jsonFile = _fileRead.ReadFile(_pathArticleJson);
+        // Deserialize the JSON file into a list of Article objects =>
+        List<Article>? articles = new List<Article>();
+        if (!string.IsNullOrWhiteSpace(jsonFile))
+            articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
+        // Add the new article to the list =>
+        if (articles != null)
+        {
+            LogAndConsole($"{admin.Login} add a bill with all articles sold ==>\n----");
+            foreach (var article in articles)
+            {
+                LogAndConsole($"----\nArticles N°{article.ID}\n- Reference = {article.Reference} \n- Price = {article.Price}\n----");
+                total += article.Price;
+                _fileAppend.AppendFile(_testBill, $"----\n- Reference = {article.Reference} \n- Price = {article.Price}\n----");
+            }
+            _fileAppend.AppendFile(_testBill, $"----\nTotal = {total}\n----");
+            LogAndConsole($"----\nTotal = {total}\n----");
+        }
     }
 }
 public interface IBuyersService

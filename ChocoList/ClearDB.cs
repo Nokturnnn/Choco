@@ -10,7 +10,7 @@ namespace ChocoList
         private readonly ILogger _logger;
         private readonly Interaction.IFileWrite _fileWrite;
         private readonly string _pathAdmin = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/admin.json";
-        private readonly string _pathArticles = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/articles.json";
+        private readonly string _pathArticles = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/article.json";
         private readonly string _pathLog = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/log.txt";
         public ClearDB(ILogger logger, Interaction.IFileWrite fileWrite) => (_logger, _fileWrite) = (logger, fileWrite);
         private void LogAndConsole(string message)

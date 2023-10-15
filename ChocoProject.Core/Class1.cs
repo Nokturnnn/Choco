@@ -26,7 +26,6 @@ namespace ChocoProject.Core
         public bool Clear()
         {
             _startMenu.DisplayMenuClearDB();
-            bool clear = false;
             string choice = Console.ReadLine();
             switch (choice)
             {
@@ -79,9 +78,13 @@ namespace ChocoProject.Core
                     HandleAdminConnected(adminLogin);
                     break;
                 case "2":
-                    Start();
+                    _adminService.GetArticles(new Admin( adminLogin, adminLogin));
+                    HandleAdminConnected(adminLogin);
                     break;
                 case "3":
+                    Start();
+                    break;
+                case "4":
                     Console.WriteLine("\nGoodbye");
                     break;
                 default:
@@ -107,14 +110,13 @@ namespace ChocoProject.Core
                     break;
                 default:
                     Console.WriteLine("Invalid choice, Please try again !");
-                    Start();
                     break;
             }
         }
         private void AdminLogin()
         {
             bool loginSuccessful = false;
-            while (!loginSuccessful)
+            if (!loginSuccessful)
             {
                 var adminCredentials = _adminMenu.AdminConnecting();
                 if (_adminService.ValidateLogin(adminCredentials.login, adminCredentials.password))
@@ -125,6 +127,7 @@ namespace ChocoProject.Core
                 else
                 {
                     Console.WriteLine("Invalid login or password. Please try again.");
+                    HandleAdminMenu();
                 }
             }
         }

@@ -1,2 +1,164 @@
-13/10/2023 15:55 - ----
-The files admin.json, articles.json, and log have been cleared
+15/10/2023 17:23 - ----
+Login success
+"Admin connected = Login : thomas and Password : thomas!"
+----
+15/10/2023 17:23 - thomas add a bill with all articles sold ==>
+----
+15/10/2023 17:23 - ----
+Articles N°60c322a2-abed-463a-904c-c6a3d205f9f4
+- Reference = dd 
+- Price = 11,11
+----
+15/10/2023 17:23 - ----
+Articles N°9b2b290a-2a71-47e9-a58a-8295b98f0d39
+- Reference = choco 
+- Price = 10,11
+----
+15/10/2023 17:23 - ----
+Articles N°4448ae7a-45a3-4304-a07d-44022d798beb
+- Reference = testad 
+- Price = 11,11
+----
+15/10/2023 17:23 - ----
+Articles N°87243e60-ede6-4aab-8214-1110b70d05df
+- Reference = dd 
+- Price = 11,11
+----
+15/10/2023 17:23 - ----
+Articles N°e73414d2-df09-40e4-9d7d-16a7962989c2
+- Reference = aa 
+- Price = 11,11
+----
+15/10/2023 17:23 - ----
+Articles N°0ddccb92-df65-4f72-9c87-f7fccd54e1c0
+- Reference = aa 
+- Price = 11,11
+----
+15/10/2023 17:23 - ----
+Total = 65,659996
+----
+15/10/2023 17:25 - ----
+Login success
+"Admin connected = Login : thomas and Password : thomas!"
+----
+15/10/2023 17:26 - ----
+Login success
+"Admin connected = Login : thomas and Password : thomas!"
+----
+15/10/2023 17:27 - ----
+Login success
+"Admin connected = Login : thomas and Password : thomas!"
+----
+15/10/2023 17:27 - thomas add a bill with all articles sold ==>
+----
+15/10/2023 17:27 - ----
+Articles N°60c322a2-abed-463a-904c-c6a3d205f9f4
+- Reference = dd 
+- Price = 11,11
+----
+15/10/2023 17:27 - ----
+Articles N°9b2b290a-2a71-47e9-a58a-8295b98f0d39
+- Reference = choco 
+- Price = 10,11
+----
+15/10/2023 17:27 - ----
+Articles N°4448ae7a-45a3-4304-a07d-44022d798beb
+- Reference = testad 
+- Price = 11,11
+----
+15/10/2023 17:27 - ----
+Articles N°87243e60-ede6-4aab-8214-1110b70d05df
+- Reference = dd 
+- Price = 11,11
+----
+15/10/2023 17:27 - ----
+Articles N°e73414d2-df09-40e4-9d7d-16a7962989c2
+- Reference = aa 
+- Price = 11,11
+----
+15/10/2023 17:27 - ----
+Articles N°0ddccb92-df65-4f72-9c87-f7fccd54e1c0
+- Reference = aa 
+- Price = 11,11
+----
+15/10/2023 17:27 - ----
+Total = 65,659996
+----
+15/10/2023 17:28 - ----
+Login success
+"Admin connected = Login : thomas and Password : thomas!"
+----
+15/10/2023 17:28 - thomas add a bill with all articles sold ==>
+----
+15/10/2023 17:28 - ----
+Articles N°60c322a2-abed-463a-904c-c6a3d205f9f4
+- Reference = dd 
+- Price = 11,11
+----
+15/10/2023 17:28 - ----
+Articles N°9b2b290a-2a71-47e9-a58a-8295b98f0d39
+- Reference = choco 
+- Price = 10,11
+----
+15/10/2023 17:28 - ----
+Articles N°4448ae7a-45a3-4304-a07d-44022d798beb
+- Reference = testad 
+- Price = 11,11
+----
+15/10/2023 17:28 - ----
+Articles N°87243e60-ede6-4aab-8214-1110b70d05df
+- Reference = dd 
+- Price = 11,11
+----
+15/10/2023 17:28 - ----
+Articles N°e73414d2-df09-40e4-9d7d-16a7962989c2
+- Reference = aa 
+- Price = 11,11
+----
+15/10/2023 17:28 - ----
+Articles N°0ddccb92-df65-4f72-9c87-f7fccd54e1c0
+- Reference = aa 
+- Price = 11,11
+----
+15/10/2023 17:28 - ----
+Total = 65,659996
+----
+15/10/2023 17:33 - ----
+Login success
+"Admin connected = Login : thomas and Password : thomas!"
+----
+15/10/2023 17:33 - thomas add a bill with all articles sold ==>
+----
+15/10/2023 17:33 - ----
+Articles N°60c322a2-abed-463a-904c-c6a3d205f9f4
+- Reference = dd 
+- Price = 11,11
+----
+15/10/2023 17:33 - ----
+Articles N°9b2b290a-2a71-47e9-a58a-8295b98f0d39
+- Reference = choco 
+- Price = 10,11
+----
+15/10/2023 17:33 - ----
+Articles N°4448ae7a-45a3-4304-a07d-44022d798beb
+- Reference = testad 
+- Price = 11,11
+----
+15/10/2023 17:33 - ----
+Articles N°87243e60-ede6-4aab-8214-1110b70d05df
+- Reference = dd 
+- Price = 11,11
+----
+15/10/2023 17:33 - ----
+Articles N°e73414d2-df09-40e4-9d7d-16a7962989c2
+- Reference = aa 
+- Price = 11,11
+----
+15/10/2023 17:33 - ----
+Articles N°0ddccb92-df65-4f72-9c87-f7fccd54e1c0
+- Reference = aa 
+- Price = 11,11
+----
+15/10/2023 17:33 - ----
+Total = 65,659996
+----

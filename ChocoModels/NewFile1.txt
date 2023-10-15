@@ -63,6 +63,32 @@ Chaque méthode a un retour dans les services. Pas de void.
 
 --------------------------------------------------------
 
+    public void GenerateInvoice(List<Article> soldArticles, Admin admin)
+    {
+        double totalAmount = 0;
+
+        // Créer une chaîne de texte pour la facture
+        string invoiceText = $"Facture créée par l'administrateur : {admin.Login}\n\nArticles vendus :\n";
+
+        foreach (var article in soldArticles)
+        {
+            invoiceText += $"- Référence : {article.Reference}, Prix : {article.Price:C2}\n";
+            totalAmount += article.Price;
+        }
+
+        invoiceText += $"\nMontant total : {totalAmount:C2}";
+
+        // Nom du fichier de facture
+        string fileName = "facture.txt";
+
+        // Écriture de la facture dans un fichier texte
+        File.WriteAllText(fileName, invoiceText);
+
+        Console.WriteLine("Facture créée avec succès. Consultez le fichier " + fileName);
+    }
+}
+
+
 public class Core
 {
     private readonly IAdminService adminService;
@@ -200,3 +226,28 @@ public void AddLoginToFile(string login, string password)
         Console.WriteLine("----");
         Console.WriteLine("Your account has been created");
     }
+    
+    
+       public void AddLoginToFile(string login, string password)
+        {
+            // Create a new admin =>
+            Admin admin = new Admin(login, password);
+            // Read the current content of the file =>
+            string? jsonFile = _fileRead.ReadFile(_pathAdminJson);
+            // Deserialize the JSON file into a list of Admin objects =>
+            List<Admin>? admins = new List<Admin>();
+            if (!string.IsNullOrWhiteSpace(jsonFile))
+                admins = JsonSerializer.Deserialize<List<Admin>>(jsonFile);
+            // Add the new admin to the list =>
+            if (admins != null)
+            {
+                admins.Add(admin);
+                // Serialize the list of admins into a JSON string =>
+                string updatedJson = JsonSerializer.Serialize(admins);
+                // Write the updated JSON string to the file =>
+                _fileWrite.WriteFile(_pathAdminJson, updatedJson);
+            }
+            LogAndConsole($"----\nAdmin added = Login : {login} and Password : {password}");
+        }
+        
+         LogAndConsole($"\"[Administrateur : {admin.Login}] add a [{article.Reference}] a {DateTime.Now.Hour}h{DateTime.Now.Minute}m{DateTime.Now.Minute} on {DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year} to the list of articles\n----\"");

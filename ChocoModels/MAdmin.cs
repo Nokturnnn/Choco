@@ -15,8 +15,9 @@ public class MAdministrator
     {
         Console.WriteLine("----> Menu :");
         Console.WriteLine("1 : Add a article");
-        Console.WriteLine("2 : Back to menu");
-        Console.WriteLine("3 : Exit");
+        Console.WriteLine("2 : Create a bill");
+        Console.WriteLine("3 : Back to menu");
+        Console.WriteLine("4 : Exit");
         Console.WriteLine("Your choice :");
     }
     public (string login, string password) AdminConnecting()
@@ -62,5 +63,13 @@ public class MAdministrator
         Console.WriteLine("----");
         Console.WriteLine("Article added");
         return (reference, price);
+    }
+    public string AdminAddBill(string reference)
+    {
+        Console.WriteLine("Enter the reference of the bill :");
+        reference = Console.ReadLine();
+        Console.WriteLine("----");
+        Console.WriteLine("Bill added");
+        return (reference);
     }
 }
