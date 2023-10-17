@@ -2,9 +2,9 @@
 using ChocoLog;
 using ChocoInteraction;
 using ChocoProject.Core;
+using ManagementPeople;
 
 namespace ChocoConsole;
-
 class Program
 {
     static void Main(string[] args)

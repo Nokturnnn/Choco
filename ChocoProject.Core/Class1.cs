@@ -11,15 +11,19 @@ namespace ChocoProject.Core
         private readonly IBuyersService _buyerService;
         private readonly ILogger _logger;
         private MAdministrator _adminMenu;
+        private MBuyer _buyerMenu;
         private MStart _startMenu;
         private ClearDB _clearDB;
-
+        private Buyer _newBuyer;
+        private string _buyerLogin;
+        
         public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger)
         {
             _adminService = adminService;
             _buyerService = buyerService;
             _logger = logger;
             _adminMenu = new MAdministrator();
+            _buyerMenu = new MBuyer();
             _startMenu = new MStart();
             _clearDB = new ClearDB(logger, new Interaction.FileService());
         }
@@ -52,7 +56,7 @@ namespace ChocoProject.Core
             switch (choice)
             {
                 case "1":
-                    DisplayMenuBuyer();
+                    HandleBuyerMenu();
                     break;
                 case "2":
                     HandleAdminMenu();
@@ -66,7 +70,57 @@ namespace ChocoProject.Core
                     break;
             }
         }
-        public void HandleAdminConnected(string adminLogin)
+        private void HandleBuyerMenu()
+        {
+            _buyerMenu.DisplayMenuBuyer();
+            string buyerChoice = Console.ReadLine();
+            switch (buyerChoice)
+            {
+                case "1":
+                    var buyer = _buyerMenu.AddRegister();
+                    _buyerLogin = _buyerService.CreateBuyer(new Buyer(buyer.firstname, buyer.lastname, buyer.adress, buyer.phone));
+                    HandleBuyerMenu();
+                    break;
+                case "2":
+                    HandleBuyerRegistered();
+                    break;
+                case "3":
+                    Start();
+                    break;
+                default:
+                    Console.WriteLine("\nInvalid choice, Please try again !");
+                    HandleBuyerMenu();
+                    break;
+            }
+        }
+        private void HandleBuyerRegistered()
+        {
+            _buyerMenu.DisplayBuyerRegistered();
+            string buyerChoice = Console.ReadLine();
+            switch (buyerChoice)
+            {
+                case "1":
+                    var article = _buyerMenu.AddToList();
+                    _buyerService.BuyerChooseAnArticleToList(new Article(article.reference, article.quantity), new Buyer(_buyerLogin, _buyerLogin, _buyerLogin, 0), article.reference, article.quantity);
+                    HandleBuyerRegistered();
+                    break;
+                case "2":
+                    _buyerService.DisplayListOfArticle();
+                    HandleBuyerRegistered();
+                    break;
+                case"3":
+                    Start();
+                    break;
+                case "4":
+                    Console.WriteLine("\nGoodbye");
+                    break;
+                default:
+                    Console.WriteLine("\nInvalid choice, Please try again !");
+                    HandleBuyerRegistered();
+                    break;
+            }
+        }
+        private void HandleAdminConnected(string adminLogin)
         {
             _adminMenu.DisplayMenuAdminConnected();
             string adminChoice = Console.ReadLine();
@@ -82,9 +136,13 @@ namespace ChocoProject.Core
                     HandleAdminConnected(adminLogin);
                     break;
                 case "3":
-                    Start();
                     break;
                 case "4":
+                    break;
+                case "5":
+                    Start();
+                    break;
+                case "6":
                     Console.WriteLine("\nGoodbye");
                     break;
                 default:
@@ -113,6 +171,25 @@ namespace ChocoProject.Core
                     break;
             }
         }
+        private void RegisterAdminAccount()
+        {
+            var registerCredentials = _adminMenu.RegisterAdmin();
+            if (registerCredentials.password != null)
+            {
+                bool checkPassword = _adminMenu.CheckPassword(registerCredentials.password);
+                while (!checkPassword)
+                {
+                    registerCredentials = _adminMenu.RegisterAdmin();
+                    checkPassword = _adminMenu.CheckPassword(registerCredentials.password);
+                }
+
+                if (checkPassword)
+                {
+                    _adminService.AddLoginToFile(registerCredentials.login, registerCredentials.password);
+                    Start();
+                }
+            }
+        }
         private void AdminLogin()
         {
             bool loginSuccessful = false;
@@ -128,24 +205,6 @@ namespace ChocoProject.Core
                 {
                     Console.WriteLine("Invalid login or password. Please try again.");
                     HandleAdminMenu();
-                }
-            }
-        }
-        private void RegisterAdminAccount()
-        {
-            var registerCredentials = _adminMenu.RegisterAdmin();
-            if (registerCredentials.password != null)
-            {
-                bool checkPassword = _adminMenu.CheckPassword(registerCredentials.password);
-                while (!checkPassword)
-                {
-                    registerCredentials = _adminMenu.RegisterAdmin();
-                    checkPassword = _adminMenu.CheckPassword(registerCredentials.password);
-                }
-                if (checkPassword)
-                {
-                    _adminService.AddLoginToFile(registerCredentials.login, registerCredentials.password);
-                    Start();
                 }
             }
         }

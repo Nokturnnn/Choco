@@ -1,4 +1,3 @@
-using System.Threading.Channels;
 namespace ManagementPeople;
 public class MAdministrator
 {
@@ -6,18 +5,20 @@ public class MAdministrator
     {
         Console.WriteLine("----");
         Console.WriteLine("Connect or register =>");
-        Console.WriteLine("1 : Connection");
-        Console.WriteLine("2 : Register");
-        Console.WriteLine("3 : Back to menu");
+        Console.WriteLine("1. Connection");
+        Console.WriteLine("2. Register");
+        Console.WriteLine("3. Back to menu");
         Console.WriteLine("Your choice :");
     }
     public void DisplayMenuAdminConnected()
     {
         Console.WriteLine("----> Menu :");
-        Console.WriteLine("1 : Add a article");
-        Console.WriteLine("2 : Create a bill");
-        Console.WriteLine("3 : Back to menu");
-        Console.WriteLine("4 : Exit");
+        Console.WriteLine("1. Add a article");
+        Console.WriteLine("2. Create a bill");
+        Console.WriteLine("3. Create a bill for each Buyers");
+        Console.WriteLine("4. Create a bill by date of Purchase");
+        Console.WriteLine("5. Back to menu");
+        Console.WriteLine("6. Exit");
         Console.WriteLine("Your choice :");
     }
     public (string login, string password) AdminConnecting()
@@ -61,15 +62,6 @@ public class MAdministrator
         Console.WriteLine("Enter the price of the article :");
         float price = float.Parse(Console.ReadLine());
         Console.WriteLine("----");
-        Console.WriteLine("Article added");
         return (reference, price);
-    }
-    public string AdminAddBill(string reference)
-    {
-        Console.WriteLine("Enter the reference of the bill :");
-        reference = Console.ReadLine();
-        Console.WriteLine("----");
-        Console.WriteLine("Bill added");
-        return (reference);
     }
 }

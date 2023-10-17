@@ -6,10 +6,5 @@ public class Admin
     public string Login { get; set; }
     public string Password { get; set; }
     
-    public Admin(string login, string password)
-    {
-        ID = Guid.NewGuid();
-        Login = login;
-        Password = password;
-    }
+    public Admin(string login, string password) => (ID, Login, Password) = (Guid.NewGuid(), login, password);
 }

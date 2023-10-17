@@ -9,3 +9,4 @@
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/refint/ChocoInteraction.dll
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ChocoInteraction.pdb
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ref/ChocoInteraction.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/obj/Debug/net7.0/ChocoInteraction.csproj.AssemblyReference.cache

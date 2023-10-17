@@ -14,7 +14,15 @@ public class Interaction
     {
         bool AppendFile(string path, string content);
     }
-    public class FileService : IFileRead, IFileWrite, IFileAppend
+    public interface IFileExists
+    {
+        bool FileExists(string path);
+    }
+    public interface IFileDelete
+    {
+        bool DeleteFile(string path);
+    }
+    public class FileService : IFileRead, IFileWrite, IFileAppend, IFileExists, IFileDelete
     {
         public string ReadFile(string filePath)
         {
@@ -51,6 +59,31 @@ public class Interaction
             catch (Exception ex)
             {
                 Console.WriteLine($"File Append Error : {ex.Message}");
+                return false;
+            }
+        }
+        public bool FileExists(string filePath)
+        {
+            try
+            {
+                return File.Exists(filePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"File Exists Error : {ex.Message}");
+                return false;
+            }
+        }
+        public bool DeleteFile(string filePath)
+        {
+            try
+            {
+                File.Delete(filePath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"File Delete Error : {ex.Message}");
                 return false;
             }
         }

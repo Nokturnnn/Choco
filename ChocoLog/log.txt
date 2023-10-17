@@ -1,164 +1,244 @@
-15/10/2023 17:23 - ----
+16/10/2023 12:07 - ----
+.The files admin.json, articles.json, buyers, log have been deleted
+16/10/2023 12:08 - ----
+Admin added = Login : Thomas and Password : Thomas!
+16/10/2023 12:08 -  ----
+Buyer added
+----
+16/10/2023 12:08 - Your login or password is incorrect
+16/10/2023 12:08 - ----
 Login success
-"Admin connected = Login : thomas and Password : thomas!"
+"Admin connected = Login : Thomas and Password : Thomas!"
 ----
-15/10/2023 17:23 - thomas add a bill with all articles sold ==>
-----
-15/10/2023 17:23 - ----
-Articles N°60c322a2-abed-463a-904c-c6a3d205f9f4
-- Reference = dd 
-- Price = 11,11
-----
-15/10/2023 17:23 - ----
-Articles N°9b2b290a-2a71-47e9-a58a-8295b98f0d39
-- Reference = choco 
+16/10/2023 12:09 - ----
+- Thomas add an article ==> 
+- Reference = Choco 
 - Price = 10,11
 ----
-15/10/2023 17:23 - ----
-Articles N°4448ae7a-45a3-4304-a07d-44022d798beb
-- Reference = testad 
-- Price = 11,11
-----
-15/10/2023 17:23 - ----
-Articles N°87243e60-ede6-4aab-8214-1110b70d05df
-- Reference = dd 
-- Price = 11,11
-----
-15/10/2023 17:23 - ----
-Articles N°e73414d2-df09-40e4-9d7d-16a7962989c2
-- Reference = aa 
-- Price = 11,11
-----
-15/10/2023 17:23 - ----
-Articles N°0ddccb92-df65-4f72-9c87-f7fccd54e1c0
-- Reference = aa 
-- Price = 11,11
-----
-15/10/2023 17:23 - ----
-Total = 65,659996
-----
-15/10/2023 17:25 - ----
-Login success
-"Admin connected = Login : thomas and Password : thomas!"
-----
-15/10/2023 17:26 - ----
-Login success
-"Admin connected = Login : thomas and Password : thomas!"
-----
-15/10/2023 17:27 - ----
-Login success
-"Admin connected = Login : thomas and Password : thomas!"
-----
-15/10/2023 17:27 - thomas add a bill with all articles sold ==>
-----
-15/10/2023 17:27 - ----
-Articles N°60c322a2-abed-463a-904c-c6a3d205f9f4
-- Reference = dd 
-- Price = 11,11
-----
-15/10/2023 17:27 - ----
-Articles N°9b2b290a-2a71-47e9-a58a-8295b98f0d39
-- Reference = choco 
+16/10/2023 13:34 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
 - Price = 10,11
 ----
-15/10/2023 17:27 - ----
-Articles N°4448ae7a-45a3-4304-a07d-44022d798beb
-- Reference = testad 
-- Price = 11,11
-----
-15/10/2023 17:27 - ----
-Articles N°87243e60-ede6-4aab-8214-1110b70d05df
-- Reference = dd 
-- Price = 11,11
-----
-15/10/2023 17:27 - ----
-Articles N°e73414d2-df09-40e4-9d7d-16a7962989c2
-- Reference = aa 
-- Price = 11,11
-----
-15/10/2023 17:27 - ----
-Articles N°0ddccb92-df65-4f72-9c87-f7fccd54e1c0
-- Reference = aa 
-- Price = 11,11
-----
-15/10/2023 17:27 - ----
-Total = 65,659996
-----
-15/10/2023 17:28 - ----
-Login success
-"Admin connected = Login : thomas and Password : thomas!"
-----
-15/10/2023 17:28 - thomas add a bill with all articles sold ==>
-----
-15/10/2023 17:28 - ----
-Articles N°60c322a2-abed-463a-904c-c6a3d205f9f4
-- Reference = dd 
-- Price = 11,11
-----
-15/10/2023 17:28 - ----
-Articles N°9b2b290a-2a71-47e9-a58a-8295b98f0d39
-- Reference = choco 
+16/10/2023 13:47 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
 - Price = 10,11
 ----
-15/10/2023 17:28 - ----
-Articles N°4448ae7a-45a3-4304-a07d-44022d798beb
-- Reference = testad 
-- Price = 11,11
-----
-15/10/2023 17:28 - ----
-Articles N°87243e60-ede6-4aab-8214-1110b70d05df
-- Reference = dd 
-- Price = 11,11
-----
-15/10/2023 17:28 - ----
-Articles N°e73414d2-df09-40e4-9d7d-16a7962989c2
-- Reference = aa 
-- Price = 11,11
-----
-15/10/2023 17:28 - ----
-Articles N°0ddccb92-df65-4f72-9c87-f7fccd54e1c0
-- Reference = aa 
-- Price = 11,11
-----
-15/10/2023 17:28 - ----
-Total = 65,659996
-----
-15/10/2023 17:33 - ----
-Login success
-"Admin connected = Login : thomas and Password : thomas!"
-----
-15/10/2023 17:33 - thomas add a bill with all articles sold ==>
-----
-15/10/2023 17:33 - ----
-Articles N°60c322a2-abed-463a-904c-c6a3d205f9f4
-- Reference = dd 
-- Price = 11,11
-----
-15/10/2023 17:33 - ----
-Articles N°9b2b290a-2a71-47e9-a58a-8295b98f0d39
-- Reference = choco 
+16/10/2023 13:55 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
 - Price = 10,11
 ----
-15/10/2023 17:33 - ----
-Articles N°4448ae7a-45a3-4304-a07d-44022d798beb
-- Reference = testad 
-- Price = 11,11
+16/10/2023 13:55 - ----
+Total price = 20,22
 ----
-15/10/2023 17:33 - ----
-Articles N°87243e60-ede6-4aab-8214-1110b70d05df
-- Reference = dd 
-- Price = 11,11
+16/10/2023 14:09 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
 ----
-15/10/2023 17:33 - ----
-Articles N°e73414d2-df09-40e4-9d7d-16a7962989c2
-- Reference = aa 
-- Price = 11,11
+16/10/2023 14:09 - ----
+test-test added a 2 of Choco to his list
+ with a Total price = 20,22
 ----
-15/10/2023 17:33 - ----
-Articles N°0ddccb92-df65-4f72-9c87-f7fccd54e1c0
-- Reference = aa 
-- Price = 11,11
+16/10/2023 14:10 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
 ----
-15/10/2023 17:33 - ----
-Total = 65,659996
+16/10/2023 14:11 - ----
+test-test added a 2 of Choco to his list
+ with a Total price = 20,22
+----
+16/10/2023 14:47 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+16/10/2023 14:53 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+16/10/2023 14:54 - You must create a buyer before choosing an article
+16/10/2023 14:56 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+16/10/2023 14:59 -  ----
+Buyer added
+----
+16/10/2023 15:00 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+16/10/2023 15:00 -  ----
+Buyer added
+----
+16/10/2023 15:00 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+16/10/2023 15:00 - ----
+GACE-Thomas added a 2 of Choco to his list
+ with a Total price = 20,22
+----
+16/10/2023 15:01 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+16/10/2023 15:40 - The Json file is empty or missing.
+16/10/2023 15:51 -  ----
+Buyer added
+----
+16/10/2023 16:29 -  ----
+Buyer added
+----
+16/10/2023 16:38 - Your login or password is incorrect
+16/10/2023 16:38 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+16/10/2023 16:46 - The Json file is empty or missing.
+16/10/2023 16:47 -  ----
+Buyer added
+----
+16/10/2023 16:49 -  ----
+Buyer added
+----
+16/10/2023 17:01 - The Json file is empty or missing.
+16/10/2023 17:03 - The Json file is empty or missing.
+16/10/2023 17:09 -  ----
+Buyer added
+----
+16/10/2023 17:09 - ----
+"Buyer registered =
+ Lastname : tt and Firstname : tt"
+----
+16/10/2023 17:21 -  ----
+Buyer added
+----
+17/10/2023 13:14 -  ----
+Buyer added
+----
+17/10/2023 13:20 -  ----
+Buyer added
+----
+17/10/2023 15:12 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:12 - ----
+- added a 2 of Choco to his list
+with a Total price = 20,22
+----
+17/10/2023 15:33 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:33 - ----
+- added a 3 of Choco to his list
+with a Total price = 30,329998
+----
+17/10/2023 15:37 -  ----
+Buyer added
+----
+17/10/2023 15:37 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:37 - ----
+- added a 2 of Choco to his list
+with a Total price = 20,22
+----
+17/10/2023 15:41 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:41 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:41 - ----
+- added a 1 of Choco to his list
+with a Total price = 10,11
+----
+17/10/2023 15:42 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:42 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:46 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:46 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:46 - ----
+- added a 1 of Choco to his list
+with a Total price = 10,11
+----
+17/10/2023 15:47 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:53 -  ----
+Buyer added
+----
+17/10/2023 15:53 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:53 - ----
+ThomasGACE-ThomasGACE added a 2 of Choco to his list
+with a Total price = 20,22
+----
+17/10/2023 15:54 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:55 -  ----
+Buyer added
+----
+17/10/2023 15:55 - ----
+Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+- Reference = Choco 
+- Price = 10,11
+----
+17/10/2023 15:55 - ----
+ added a 2 of Choco to his list
+with a Total price = 20,22
+----
+17/10/2023 15:56 - ----
+- added a 2 of Choco to his list
+with a Total price = 20,22
+----
+17/10/2023 15:56 -  ----
+Buyer added
+----
+17/10/2023 15:56 - ----
+ThomasGACE-ThomasGACE added a 2 of Choco to his list
+with a Total price = 20,22
 ----
