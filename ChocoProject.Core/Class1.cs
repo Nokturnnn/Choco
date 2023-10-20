@@ -15,6 +15,7 @@ namespace ChocoProject.Core
         private MStart _startMenu;
         private ClearDB _clearDB;
         private string currentBuyerLogin;
+        private (string referance, float price) article;
         
         public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger)
         {
@@ -124,8 +125,8 @@ namespace ChocoProject.Core
             switch (adminChoice)
             {
                 case "1":
-                    var article = _adminMenu.AdminAddArticle();
-                    _adminService.AddArticle(new Article(article.reference, article.price), new Admin(adminLogin, adminLogin));
+                    article = _adminMenu.AdminAddArticle();
+                    _adminService.AddArticle(new Article(article.referance, article.price), new Admin(adminLogin, adminLogin));
                     HandleAdminConnected(adminLogin);
                     break;
                 case "2":
@@ -133,7 +134,7 @@ namespace ChocoProject.Core
                     HandleAdminConnected(adminLogin);
                     break;
                 case "3":
-                    _adminService.GetArticlesByBuyers(new Buyer(currentBuyerLogin, currentBuyerLogin, currentBuyerLogin, currentBuyerLogin), new Admin(adminLogin, adminLogin));
+                    _adminService.GetArticlesByBuyers(new Buyer(currentBuyerLogin, currentBuyerLogin, currentBuyerLogin, currentBuyerLogin), new Article(article.referance, article.price), new Admin(adminLogin, adminLogin));
                     HandleAdminConnected(adminLogin);
                     break;
                 case "4":

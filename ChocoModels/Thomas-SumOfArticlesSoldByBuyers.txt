@@ -1,11 +1,18 @@
+----> Bill 1
+- Buyer : 
+- Reference : Choco
+- Quantity : 10
+- Price : 10
+ Total purchases : 100 
+- Date of buy : 20/10/2023 22:46:13
 ----
-- Reference = Choco 
-- Price = 10
- bought by Thomas GACE
---------
-- Reference = Melon 
-- Price = 2,22
- bought by Thomas GACE
---------
-Total = 12,22
+----> Bill 2
+- Buyer : 
+- Reference : Melon
+- Quantity : 2
+- Price : 2
+ Total purchases : 4 
+- Date of buy : 20/10/2023 22:48:27
 ----
+
+- Total global : 204

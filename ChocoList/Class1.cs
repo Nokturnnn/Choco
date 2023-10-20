@@ -12,13 +12,15 @@ public interface IAdmin
     void AddArticle(Article article, Admin admin);
     void AddLoginToFile(string login2, string password2);
     void GetArticles(Admin admin);
-    void GetArticlesByBuyers(Buyer buyer, Admin admin);
+    void GetArticlesByBuyers(Buyer buyer, Article article, Admin admin);
+    void LogAndConsole(string message);
 }
 public class AdminService : IAdmin
 {
     // private List<Admin> _admins = new();
     // private List<Article> _articles = new();
     // private List<Buyer> _buyers = new();
+    private List<ItemPurchased> _itemsPurchased = new();
     private ILogger _logger;
     private Interaction.IFileRead _fileRead = new Interaction.FileService();
     private Interaction.IFileWrite _fileWrite = new Interaction.FileService();
@@ -26,6 +28,8 @@ public class AdminService : IAdmin
     private Interaction.IFileExists _fileExists = new Interaction.FileService();
     private readonly string _pathAdminJson   = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/admin.json";
     private readonly string _pathArticleJson = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/article.json";
+    private readonly string _pathItemPurchased =
+        "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/itemPurchased.json";
     public AdminService(FileLogger logger, Interaction.IFileRead fileRead, Interaction.IFileWrite fileWrite, Interaction.IFileAppend fileAppend) => (_logger, _fileRead, _fileWrite, _fileAppend) = (logger, fileRead, fileWrite, fileAppend);
     public void LogAndConsole(string message)
     {
@@ -125,40 +129,66 @@ public class AdminService : IAdmin
             foreach (var article in articles)
             {
                 // Add the details of the article to the invoice =>
-                _fileAppend.AppendFile(invoicePath, $"Article N°{article.ID}\n- Référence : {article.Reference}\n- Price : {article.Price:C}\n----\n");
+                _fileAppend.AppendFile(invoicePath, $"Article N°{article.ID}\n- Référence : {article.Reference}\n- Price : {article.Price}\n----\n");
                 // Calculate the total price =>
                 total += article.Price;
             }
             // Add the total to the file =>
-            _fileAppend.AppendFile(invoicePath, $"\nTotal : {total:C}\n");
+            _fileAppend.AppendFile(invoicePath, $"\nTotal : {total}\n");
             // Display the message =>
             LogAndConsole($"{admin.Login} created an invoice for all items purchased");
         }
     }
-    public void GetArticlesByBuyers(Buyer buyer, Admin admin)
+    public void GetArticlesByBuyers(Buyer buyer, Article article, Admin admin)
+{
+    float total = 0;
+    float totalGlobal = 0;
+    int billCount = 1;
+    string testBillByBuyers = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{admin.Login}-SumOfArticlesSoldByBuyers.txt";
+    // Read the current content of the file =>
+    string? jsonFile = _fileRead.ReadFile(_pathItemPurchased);
+    // Deserialize the JSON file into a list of Article objects =>
+    List<ItemPurchased>? itemPurchaseds = new List<ItemPurchased>();
+    if (!string.IsNullOrWhiteSpace(jsonFile))
+        itemPurchaseds = JsonSerializer.Deserialize<List<ItemPurchased>>(jsonFile);
+    if (itemPurchaseds != null)
     {
-        float total = 0;
-        string testBillByBuyers = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{admin.Login}-SumOfArticlesSoldByBuyers.txt";
-        // Read the current content of the file =>
+        LogAndConsole($"{admin.Login} is generating a bill for articles bought by {buyer.Firstname}:\n");
+        foreach (var items in itemPurchaseds)
+        {
+            // Trouver l'article correspondant par référence (ou autre propriété unique)
+            Article purchasedArticle = GetArticleByReference(items.ArticleReference); // Remplacez ArticleReference par la propriété appropriée
+            if (purchasedArticle != null)
+            {
+                // Calculate the total price =>
+                total += items.Quantity * purchasedArticle.Price;
+                totalGlobal += total;
+                // Add the details of the article to the invoice =>
+                _fileAppend.AppendFile(testBillByBuyers, $"----> Bill {billCount}\n- Buyer : {buyer.Firstname}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
+                LogAndConsole($"\n----> Bill {billCount}\n- Buyer : {buyer.Firstname}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n- Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
+                billCount++;
+            }
+        }
+        _fileAppend.AppendFile(testBillByBuyers, $"\n- Total global : {totalGlobal}\n");
+        LogAndConsole($"Total global : {totalGlobal}\n");
+    }
+}
+
+// Méthode pour récupérer un article par référence (ou autre propriété unique)
+    private Article GetArticleByReference(string reference)
+    {
         string? jsonFile = _fileRead.ReadFile(_pathArticleJson);
-        // Deserialize the JSON file into a list of Article objects =>
-        List<Article>? articles = new List<Article>();
-        if (!string.IsNullOrWhiteSpace(jsonFile))
-            articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
-        // Add the new article to the list =>
+        List<Article>? articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
+        // Vérifiez que la liste d'articles n'est pas null avant de rechercher la référence.
         if (articles != null)
         {
-            LogAndConsole($"{admin.Login} add a new Bill with all articles sold by each Buyers ==>\n----");
-            foreach (var article in articles)
-            {
-                LogAndConsole($"----\nArticles N°{article.ID}\n- Reference = {article.Reference}\n- Price = {article.Price}\n bought by {buyer.Firstname}\n----");
-                total += article.Price;
-                _fileAppend.AppendFile(testBillByBuyers, $"----\n- Reference = {article.Reference} \n- Price = {article.Price}\n bought by {buyer.Firstname}\n----");
-            }
-            _fileAppend.AppendFile(testBillByBuyers, $"----\nTotal = {total}\n----");
-            LogAndConsole($"----\nTotal = {total}\n----");
+            return articles.FirstOrDefault(article => article.Reference == reference);
         }
+        // Si la liste d'articles est null ou vide, retournez null ou lancez une exception appropriée.
+        return null;
     }
+
+
 }
 // PART OF BUYER
 public interface IBuyersService
@@ -246,27 +276,68 @@ public class BuyerService : IBuyersService
         string jsonFile = _fileRead.ReadFile(_pathArticleJson);
         // Choisir un article de la liste =>
         List<Article>? articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
-        // Sauvegarder le fichier =>
-        string path = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{newBuyer.Firstname}-{DateTime.Now.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}-{DateTime.Now.Hour}-{DateTime.Now.Minute}.txt";
-        // Créer le fichier vide =>
-        _fileWrite.WriteFile(path, "");
-        // Calculer le prix total de l'article choisi par le buyer =>
-        float totalPrice = 0;
-        foreach (var article in articles)
+        if (articles != null)
         {
-            if (reference == article.Reference)
+            // Vérifiez si l'article avec la référence spécifiée existe
+            Article selectedArticle = articles.FirstOrDefault(article => article.Reference == reference);
+            if (selectedArticle != null)
             {
-                totalPrice = article.Price * quantity;
-                LogAndConsole($"----\n[{newBuyer.Firstname}] added a {quantity} of {article.Reference} to his list\nwith a Total price = {totalPrice}\n----");
+                // Calculez le prix total de l'article choisi par le buyer
+                float totalPrice = selectedArticle.Price * quantity;
+                LogAndConsole($"----\n[{newBuyer.Firstname}] added a {quantity} of {selectedArticle.Reference} to his list\nwith a Total price = {totalPrice}\n----");
+                // Sauvegardez les détails de l'article dans le fichier
+                string path = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{newBuyer.Firstname}-{DateTime.Now.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}-{DateTime.Now.Hour}-{DateTime.Now.Minute}.txt";
+                _fileWrite.WriteFile(path, $" ----\nList of articles purchased by '{newBuyer.Firstname}' :\n----\nReference : {selectedArticle.Reference}\nPrice : {selectedArticle.Price}\nQuantity : {quantity}\nTotal price : {totalPrice}\n----\n");
+                // Appeler la fonction AddItemPurchased
+                float priceAtPurchase = CalculatePriceAtPurchase(reference, quantity);
+                LogAndConsole($"---->\n- Reference : {reference}\n- Quantity : {quantity}\n- Price at purchase : {priceAtPurchase}\n- Date of buy : {DateTime.Now}\n----");
+                AddItemPurchases(new ItemPurchased(selectedArticle.Reference, quantity, priceAtPurchase, DateTime.Now));
+            }
+            else
+            {
+                LogAndConsole($"Article with reference '{reference}' not found.");
             }
         }
-        // Ajouter l'article choisi par le buyer dans le fichier sans écraser le contenu =>
-        _fileAppend.AppendFile(path,
-            $"----\n[{newBuyer.Firstname}] added a {quantity} of {reference} to his list\nWith a Total price = {totalPrice}\n----");
-        _itemsPurchased.Add(new ItemPurchased(quantity, DateTime.Now));
-        // Ecrire dans un fichier json =>
-        string json = JsonSerializer.Serialize(_itemsPurchased);
-        _fileAppend.AppendFile(_pathItemPurchasedJson, json);
+    }
+    public float CalculatePriceAtPurchase(string reference, int quantity)
+    {
+        string jsonFile = _fileRead.ReadFile(_pathArticleJson);
+        List<Article>? articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
+
+        if (articles != null)
+        {
+            // Recherchez l'article par sa référence
+            Article purchasedArticle = articles.FirstOrDefault(article => article.Reference == reference);
+            if (purchasedArticle != null)
+            {
+                // Calculez le prix total en fonction de la quantité
+                float totalPrice = purchasedArticle.Price * quantity;
+                return totalPrice;
+            }
+        }
+        // Si l'article n'a pas été trouvé ou s'il y a une erreur, renvoyez 0 ou une valeur par défaut appropriée
+        return 0.0f;
+    }
+    public void AddItemPurchases(ItemPurchased itemPurchased)
+    {
+        // Read the current content of the file =>
+        string? jsonFile = _fileRead.ReadFile(_pathItemPurchasedJson);
+        // PROB
+        List<ItemPurchased>? itemsPurchased = new List<ItemPurchased>();
+        if (!string.IsNullOrWhiteSpace(jsonFile))
+        {
+            itemsPurchased = JsonSerializer.Deserialize<List<ItemPurchased>>(jsonFile);
+        }
+        // Add the new item purchased to the list =>
+        itemsPurchased ??= new List<ItemPurchased>();
+        itemsPurchased.Add(itemPurchased);
+        // Serialize the list of items purchased into a JSON string =>
+        string updatedJson = JsonSerializer.Serialize(itemsPurchased);
+
+        // Write the updated JSON string to the file =>
+        _fileWrite.WriteFile(_pathItemPurchasedJson, updatedJson);
+
+        LogAndConsole("----\nItem purchased added\n----");
     }
     public void DisplayListOfArticle()
     {
@@ -278,33 +349,8 @@ public class BuyerService : IBuyersService
         {
             foreach (var article in articles)
             {
-                LogAndConsole($"----\nArticles N°{article.ID}\n- Reference = {article.Reference} \n- Price = {article.Price}\n----");
+                LogAndConsole($"---->\nArticles N°{article.ID}\n- Reference = {article.Reference} \n- Price = {article.Price}\n----");
             }
         }
-    }
-    // public void AddArticleToLog(Buyer buyer, Article article, int quantity, DateTime dateofOrder)
-    // {
-    //     // Create a new item purchased =>
-    //     ItemPurchased itemPurchased = new ItemPurchased(quantity, dateofOrder);
-    //     // Add the new item purchased to the list =>
-    //     _itemsPurchased.Add(itemPurchased);
-    // }
-    // public float CalculateTotalPrice(Buyer buyer, Article article)
-    // {
-    //     float totalPrice = 0;
-    //     foreach (var itemPurchased in _itemsPurchased)
-    //     {
-    //         totalPrice += itemPurchased.Quantity * article.Price;
-    //     }
-    //     return totalPrice;
-    // }
-    public void FinishOrder(Buyer buyer, Article article)
-    {
-        // Create a new file =>
-        string path = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{buyer.Lastname}-{buyer.Firstname}-{DateTime.Now.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}-{DateTime.Now.Hour}-{DateTime.Now.Minute}.txt";
-        // Create the log entry =>
-        string logEntry = $"{DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year} -- Add a : {article.Reference} à {DateTime.Now.Hour}h{DateTime.Now.Minute} par {buyer.Lastname} {buyer.Firstname}";
-        // Write the log entry to the file =>
-        _fileWrite.WriteFile(path, logEntry);
     }
 }
