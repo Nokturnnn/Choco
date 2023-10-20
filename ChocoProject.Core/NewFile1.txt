@@ -1,0 +1,25 @@
+public void AddArticle(Article article, Admin admin)
+    {
+        // Verify if the file exists =>
+        if (!_fileExists.FileExists(_pathArticleJson))
+            // Create the file =>
+            _fileWrite.WriteFile(_pathArticleJson, "");
+        // Create a new article =>
+        Article newArticle = new Article(article.Reference, article.Price);
+        // Read the current content of the file =>
+        string? jsonFile = _fileRead.ReadFile(_pathArticleJson);
+        // Deserialize the JSON file into a list of Article objects =>
+        List<Article>? articles = new List<Article>();
+        if (!string.IsNullOrWhiteSpace(jsonFile))
+            articles = JsonSerializer.Deserialize<List<Article>>(jsonFile);
+        // Add the new article to the list =>
+        if (articles != null)
+        {
+            articles.Add(newArticle);
+            // Serialize the list of articles into a JSON string =>
+            string updatedJson = JsonSerializer.Serialize(articles);
+            // Write the updated JSON string to the file =>
+            _fileWrite.WriteFile(_pathArticleJson, updatedJson);
+        }
+        LogAndConsole($"----\n- {admin.Login} add an article ==> \n- Reference = {article.Reference} \n- Price = {article.Price}\n----");
+    }

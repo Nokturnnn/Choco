@@ -1,244 +1,243 @@
-16/10/2023 12:07 - ----
-.The files admin.json, articles.json, buyers, log have been deleted
-16/10/2023 12:08 - ----
+20/10/2023 09:49 - ----
+.The files admin.json, articles.json, buyers, log and items purchased have been deleted
+20/10/2023 09:50 - ----
 Admin added = Login : Thomas and Password : Thomas!
-16/10/2023 12:08 -  ----
-Buyer added
-----
-16/10/2023 12:08 - Your login or password is incorrect
-16/10/2023 12:08 - ----
+20/10/2023 09:50 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-16/10/2023 12:09 - ----
+20/10/2023 09:50 - ----
 - Thomas add an article ==> 
 - Reference = Choco 
-- Price = 10,11
+- Price = 10
 ----
-16/10/2023 13:34 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+20/10/2023 09:50 - Thomas add a new Bill with all Articles Sold ==>
+----
+20/10/2023 09:50 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
 - Reference = Choco 
-- Price = 10,11
+- Price = 10
 ----
-16/10/2023 13:47 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
+20/10/2023 09:50 - ----
+Total = 10
 ----
-16/10/2023 13:55 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-16/10/2023 13:55 - ----
-Total price = 20,22
-----
-16/10/2023 14:09 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-16/10/2023 14:09 - ----
-test-test added a 2 of Choco to his list
- with a Total price = 20,22
-----
-16/10/2023 14:10 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-16/10/2023 14:11 - ----
-test-test added a 2 of Choco to his list
- with a Total price = 20,22
-----
-16/10/2023 14:47 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-16/10/2023 14:53 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-16/10/2023 14:54 - You must create a buyer before choosing an article
-16/10/2023 14:56 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-16/10/2023 14:59 -  ----
+20/10/2023 09:51 -  ----
 Buyer added
 ----
-16/10/2023 15:00 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+20/10/2023 09:51 - ----
+"Buyer registered =
+Firstname : Thomas
+Lastname : GACE"
+----
+20/10/2023 09:51 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
 - Reference = Choco 
-- Price = 10,11
+- Price = 10
 ----
-16/10/2023 15:00 -  ----
-Buyer added
+20/10/2023 09:51 - ----
+[Thomas GACE] added a 7 of Choco to his list
+with a Total price = 70
 ----
-16/10/2023 15:00 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-16/10/2023 15:00 - ----
-GACE-Thomas added a 2 of Choco to his list
- with a Total price = 20,22
-----
-16/10/2023 15:01 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-16/10/2023 15:40 - The Json file is empty or missing.
-16/10/2023 15:51 -  ----
-Buyer added
-----
-16/10/2023 16:29 -  ----
-Buyer added
-----
-16/10/2023 16:38 - Your login or password is incorrect
-16/10/2023 16:38 - ----
+20/10/2023 09:52 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-16/10/2023 16:46 - The Json file is empty or missing.
-16/10/2023 16:47 -  ----
-Buyer added
+20/10/2023 09:53 - Thomas add a new Bill with all Articles Sold ==>
 ----
-16/10/2023 16:49 -  ----
-Buyer added
+20/10/2023 09:53 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
+- Reference = Choco 
+- Price = 10
 ----
-16/10/2023 17:01 - The Json file is empty or missing.
-16/10/2023 17:03 - The Json file is empty or missing.
-16/10/2023 17:09 -  ----
-Buyer added
+20/10/2023 09:53 - ----
+Total = 10
 ----
-16/10/2023 17:09 - ----
+20/10/2023 10:27 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 10:27 - Thomas add a new Bill with all Articles Sold ==>
+----
+20/10/2023 10:27 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
+- Reference = Choco 
+- Price = 10
+----
+20/10/2023 10:27 - ----
+Total = 10
+----
+20/10/2023 10:28 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 10:28 - Thomas add a new Bill with all Articles Sold ==>
+----
+20/10/2023 10:28 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
+- Reference = Choco 
+- Price = 10
+----
+20/10/2023 10:28 - ----
+Total = 10
+----
+20/10/2023 10:29 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 10:29 - Thomas add a new Bill with all Articles Sold ==>
+----
+20/10/2023 10:29 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
+- Reference = Choco 
+- Price = 10
+----
+20/10/2023 10:29 - ----
+Total = 10
+----
+20/10/2023 14:11 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 14:11 - Thomas a créé une facture pour tous les articles achetés.
+20/10/2023 14:12 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 14:12 - Thomas a créé une facture pour tous les articles achetés.
+20/10/2023 14:14 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 14:14 - Thomas a créé une facture pour tous les articles achetés.
+20/10/2023 14:15 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 14:15 - ----
+- Thomas add an article ==> 
+- Reference = Melon 
+- Price = 2,22
+----
+20/10/2023 14:15 - Thomas a créé une facture pour tous les articles achetés.
+20/10/2023 14:17 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 14:17 - Thomas created an invoice for all items purchased.
+20/10/2023 14:23 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 14:23 - Thomas add a new Bill with all articles sold by each Buyers ==>
+----
+20/10/2023 14:23 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
+- Reference = Choco
+- Price = 10
+ bought by 
+----
+20/10/2023 14:23 - ----
+Articles N°ffddf07e-43d6-481f-ac26-0607552549a7
+- Reference = Melon
+- Price = 2,22
+ bought by 
+----
+20/10/2023 14:23 - ----
+Total = 12,22
+----
+20/10/2023 14:26 - ----
 "Buyer registered =
- Lastname : tt and Firstname : tt"
+Firstname : Thomas
+Lastname : GACE"
 ----
-16/10/2023 17:21 -  ----
-Buyer added
+20/10/2023 14:26 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
 ----
-17/10/2023 13:14 -  ----
-Buyer added
+20/10/2023 14:26 - Thomas add a new Bill with all articles sold by each Buyers ==>
 ----
-17/10/2023 13:20 -  ----
-Buyer added
+20/10/2023 14:26 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
+- Reference = Choco
+- Price = 10
+ bought by Thomas GACE
 ----
-17/10/2023 15:12 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+20/10/2023 14:26 - ----
+Articles N°ffddf07e-43d6-481f-ac26-0607552549a7
+- Reference = Melon
+- Price = 2,22
+ bought by Thomas GACE
+----
+20/10/2023 14:26 - ----
+Total = 12,22
+----
+20/10/2023 14:32 - Your login or password is incorrect
+20/10/2023 14:32 - ----
+"Buyer registered =
+Firstname : Thomas
+Lastname : GACE"
+----
+20/10/2023 14:32 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+20/10/2023 14:32 - Thomas add a new Bill with all articles sold by each Buyers ==>
+----
+20/10/2023 14:32 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
+- Reference = Choco
+- Price = 10
+ bought by Thomas GACE
+----
+20/10/2023 14:32 - ----
+Articles N°ffddf07e-43d6-481f-ac26-0607552549a7
+- Reference = Melon
+- Price = 2,22
+ bought by Thomas GACE
+----
+20/10/2023 14:32 - ----
+Total = 12,22
+----
+20/10/2023 14:36 - ----
+"Buyer registered =
+Firstname : Thomas
+Lastname : GACE"
+----
+20/10/2023 14:36 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
 - Reference = Choco 
-- Price = 10,11
+- Price = 10
 ----
-17/10/2023 15:12 - ----
-- added a 2 of Choco to his list
-with a Total price = 20,22
+20/10/2023 14:36 - ----
+Articles N°ffddf07e-43d6-481f-ac26-0607552549a7
+- Reference = Melon 
+- Price = 2,22
 ----
-17/10/2023 15:33 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
+20/10/2023 14:36 - ----
+"Buyer registered =
+Firstname : Thomas
+Lastname : GACE"
+----
+20/10/2023 14:36 - ----
+Articles N°6f11e0e9-1b68-4524-b0d7-8d7f001cec2b
 - Reference = Choco 
-- Price = 10,11
+- Price = 10
 ----
-17/10/2023 15:33 - ----
-- added a 3 of Choco to his list
-with a Total price = 30,329998
+20/10/2023 14:36 - ----
+Articles N°ffddf07e-43d6-481f-ac26-0607552549a7
+- Reference = Melon 
+- Price = 2,22
 ----
-17/10/2023 15:37 -  ----
-Buyer added
+20/10/2023 14:37 - ----
+[Thomas GACE] added a 9 of Melon to his list
+with a Total price = 19,98
 ----
-17/10/2023 15:37 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
+20/10/2023 14:38 - ----
+"Buyer registered =
+Firstname : Thomas
+Lastname : GACE"
 ----
-17/10/2023 15:37 - ----
-- added a 2 of Choco to his list
-with a Total price = 20,22
-----
-17/10/2023 15:41 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:41 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:41 - ----
-- added a 1 of Choco to his list
-with a Total price = 10,11
-----
-17/10/2023 15:42 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:42 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:46 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:46 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:46 - ----
-- added a 1 of Choco to his list
-with a Total price = 10,11
-----
-17/10/2023 15:47 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:53 -  ----
-Buyer added
-----
-17/10/2023 15:53 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:53 - ----
-ThomasGACE-ThomasGACE added a 2 of Choco to his list
-with a Total price = 20,22
-----
-17/10/2023 15:54 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:55 -  ----
-Buyer added
-----
-17/10/2023 15:55 - ----
-Articles N°77ee57ae-f512-4be2-a0a4-7eba769d3fd5
-- Reference = Choco 
-- Price = 10,11
-----
-17/10/2023 15:55 - ----
- added a 2 of Choco to his list
-with a Total price = 20,22
-----
-17/10/2023 15:56 - ----
-- added a 2 of Choco to his list
-with a Total price = 20,22
-----
-17/10/2023 15:56 -  ----
-Buyer added
-----
-17/10/2023 15:56 - ----
-ThomasGACE-ThomasGACE added a 2 of Choco to his list
-with a Total price = 20,22
+20/10/2023 14:38 - ----
+[Thomas GACE] added a 2 of Melon to his list
+with a Total price = 4,44
 ----

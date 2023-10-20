@@ -14,8 +14,7 @@ namespace ChocoProject.Core
         private MBuyer _buyerMenu;
         private MStart _startMenu;
         private ClearDB _clearDB;
-        private Buyer _newBuyer;
-        private string _buyerLogin;
+        private string currentBuyerLogin;
         
         public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger)
         {
@@ -77,12 +76,10 @@ namespace ChocoProject.Core
             switch (buyerChoice)
             {
                 case "1":
-                    var buyer = _buyerMenu.AddRegister();
-                    _buyerLogin = _buyerService.CreateBuyer(new Buyer(buyer.firstname, buyer.lastname, buyer.adress, buyer.phone));
-                    HandleBuyerMenu();
+                    BuyerLogin();
                     break;
                 case "2":
-                    HandleBuyerRegistered();
+                    RegisterBuyerAccount();
                     break;
                 case "3":
                     Start();
@@ -93,20 +90,20 @@ namespace ChocoProject.Core
                     break;
             }
         }
-        private void HandleBuyerRegistered()
+        private void HandleBuyerRegistered(string buyerLogin)
         {
             _buyerMenu.DisplayBuyerRegistered();
             string buyerChoice = Console.ReadLine();
             switch (buyerChoice)
             {
                 case "1":
-                    var article = _buyerMenu.AddToList();
-                    _buyerService.BuyerChooseAnArticleToList(new Article(article.reference, article.quantity), new Buyer(_buyerLogin, _buyerLogin, _buyerLogin, 0), article.reference, article.quantity);
-                    HandleBuyerRegistered();
+                    _buyerService.DisplayListOfArticle();
+                    HandleBuyerRegistered(buyerLogin);
                     break;
                 case "2":
-                    _buyerService.DisplayListOfArticle();
-                    HandleBuyerRegistered();
+                    var article = _buyerMenu.AddToList();
+                    _buyerService.BuyerChooseAnArticleToList(new Article(article.reference, article.quantity), new Buyer(buyerLogin, buyerLogin, buyerLogin, buyerLogin), article.reference, article.quantity);
+                    HandleBuyerRegistered(buyerLogin);
                     break;
                 case"3":
                     Start();
@@ -116,7 +113,7 @@ namespace ChocoProject.Core
                     break;
                 default:
                     Console.WriteLine("\nInvalid choice, Please try again !");
-                    HandleBuyerRegistered();
+                    HandleBuyerRegistered(buyerLogin);
                     break;
             }
         }
@@ -132,10 +129,12 @@ namespace ChocoProject.Core
                     HandleAdminConnected(adminLogin);
                     break;
                 case "2":
-                    _adminService.GetArticles(new Admin( adminLogin, adminLogin));
+                    _adminService.GetArticles(new Admin(adminLogin, adminLogin));
                     HandleAdminConnected(adminLogin);
                     break;
                 case "3":
+                    _adminService.GetArticlesByBuyers(new Buyer(currentBuyerLogin, currentBuyerLogin, currentBuyerLogin, currentBuyerLogin), new Admin(adminLogin, adminLogin));
+                    HandleAdminConnected(adminLogin);
                     break;
                 case "4":
                     break;
@@ -206,6 +205,34 @@ namespace ChocoProject.Core
                     Console.WriteLine("Invalid login or password. Please try again.");
                     HandleAdminMenu();
                 }
+            }
+        }
+        private void BuyerLogin()
+        {
+            bool loginSuccessful = false;
+            if (!loginSuccessful)
+            {
+                var buyerCredentials = _buyerMenu.BuyerInfosConnecting();
+                if (_buyerService.ValidateBuyerLog(buyerCredentials.firstname, buyerCredentials.lastname))
+                {
+                    currentBuyerLogin = buyerCredentials.firstname + " " + buyerCredentials.lastname;
+                    HandleBuyerRegistered(buyerLogin: currentBuyerLogin);
+                    loginSuccessful = true; 
+                }
+                else
+                {
+                    Console.WriteLine("Invalid firstname or lastname. Please try again !");
+                    HandleBuyerMenu();
+                }
+            }
+        }
+        private void RegisterBuyerAccount()
+        {
+            var registerCredentials = _buyerMenu.AddRegister();
+            if (registerCredentials.firstname != null && registerCredentials.lastname != null)
+            {
+                _buyerService.CreateBuyer(registerCredentials.firstname, registerCredentials.lastname, registerCredentials.adress, registerCredentials.phone);
+                Start();
             }
         }
     }

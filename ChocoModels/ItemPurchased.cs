@@ -7,11 +7,5 @@ public class ItemPurchased
     public int Quantity { get; set; }
     public DateTime DateofBuy { get; set; }
     
-    public ItemPurchased(int quantity, DateTime dateofBuy)
-    {
-        IDAcheteur = Guid.NewGuid();
-        IDChocolate = Guid.NewGuid();
-        Quantity = quantity;
-        DateofBuy = dateofBuy;
-    }
+    public ItemPurchased(int quantity, DateTime dateofBuy) => ( IDAcheteur, IDChocolate, Quantity, DateofBuy) = (Guid.NewGuid(), Guid.NewGuid(), quantity, dateofBuy);
 }
