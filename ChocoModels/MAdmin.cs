@@ -64,4 +64,20 @@ public class MAdministrator
         Console.WriteLine("----");
         return (reference, price);
     }
+    public (DateTime startDate, DateTime endDate) AdminAddDate()
+    {
+        Console.WriteLine("Enter start date of the purchase (yyyy-MM-dd)");
+        string startDateString = Console.ReadLine();
+        DateTime startDate = DateTime.Parse(startDateString);
+        Console.WriteLine("Enter end date of the purchase (yyyy-MM-dd)");
+        string endDateString = Console.ReadLine();
+        DateTime endDate = DateTime.Parse(endDateString);
+        Console.WriteLine("----");
+
+        // Formate les dates au format "yyyy/MM/dd"
+        string startDateFormatted = startDate.ToString("yyyy/MM/dd");
+        string endDateFormatted = endDate.ToString("yyyy/MM/dd");
+
+        return (DateTime.Parse(startDateFormatted), DateTime.Parse(endDateFormatted));
+    }
 }

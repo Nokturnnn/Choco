@@ -1,0 +1,33 @@
+public void GetArticlesByBuyers(Buyer buyer, Article article, Admin admin)
+    {
+        float total = 0;
+        float totalGlobal = 0;
+        int billCount = 1;
+        string testBillByBuyers = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{admin.Login}-SumOfArticlesSoldByBuyers.txt";
+        // Read the current content of the file =>
+        string? jsonFile = _fileRead.ReadFile(_pathItemPurchased);
+        // Deserialize the JSON file into a list of Article objects =>
+        List<ItemPurchased>? itemPurchaseds = new List<ItemPurchased>();
+        if (!string.IsNullOrWhiteSpace(jsonFile))
+            itemPurchaseds = JsonSerializer.Deserialize<List<ItemPurchased>>(jsonFile);
+        if (itemPurchaseds != null)
+        {
+            LogAndConsole($"{admin.Login} is generating a bill for articles bought by {buyer.Firstname}:\n");
+            foreach (var items in itemPurchaseds)
+            {
+                // Trouver l'article correspondant par référence (ou autre propriété unique)
+                Article purchasedArticle = GetArticleByReference(items.ArticleReference); // Remplacez ArticleReference par la propriété appropriée
+                if (purchasedArticle != null)
+                {
+                    // Calculate the total price =>
+                    total += items.Quantity * purchasedArticle.Price;
+                    totalGlobal += total;
+                    // Add the details of the article to the invoice =>
+                    _fileAppend.AppendFile(testBillByBuyers, $"----> Bill {billCount}\n- Buyer : {buyer.Firstname}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
+                    LogAndConsole($"\n----> Bill {billCount}\n- Buyer : {buyer.Firstname}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n- Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
+                    billCount++;
+                }
+            }
+            _fileAppend.AppendFile(testBillByBuyers, $"\n- Total global : {totalGlobal}\n");
+            LogAndConsole($"Total global : {totalGlobal}\n");
+        }

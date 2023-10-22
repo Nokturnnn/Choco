@@ -26,3 +26,201 @@ Login success
 
 20/10/2023 23:26 - Total global : 204
 
+22/10/2023 15:23 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:23 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 15:23 - Total global : 0
+
+22/10/2023 15:24 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:24 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 15:24 - Total global : 0
+
+22/10/2023 15:26 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:26 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 15:26 - Total global : 0
+
+22/10/2023 15:28 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:29 - Your login or password is incorrect
+22/10/2023 15:30 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:30 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 15:30 - Total global : 0
+
+22/10/2023 15:37 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:37 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 15:37 - Total global : 0
+
+22/10/2023 15:52 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:57 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:57 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 15:57 - Total global : 0
+
+22/10/2023 15:57 - ----
+"Buyer registered =
+Firstname : Thomas
+Lastname : GACE"
+----
+22/10/2023 15:57 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 15:57 - Thomas is generating a bill for articles bought by Thomas GACE between 20/10/2023 and 20/10/2023:
+
+22/10/2023 15:57 - Total global : 0
+
+22/10/2023 15:59 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 16:01 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 16:04 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 16:05 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 16:05 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 16:05 - Total global : 0
+
+22/10/2023 16:08 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 16:08 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 16:08 - 
+----> Bill 1
+- Buyer : 
+- Reference : Choco
+- Quantity : 10
+- Price : 10
+- Total purchases : 100 
+- Date of buy : 20/10/2023 22:46:13
+----
+
+22/10/2023 16:08 - 
+----> Bill 2
+- Buyer : 
+- Reference : Melon
+- Quantity : 2
+- Price : 2
+- Total purchases : 4 
+- Date of buy : 20/10/2023 22:48:27
+----
+
+22/10/2023 16:08 - Total global : 204
+
+22/10/2023 16:15 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 16:15 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
+
+22/10/2023 16:15 - 
+----> Bill 1
+- Buyer : 
+- Reference : Choco
+- Quantity : 10
+- Price : 10
+- Total purchases : 100 
+- Date of buy : 20/10/2023 22:46:13
+----
+
+22/10/2023 16:15 - 
+----> Bill 2
+- Buyer : 
+- Reference : Melon
+- Quantity : 2
+- Price : 2
+- Total purchases : 4 
+- Date of buy : 20/10/2023 22:48:27
+----
+
+22/10/2023 16:15 - Total global : 104
+
+22/10/2023 16:18 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 16:19 - Thomas is generating a bill for articles bought between 20/10/2023 and 20/10/2023:
+
+22/10/2023 16:19 - 
+----> Bill 1
+- Reference : Choco
+- Quantity : 10
+- Price : 10
+- Total purchases : 100 
+- Date of buy : 20/10/2023 22:46:13
+----
+
+22/10/2023 16:19 - 
+----> Bill 2
+- Reference : Melon
+- Quantity : 2
+- Price : 2
+- Total purchases : 4 
+- Date of buy : 20/10/2023 22:48:27
+----
+
+22/10/2023 16:19 - Total global : 104
+
+22/10/2023 16:20 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+22/10/2023 16:20 - Thomas is generating a bill for articles bought between 20/10/2023 and 20/10/2023:
+
+22/10/2023 16:20 - 
+----> Bill 1
+- Reference : Choco
+- Quantity : 10
+- Price : 10
+- Total purchases : 100 
+- Date of buy : 20/10/2023 22:46:13
+----
+
+22/10/2023 16:20 - 
+----> Bill 2
+- Reference : Melon
+- Quantity : 2
+- Price : 2
+- Total purchases : 4 
+- Date of buy : 20/10/2023 22:48:27
+----
+
+22/10/2023 16:20 - Total global : 104
+

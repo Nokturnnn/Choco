@@ -14,12 +14,10 @@ public interface IAdmin
     void GetArticles(Admin admin);
     void GetArticlesByBuyers(Buyer buyer, Article article, Admin admin);
     void LogAndConsole(string message);
+    void GenerateBillForBuyerByDate(DateTime startDate, DateTime endDate, Article article, Admin admin);
 }
 public class AdminService : IAdmin
 {
-    // private List<Admin> _admins = new();
-    // private List<Article> _articles = new();
-    // private List<Buyer> _buyers = new();
     private List<ItemPurchased> _itemsPurchased = new();
     private ILogger _logger;
     private Interaction.IFileRead _fileRead = new Interaction.FileService();
@@ -139,42 +137,7 @@ public class AdminService : IAdmin
             LogAndConsole($"{admin.Login} created an invoice for all items purchased");
         }
     }
-    public void GetArticlesByBuyers(Buyer buyer, Article article, Admin admin)
-{
-    float total = 0;
-    float totalGlobal = 0;
-    int billCount = 1;
-    string testBillByBuyers = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{admin.Login}-SumOfArticlesSoldByBuyers.txt";
-    // Read the current content of the file =>
-    string? jsonFile = _fileRead.ReadFile(_pathItemPurchased);
-    // Deserialize the JSON file into a list of Article objects =>
-    List<ItemPurchased>? itemPurchaseds = new List<ItemPurchased>();
-    if (!string.IsNullOrWhiteSpace(jsonFile))
-        itemPurchaseds = JsonSerializer.Deserialize<List<ItemPurchased>>(jsonFile);
-    if (itemPurchaseds != null)
-    {
-        LogAndConsole($"{admin.Login} is generating a bill for articles bought by {buyer.Firstname}:\n");
-        foreach (var items in itemPurchaseds)
-        {
-            // Trouver l'article correspondant par référence (ou autre propriété unique)
-            Article purchasedArticle = GetArticleByReference(items.ArticleReference); // Remplacez ArticleReference par la propriété appropriée
-            if (purchasedArticle != null)
-            {
-                // Calculate the total price =>
-                total += items.Quantity * purchasedArticle.Price;
-                totalGlobal += total;
-                // Add the details of the article to the invoice =>
-                _fileAppend.AppendFile(testBillByBuyers, $"----> Bill {billCount}\n- Buyer : {buyer.Firstname}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
-                LogAndConsole($"\n----> Bill {billCount}\n- Buyer : {buyer.Firstname}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n- Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
-                billCount++;
-            }
-        }
-        _fileAppend.AppendFile(testBillByBuyers, $"\n- Total global : {totalGlobal}\n");
-        LogAndConsole($"Total global : {totalGlobal}\n");
-    }
-}
-
-// Méthode pour récupérer un article par référence (ou autre propriété unique)
+    // Méthode pour récupérer un article par référence (ou autre propriété unique)
     private Article GetArticleByReference(string reference)
     {
         string? jsonFile = _fileRead.ReadFile(_pathArticleJson);
@@ -187,16 +150,89 @@ public class AdminService : IAdmin
         // Si la liste d'articles est null ou vide, retournez null ou lancez une exception appropriée.
         return null;
     }
+    public void GetArticlesByBuyers(Buyer buyer, Article article, Admin admin)
+    {
+        float total = 0;
+        float totalGlobal = 0;
+        int billCount = 1;
+        string testBillByBuyers = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{admin.Login}-SumOfArticlesSoldByBuyers.txt";
+        // Read the current content of the file =>
+        string? jsonFile = _fileRead.ReadFile(_pathItemPurchased);
+        // Deserialize the JSON file into a list of Article objects =>
+        List<ItemPurchased>? itemPurchaseds = new List<ItemPurchased>();
+        if (!string.IsNullOrWhiteSpace(jsonFile))
+            itemPurchaseds = JsonSerializer.Deserialize<List<ItemPurchased>>(jsonFile);
+        if (itemPurchaseds != null)
+        {
+            LogAndConsole($"{admin.Login} is generating a bill for articles bought by {buyer.Firstname}:\n");
+            foreach (var items in itemPurchaseds)
+            {
+                // Trouver l'article correspondant par référence (ou autre propriété unique)
+                Article purchasedArticle = GetArticleByReference(items.ArticleReference); // Remplacez ArticleReference par la propriété appropriée
+                if (purchasedArticle != null)
+                {
+                    // Calculate the total price =>
+                    total += items.Quantity * purchasedArticle.Price;
+                    // Add the details of the article to the invoice =>
+                    _fileAppend.AppendFile(testBillByBuyers, $"----> Bill {billCount}\n- Buyer : {buyer.Firstname}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
+                    LogAndConsole($"\n----> Bill {billCount}\n- Buyer : {buyer.Firstname}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n- Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
+                    billCount++;
+                }
+            }
+            totalGlobal += total;
+            _fileAppend.AppendFile(testBillByBuyers, $"\n- Total global : {totalGlobal}\n");
+            LogAndConsole($"Total global : {totalGlobal}\n");
+        }
+    }
+    public void GenerateBillForBuyerByDate(DateTime startDate, DateTime endDate, Article article, Admin admin)
+    {
+        float total = 0;
+        float totalGlobal = 0;
+        int billCount = 1;
+        string testBillByBuyersDateOfBuy = $"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/{admin.Login}-SumOfArticlesSoldByBuyersByDate.txt";
 
+        // Read the current content of the file
+        string? jsonFile = _fileRead.ReadFile(_pathItemPurchased);
 
+        // Deserialize the JSON file into a list of ItemPurchased objects
+        List<ItemPurchased>? itemPurchaseds = new List<ItemPurchased>();
+        if (!string.IsNullOrWhiteSpace(jsonFile))
+            itemPurchaseds = JsonSerializer.Deserialize<List<ItemPurchased>>(jsonFile);
+
+        if (itemPurchaseds != null)
+        {
+            LogAndConsole($"{admin.Login} is generating a bill for articles bought between {startDate.ToShortDateString()} and {endDate.ToShortDateString()}:\n");
+
+            foreach (var items in itemPurchaseds)
+            {
+                // Check if the purchase date falls within the specified date range
+                if (items.DateofBuy.Date >= startDate.Date && items.DateofBuy.Date <= endDate.Date)
+                {
+                    // Find the corresponding article by reference (or other unique property)
+                    Article purchasedArticle = GetArticleByReference(items.ArticleReference);
+
+                    if (purchasedArticle != null)
+                    {
+                        // Calculate the total price
+                        total += items.Quantity * purchasedArticle.Price;
+                        
+                        // Add the details of the article to the invoice
+                        _fileAppend.AppendFile(testBillByBuyersDateOfBuy, $"\n----> Bill {billCount}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
+                        LogAndConsole($"\n----> Bill {billCount}\n- Reference : {items.ArticleReference}\n- Quantity : {items.Quantity}\n- Price : {purchasedArticle.Price}\n- Total purchases : {items.Quantity * purchasedArticle.Price} \n- Date of buy : {items.DateofBuy}\n----\n");
+                        billCount++;
+                    }
+                }
+            }
+            totalGlobal += total;
+            _fileAppend.AppendFile(testBillByBuyersDateOfBuy, $"\n- Total global : {totalGlobal}\n");
+            LogAndConsole($"Total global : {totalGlobal}\n");
+        }
+    }
 }
 // PART OF BUYER
 public interface IBuyersService
 {
     void CreateBuyer(string firstname, string lastname, string adress, string phone);
-    // void AddArticleToLog(Buyer buyer, Article article, int quantity, DateTime DateofOrder);
-    // float CalculateTotalPrice(Buyer buyer, Article article);
-    // void FinishOrder(Buyer buyer, Article article);
     void BuyerChooseAnArticleToList(Article article, Buyer buyer, string reference, int quantity);
     bool ValidateBuyerLog(string firstname, string lastname);
     void DisplayListOfArticle();

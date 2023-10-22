@@ -16,6 +16,7 @@ namespace ChocoProject.Core
         private ClearDB _clearDB;
         private string currentBuyerLogin;
         private (string referance, float price) article;
+        private (DateTime startDate, DateTime endDate) date;
         
         public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger)
         {
@@ -138,6 +139,9 @@ namespace ChocoProject.Core
                     HandleAdminConnected(adminLogin);
                     break;
                 case "4":
+                    date = _adminMenu.AdminAddDate();
+                    _adminService.GenerateBillForBuyerByDate(date.startDate, date.endDate, new Article(article.referance, article.price), new Admin(adminLogin, adminLogin));
+                    HandleAdminConnected(adminLogin);
                     break;
                 case "5":
                     Start();
