@@ -1,8 +1,0 @@
- ----
-List of articles purchased by 'Thomas GACE' :
-----
-Reference : Melon
-Price : 2
-Quantity : 2
-Total price : 4
-----

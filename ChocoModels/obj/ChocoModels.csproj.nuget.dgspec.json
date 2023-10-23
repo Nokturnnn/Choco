@@ -78,7 +78,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/ChocoInteraction.csproj": {
+                "projectPath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoInteraction/ChocoInteraction.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

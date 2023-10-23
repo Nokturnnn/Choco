@@ -1,226 +1,210 @@
-20/10/2023 23:26 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
+23/10/2023 14:10 - ----> The file /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/buyer.json doesn't exist
+23/10/2023 14:10 - ----> The file /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/itemPurchased.json doesn't exist
+23/10/2023 14:11 -  ----
+Buyer added
+- Firstname: Thomas
+- Lastname: GACE
+- Address: CNAF
+- Phone: 12
 ----
-20/10/2023 23:26 - Thomas is generating a bill for articles bought by :
-
-20/10/2023 23:26 - 
-----> Bill
-- Buyer : 
-- Reference : Choco
-- Quantity : 10
-- Price : 10
-- Total purchases : 100 
-- Date of buy : 20/10/2023 22:46:13
-----
-
-20/10/2023 23:26 - 
-----> Bill
-- Buyer : 
-- Reference : Melon
-- Quantity : 2
-- Price : 2
-- Total purchases : 4 
-- Date of buy : 20/10/2023 22:48:27
-----
-
-20/10/2023 23:26 - Total global : 204
-
-22/10/2023 15:23 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
-----
-22/10/2023 15:23 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 15:23 - Total global : 0
-
-22/10/2023 15:24 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
-----
-22/10/2023 15:24 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 15:24 - Total global : 0
-
-22/10/2023 15:26 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
-----
-22/10/2023 15:26 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 15:26 - Total global : 0
-
-22/10/2023 15:28 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
-----
-22/10/2023 15:29 - Your login or password is incorrect
-22/10/2023 15:30 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
-----
-22/10/2023 15:30 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 15:30 - Total global : 0
-
-22/10/2023 15:37 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
-----
-22/10/2023 15:37 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 15:37 - Total global : 0
-
-22/10/2023 15:52 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
-----
-22/10/2023 15:57 - ----
-Login success
-"Admin connected = Login : Thomas and Password : Thomas!"
-----
-22/10/2023 15:57 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 15:57 - Total global : 0
-
-22/10/2023 15:57 - ----
+23/10/2023 14:11 - ----
 "Buyer registered =
 Firstname : Thomas
 Lastname : GACE"
 ----
-22/10/2023 15:57 - ----
+23/10/2023 14:13 - The Json file is empty or missing
+23/10/2023 14:16 - The Json file is empty or missing
+23/10/2023 14:16 - The Json file is empty or missing
+23/10/2023 14:23 - The Json file is empty or missing
+23/10/2023 15:22 - The Json file is empty or missing
+23/10/2023 15:22 - ----
+Admin added = Login : Thomas and Password : Thomas!
+23/10/2023 15:22 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 15:57 - Thomas is generating a bill for articles bought by Thomas GACE between 20/10/2023 and 20/10/2023:
-
-22/10/2023 15:57 - Total global : 0
-
-22/10/2023 15:59 - ----
+23/10/2023 15:22 - ---->
+- Thomas add an article ==> 
+- Reference =  
+- Price = 0
+----
+23/10/2023 15:39 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 16:01 - ----
+23/10/2023 15:40 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 16:04 - ----
+23/10/2023 15:40 - ----
+Article deleted :
+- Reference: Choco ----
+23/10/2023 15:42 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 16:05 - ----
+23/10/2023 15:42 - ----
+Article deleted :
+- Reference: Choco
+----
+23/10/2023 15:42 - ---->
+- Thomas add an article ==> 
+- Reference = Choco 
+- Price = 10
+----
+23/10/2023 15:42 - ---->
+- Thomas add an article ==> 
+- Reference = Melon 
+- Price = 2,2
+----
+23/10/2023 15:43 - ----
+Article deleted :
+- Reference: Melon
+----
+23/10/2023 16:17 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 16:05 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 16:05 - Total global : 0
-
-22/10/2023 16:08 - ----
+23/10/2023 16:17 - ---->
+- Thomas add an article ==> 
+- Reference = Choco 
+- Price = 10
+----
+23/10/2023 16:18 - ---->
+- Thomas add an article ==> 
+- Reference = Melon 
+- Price = 2
+----
+23/10/2023 16:18 - ----
+Article deleted :
+- Reference: Melon
+----
+23/10/2023 16:20 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 16:08 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 16:08 - 
-----> Bill 1
-- Buyer : 
-- Reference : Choco
-- Quantity : 10
-- Price : 10
-- Total purchases : 100 
-- Date of buy : 20/10/2023 22:46:13
+23/10/2023 16:20 - ---->
+- Thomas add an article ==> 
+- Reference = Choco 
+- Price = 10
 ----
-
-22/10/2023 16:08 - 
-----> Bill 2
-- Buyer : 
-- Reference : Melon
-- Quantity : 2
-- Price : 2
-- Total purchases : 4 
-- Date of buy : 20/10/2023 22:48:27
+23/10/2023 16:20 - ---->
+- Thomas add an article ==> 
+- Reference = Melon 
+- Price = 2
 ----
-
-22/10/2023 16:08 - Total global : 204
-
-22/10/2023 16:15 - ----
+23/10/2023 16:20 - ----
+Article deleted :
+- Reference: Melon
+----
+23/10/2023 16:20 - ----
+Article deleted :
+- Reference: Choco
+----
+23/10/2023 16:20 - ---->
+- Thomas add an article ==> 
+- Reference = Choco 
+- Price = 1
+----
+23/10/2023 16:21 - ----
+Article deleted :
+- Reference: dd
+----
+23/10/2023 16:22 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 16:15 - Thomas is generating a bill for articles bought by  between 20/10/2023 and 20/10/2023:
-
-22/10/2023 16:15 - 
-----> Bill 1
-- Buyer : 
-- Reference : Choco
-- Quantity : 10
-- Price : 10
-- Total purchases : 100 
-- Date of buy : 20/10/2023 22:46:13
+23/10/2023 16:22 - ---->
+- Thomas add an article ==> 
+- Reference = Choco 
+- Price = 1
 ----
-
-22/10/2023 16:15 - 
-----> Bill 2
-- Buyer : 
-- Reference : Melon
-- Quantity : 2
-- Price : 2
-- Total purchases : 4 
-- Date of buy : 20/10/2023 22:48:27
+23/10/2023 16:22 - ---->
+- Thomas add an article ==> 
+- Reference = Melon 
+- Price = 2
 ----
-
-22/10/2023 16:15 - Total global : 104
-
-22/10/2023 16:18 - ----
+23/10/2023 16:22 - ----
+Article deleted :
+- Reference: Melon
+----
+23/10/2023 16:34 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 16:19 - Thomas is generating a bill for articles bought between 20/10/2023 and 20/10/2023:
-
-22/10/2023 16:19 - 
-----> Bill 1
-- Reference : Choco
-- Quantity : 10
-- Price : 10
-- Total purchases : 100 
-- Date of buy : 20/10/2023 22:46:13
+23/10/2023 16:34 - ----
+Article deleted :
+- Reference: Choco
 ----
-
-22/10/2023 16:19 - 
-----> Bill 2
-- Reference : Melon
-- Quantity : 2
-- Price : 2
-- Total purchases : 4 
-- Date of buy : 20/10/2023 22:48:27
+23/10/2023 16:34 - ---->
+- Thomas add an article ==> 
+- Reference = Test 
+- Price = 1
 ----
-
-22/10/2023 16:19 - Total global : 104
-
-22/10/2023 16:20 - ----
+23/10/2023 16:34 - ----
+Article deleted :
+- Reference: test
+----
+23/10/2023 16:36 - Your login or password is incorrect
+23/10/2023 16:36 - ----
 Login success
 "Admin connected = Login : Thomas and Password : Thomas!"
 ----
-22/10/2023 16:20 - Thomas is generating a bill for articles bought between 20/10/2023 and 20/10/2023:
-
-22/10/2023 16:20 - 
-----> Bill 1
-- Reference : Choco
-- Quantity : 10
-- Price : 10
-- Total purchases : 100 
-- Date of buy : 20/10/2023 22:46:13
+23/10/2023 16:36 - ----
+Article deleted :
+- Reference: dd
 ----
-
-22/10/2023 16:20 - 
-----> Bill 2
-- Reference : Melon
-- Quantity : 2
-- Price : 2
-- Total purchases : 4 
-- Date of buy : 20/10/2023 22:48:27
+23/10/2023 16:41 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
 ----
-
-22/10/2023 16:20 - Total global : 104
-
+23/10/2023 16:41 - ---->
+- Thomas add an article ==> 
+- Reference = Choco 
+- Price = 1
+----
+23/10/2023 16:41 - ---->
+- Thomas add an article ==> 
+- Reference = Melon 
+- Price = 2
+----
+23/10/2023 16:41 - ---->
+- Thomas add an article ==> 
+- Reference = Test 
+- Price = 3
+----
+23/10/2023 16:42 - ----
+Article deleted :
+- Reference: Melon
+----
+23/10/2023 16:42 - ----
+Article deleted :
+- Reference: Test
+----
+23/10/2023 16:43 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+23/10/2023 16:43 - ----
+Article deleted :
+- Reference: Choco
+----
+23/10/2023 16:44 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+23/10/2023 16:44 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+23/10/2023 16:44 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+23/10/2023 16:53 - ----
+Login success
+"Admin connected = Login : Thomas and Password : Thomas!"
+----
+23/10/2023 16:53 - ----
+Error when deleting an article : Object reference not set to an instance of an object.
+----

@@ -10,3 +10,6 @@
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.pdb
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ref/ChocoLog.dll
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.csproj.AssemblyReference.cache
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/bin/Debug/net7.0/ChocoInteraction.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/bin/Debug/net7.0/ChocoInteraction.pdb
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/obj/Debug/net7.0/ChocoLog.csproj.CopyComplete

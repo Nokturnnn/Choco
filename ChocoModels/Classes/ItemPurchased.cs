@@ -8,6 +8,5 @@ public class ItemPurchased
     public int Quantity { get; set; }
     public float PriceAtPurchase { get; set; }
     public DateTime DateofBuy { get; set; }
-    
     public ItemPurchased(string articleReference, int quantity, float priceAtPurchase, DateTime dateofBuy) => (IDAcheteur, IDChocolate, ArticleReference, Quantity, PriceAtPurchase, DateofBuy) = (Guid.NewGuid(), Guid.NewGuid(), articleReference, quantity, priceAtPurchase, dateofBuy);
 }

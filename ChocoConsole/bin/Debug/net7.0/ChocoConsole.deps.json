@@ -43,6 +43,9 @@
         }
       },
       "ChocoLog/1.0.0": {
+        "dependencies": {
+          "ChocoInteraction": "1.0.0"
+        },
         "runtime": {
           "ChocoLog.dll": {}
         }

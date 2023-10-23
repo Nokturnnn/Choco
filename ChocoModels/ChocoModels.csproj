@@ -12,4 +12,8 @@
       <ProjectReference Include="..\ChocoLog\ChocoLog.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="JsonsFiles\" />
+    </ItemGroup>
+
 </Project>
