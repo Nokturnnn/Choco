@@ -2,9 +2,19 @@ using System.Text;
 
 namespace ManagementPeople;
 
-public class MBuyer
+public interface IMBuyer
 {
-    private string GetUserInput(string prompt)
+    string GetUserInput(string prompt);
+    string DisplayMenuBuyer();
+    string DisplayBuyerRegistered();
+    (string reference, int quantity) AddToList();
+    (string firstname, string lastname) BuyerInfosConnecting();
+    (string firstname, string lastname, string adress, string phone) AddRegister();
+}
+
+public class MBuyer : IMBuyer
+{
+    public string GetUserInput(string prompt)
     {
         try
         {
@@ -25,7 +35,6 @@ public class MBuyer
             Console.WriteLine("----");
             Console.WriteLine("1. Enter your informations");
             Console.WriteLine("2. Please Register");
-            Console.WriteLine("3. Back to menu");
             Console.WriteLine("Your choice :");
             return menu.ToString();
         }
@@ -39,10 +48,9 @@ public class MBuyer
         try
         {
             StringBuilder menu = new StringBuilder();
-            Console.WriteLine("----> Menu Buyer :");
+            Console.WriteLine("\n----> Menu Buyer :");
             Console.WriteLine("1. Display article");
             Console.WriteLine("2. Buy an article");
-            Console.WriteLine("3. Back to the Menu");
             Console.WriteLine("Your choice :");
             return menu.ToString();
         }
@@ -62,7 +70,7 @@ public class MBuyer
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error : " + e.Message);
+            Console.WriteLine("\n----> Error : " + e.Message);
             return ("", 0);
         }
     }

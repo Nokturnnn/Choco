@@ -1,7 +1,21 @@
 using System.Text;
 
 namespace ManagementPeople;
-public class MAdministrator
+
+public interface IMAdmin
+{
+    string GetUserInput(string prompt);
+    string DisplayMenuAdmin();
+    string DisplayMenuAdminConnected();
+    (string login, string password) AdminConnecting();
+    (string login, string password) RegisterAdmin();
+    bool CheckPassword(string password);
+    (string reference, float price) AdminAddArticle();
+    string AdminRemoveArticle();
+    (DateTime startDate, DateTime endDate) AdminAddDate();
+
+}
+public class MAdministrator : IMAdmin
 {
     public string GetUserInput(string prompt)
     {
@@ -17,7 +31,6 @@ public class MAdministrator
             Console.WriteLine("Connect or register =>");
             Console.WriteLine("1. Connection");
             Console.WriteLine("2. Register");
-            Console.WriteLine("3. Back to menu");
             Console.WriteLine("Your choice :");
             return menu.ToString();
         }
@@ -37,8 +50,6 @@ public class MAdministrator
             Console.WriteLine("3. Create a bill");
             Console.WriteLine("4. Create a bill for each Buyers");
             Console.WriteLine("5. Create a bill by date of Purchase");
-            Console.WriteLine("6. Back to menu");
-            Console.WriteLine("7. Exit");
             Console.WriteLine("Your choice :");
             return menu.ToString();
         }

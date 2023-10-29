@@ -3,9 +3,25 @@ using ChocoList;
 using ChocoLog;
 using ManagementPeople;
 
-namespace ChocoProject.Core
+namespace ChocoProject.Core;
+
+public interface ICore
 {
-    public class Core : MBuyer
+    bool Clear();
+    bool Start();
+    void InitializeDB();
+    bool HandleBuyerMenu();
+    bool HandleBuyerRegistered(string buyerLogin);
+    bool HandleAdminConnected(string adminLogin);
+    bool HandleAdminMenu();
+    bool RegisterAdminAccount();
+    bool AdminLogin();
+    bool BuyerLogin();
+    bool RegisterBuyerAccount();
+    string LogAndConsole(string message);
+}
+
+    public class Core : ICore
     {
         private readonly IAdmin _adminService;
         private readonly IBuyersService _buyerService;
@@ -18,32 +34,44 @@ namespace ChocoProject.Core
         private (string reference, float price) article;
         private (string reference, int quantity) articleToBuy;
         private (DateTime startDate, DateTime endDate) date;
+        private bool isCleared = false;
         public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger) => (_adminService, _buyerService, _logger, _adminMenu, _buyerMenu, _startMenu, _clearDB) = (adminService, buyerService, logger, new MAdministrator(), new MBuyer(), new MStart(), new ClearDB(logger, new Interaction.FileService()));
+        public string LogAndConsole(string message)
+        {
+            try
+            {
+                // Display the message in the console
+                Console.WriteLine(message);
+                // Call the method Log from the class FileLogger
+                _logger.Log(message);
+                // Return the message
+                return message;
+            }
+            catch (Exception ex)
+            {
+                // Return an error message or code =>
+                return "Error : " + ex.Message;
+            }
+        }
         public bool Clear()
         {
-            // Call the DisplayMenuClearDB method =>
-            _startMenu.DisplayMenuClearDB();
-            string choice = Console.ReadLine();
-            switch (choice)
+            if (!isCleared) 
             {
-                case "1":
-                    // Call the ClearFileJson method =>
-                    _clearDB.ClearFileJson();
-                    // Call the Start method =>
-                    Start();
-                    break;
-                case "2":
-                    // Call the Start method =>
-                    Start();
-                    break;
-                case "3":
-                    Console.WriteLine("\nGoodbye");
-                    break;
-                default:
-                    Console.WriteLine("\nInvalid choice, Please try again !");
-                    break;
+                InitializeDB();
+                isCleared = true;
+                _startMenu.DisplayFirstStart();
+                return true;
             }
-            return false;
+            else
+            {
+                LogAndConsole("\nDatabase already initialized");
+                return false;
+            }
+        }
+        public void InitializeDB()
+        {
+            LogAndConsole("\nDatabase initialized :\n");
+            _clearDB.Initialization();
         }
         public bool Start()
         {
@@ -60,17 +88,26 @@ namespace ChocoProject.Core
                     // Call the HandleAdminMenu method =>
                     HandleAdminMenu();
                     return true;
-                case "3":
-                    Console.WriteLine("\nGoodbye");
+                case "E":
+                    LogAndConsole("\nGoodbye");
                     return false;
+                case "cl":
+                    Console.Clear();
+                    Start();
+                    return true;
+                case "FI":
+                    // Call the Clear method =>
+                    Clear();
+                    Start();
+                    return true;
                 default:
-                    Console.WriteLine("\nInvalid choice, Please try again !");
+                    LogAndConsole("\nInvalid choice, Please try again !");
                     // Call the Start method =>
                     Start();
                     return true;
             }
         }
-        private bool HandleBuyerMenu()
+        public bool HandleBuyerMenu()
         {
             // Call the DisplayMenuBuyer method =>
             _buyerMenu.DisplayMenuBuyer();
@@ -85,18 +122,18 @@ namespace ChocoProject.Core
                     // Call the RegisterBuyerAccount method =>
                     RegisterBuyerAccount();
                     return true;
-                case "3":
+                case "B":
                     // Call the Start method =>
                     Start();
                     return true;
                 default:
-                    Console.WriteLine("\nInvalid choice, Please try again !");
+                    LogAndConsole("\nInvalid choice, Please try again !");
                     // Call the HandleBuyerMenu method =>
                     HandleBuyerMenu();
                     return false;
             }
         }
-        private bool HandleBuyerRegistered(string buyerLogin)
+        public bool HandleBuyerRegistered(string buyerLogin)
         {
             // Call the DisplayBuyerRegistered method =>
             _buyerMenu.DisplayBuyerRegistered();
@@ -117,27 +154,27 @@ namespace ChocoProject.Core
                     // Call the HandleBuyerRegistered method with the buyerLogin =>
                     HandleBuyerRegistered(buyerLogin);
                     return true;
-                case"3":
+                case"B":
                     // Call the Start method =>
                     Start();
                     return true;
                 case "F":
-                    Console.WriteLine("\nGoodbye");
+                    LogAndConsole("\nGoodbye");
                     return false;
                 case "P":
                     // Call the DisplayOrderInProgress method =>
-                    _buyerService.DisplayOrderInProgress();
+                    _buyerService.DisplayOrderInProgress(new Buyer(buyerLogin, buyerLogin, buyerLogin, buyerLogin));
                     // Call the HandleBuyerRegistered method with the buyerLogin =>
                     HandleBuyerRegistered(buyerLogin);
                     return true;
                 default:
-                    Console.WriteLine("\nInvalid choice, Please try again !");
+                    LogAndConsole("\nInvalid choice, Please try again !");
                     // Call the HandleBuyerRegistered method with the buyerLogin =>
                     HandleBuyerRegistered(buyerLogin);
                     return true;
             }
         }
-        private bool HandleAdminConnected(string adminLogin)
+        public bool HandleAdminConnected(string adminLogin)
         {
             // Call the DisplayMenuAdminConnected method =>
             _adminMenu.DisplayMenuAdminConnected();
@@ -179,21 +216,21 @@ namespace ChocoProject.Core
                     // Call the HandleAdminConnected method with the adminLogin =>
                     HandleAdminConnected(adminLogin);
                     return true;
-                case "6":
+                case "B":
                     // Call the Start method =>
                     Start();
                     return true;
-                case "7":
-                    Console.WriteLine("\nGoodbye");
+                case "E":
+                    LogAndConsole("\nGoodbye");
                     return false;
                 default:
-                    Console.WriteLine("\nInvalid choice, Please try again !");
+                    LogAndConsole("\nInvalid choice, Please try again !");
                     // Call the HandleAdminConnected method with the adminLogin =>
                     HandleAdminConnected(adminLogin); 
                     return true;
             }
         }
-        private bool HandleAdminMenu()
+        public bool HandleAdminMenu()
         {
             // Call the DisplayMenuAdmin method =>
             _adminMenu.DisplayMenuAdmin();
@@ -210,16 +247,16 @@ namespace ChocoProject.Core
                     // Call the RegisterAdminAccount method =>
                     RegisterAdminAccount();
                     return true;
-                case "3":
+                case "B":
                     // Call the Start method =>
                     Start();
                     return true;
                 default:
-                    Console.WriteLine("Invalid choice, Please try again !");
+                    LogAndConsole("\nInvalid choice, Please try again !");
                     return false;
             }
         }
-        private bool RegisterAdminAccount()
+        public bool RegisterAdminAccount()
         {
             try
             {
@@ -251,11 +288,11 @@ namespace ChocoProject.Core
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error : " + e.Message);
+                LogAndConsole("Error : " + e.Message);
                 return false;
             }
         }
-        private bool AdminLogin()
+        public bool AdminLogin()
         {
             try
             {
@@ -270,7 +307,7 @@ namespace ChocoProject.Core
                 else
                 {
                     // Display an error message if the login or password are not valid =>
-                    Console.WriteLine("\nInvalid login or password. Please try again");
+                    LogAndConsole("\nInvalid login or password");
                     // Call the HandleAdminMenu method =>
                     HandleAdminMenu();
                 }
@@ -278,13 +315,13 @@ namespace ChocoProject.Core
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error : " + e.Message);
-                Console.WriteLine("You probably have not registered yet. Please try again");
+                LogAndConsole("Error : " + e.Message);
+                LogAndConsole("\nYou probably have not registered yet. Please try again");
                 HandleAdminMenu();
             }
             return false;
         }
-        private bool BuyerLogin()
+        public bool BuyerLogin()
         {
             try
             {
@@ -301,7 +338,7 @@ namespace ChocoProject.Core
                 else
                 {
                     // Display an error message if the firstname or lastname are not valid =>
-                    Console.WriteLine("\nYou probably have not registered yet. Please try again");
+                    LogAndConsole("You probably have not registered yet. Please try again");
                     // Call the HandleBuyerMenu method =>
                     HandleBuyerMenu();
                 }
@@ -309,13 +346,13 @@ namespace ChocoProject.Core
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error : " + e.Message);
-                Console.WriteLine("\nYou probably have not registered yet. Please try again");
+                LogAndConsole("Error : " + e.Message);
+                LogAndConsole("\nYou probably have not registered yet. Please try again");
                 HandleBuyerMenu();
             }
             return false;
         }
-        private bool RegisterBuyerAccount()
+        public bool RegisterBuyerAccount()
         {
             try
             {
@@ -333,10 +370,9 @@ namespace ChocoProject.Core
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error : " + e.Message);
+                LogAndConsole("Error : " + e.Message);
                 return false;
             }
         }
         
     }
-}

@@ -1,0 +1,10 @@
+
+----> Bill 1
+- Reference : Choco
+- Quantity : 2
+- Price : 10
+ Total purchases : 20 
+- Date of buy : 23/10/2023 20:18:21
+----
+
+- Total global : 20

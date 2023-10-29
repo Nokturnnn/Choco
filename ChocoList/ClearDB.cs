@@ -4,21 +4,27 @@ using System.Linq.Expressions;
 using ChocoInteraction;
 using ChocoLog;
 
-namespace ChocoList
+namespace ChocoList;
+
+public interface IClearDB
 {
-    public class ClearDB
+    string LogAndConsole(string message);
+    bool ClearFilesJson();
+    bool CreateFilesJson();
+    bool Initialization();
+}
+    public class ClearDB : IClearDB
     {
+        // Initialization =>
         private readonly ILogger _logger;
-        private readonly Interaction.IFileWrite _fileWrite    = new Interaction.FileService();
-        private readonly Interaction.IFileExists _fileExists  = new Interaction.FileService();
-        private readonly Interaction.IFileDelete _fileDelete  = new Interaction.FileService();
-        private readonly string _pathAdmin                    = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/admin.json";
-        private readonly string _pathArticle                  = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/article.json";
-        private readonly string _pathLog                      = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/log.txt";
-        private readonly string _pathBuyer                    = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/buyer.json";
-        private readonly string _pathItemPurchased            = "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/itemPurchased.json";
-        public ClearDB(ILogger logger, Interaction.IFileWrite fileWrite) => (_logger, _fileWrite) = (logger, fileWrite);
-        private string LogAndConsole(string message)
+        private readonly Interaction.FileService _fileService = new Interaction.FileService();
+        private readonly string[] _filePaths;
+        // END Initialization =>
+        
+        // Constructor =>
+        public ClearDB(ILogger logger, Interaction.FileService fileService) => (_logger, _fileService, _filePaths) = (logger, fileService, new string[]{"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/admin.json", "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/article.json", "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/buyer.json", "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/itemPurchased.json"});
+        // END Constructor =>
+        public string LogAndConsole(string message)
         {
             try
             {
@@ -35,29 +41,67 @@ namespace ChocoList
                 return "Error : " + ex.Message;
             }
         }
-        public bool ClearFileJson() {
-            string[] filePaths = { _pathAdmin, _pathArticle, _pathLog, _pathBuyer, _pathItemPurchased };
-            bool atLeastOneFileNotFound = false;
+        public bool Initialization()
+        {
             try
             {
-                foreach (var filePath in filePaths)
+                if (ClearFilesJson())
                 {
-                    if (_fileExists.FileExists(filePath))
-                        _fileDelete.DeleteFile(filePath);
-                    else
-                    {
-                        LogAndConsole("----> The file " + filePath + " doesn't exist");
-                        atLeastOneFileNotFound = true;
-                    }
-                }
-                // If at least one file doesn't exist, return false
-                if (atLeastOneFileNotFound)
-                    return false; 
-                else
-                {
-                    LogAndConsole("----> All files have been deleted");
+                    CreateFilesJson();
                     return true;
                 }
+                return false;
+            }
+            catch (Exception e)
+            {
+                LogAndConsole("Error" + e.Message);
+                return false;
+            }
+        }
+        public bool ClearFilesJson() 
+        {
+            try
+            {
+                // Create a boolean to verify if the file have been deleted =>
+                bool verify = false;
+                // Search all the files in the path =>
+                foreach (var filePath in _filePaths)
+                {
+                    // Check if the file exist =>
+                    if (_fileService.FileExists(filePath))
+                    {
+                        // Delete the file =>
+                        _fileService.DeleteFile(filePath);
+                        verify = true;
+                    }
+                }
+                if (verify)
+                    LogAndConsole("---->\n- Admin file have been deleted\n- Article file have been deleted\n- Buyer file have been deleted\n- ItemPurchased file have been deleted\n");
+                return true;
+            }
+            catch (Exception e)
+            {
+                // Return an error message or code =>
+                LogAndConsole("Error : " + e.Message);
+                return false;
+            }
+        }
+        public bool CreateFilesJson()
+        {
+            try
+            {
+                // Create a boolean to verify if the file have been created =>
+                bool verify = false;
+                // Search all the files in the path =>
+                foreach (var filePath in _filePaths)
+                {
+                    // Create the file =>
+                    _fileService.WriteFile(filePath, "");
+                    verify = true;
+                }
+                if (verify)
+                    LogAndConsole("---->\n- Admin file have been created\n- Article file have been created\n- Buyer file have been created\n- ItemPurchased file have been created\n");
+                return true;
             }
             catch (Exception e)
             {
@@ -67,4 +111,3 @@ namespace ChocoList
             }
         }
     }
-}

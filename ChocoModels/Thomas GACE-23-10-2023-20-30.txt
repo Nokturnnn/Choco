@@ -1,0 +1,8 @@
+ ----
+List of articles purchased by 'Thomas GACE' :
+----
+Reference : Choco
+Price : 10
+Quantity : 3
+Total price : 30
+----
