@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "ConsoleTables/2.6.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/ConsoleTables.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/ConsoleTables.dll": {
+            "related": ".pdb"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -18,6 +31,9 @@
       "ChocoInteraction/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "ConsoleTables": "2.6.1"
+        },
         "compile": {
           "bin/placeholder/ChocoInteraction.dll": {}
         },
@@ -29,7 +45,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "ChocoInteraction": "1.0.0"
+          "ChocoInteraction": "1.0.0",
+          "ConsoleTables": "2.6.1"
         },
         "compile": {
           "bin/placeholder/ChocoLog.dll": {}
@@ -43,7 +60,8 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "ChocoInteraction": "1.0.0",
-          "ChocoLog": "1.0.0"
+          "ChocoLog": "1.0.0",
+          "ConsoleTables": "2.6.1"
         },
         "compile": {
           "bin/placeholder/ChocoModels.dll": {}
@@ -55,6 +73,21 @@
     }
   },
   "libraries": {
+    "ConsoleTables/2.6.1": {
+      "sha512": "TyU885plpk88kMxgayy5+QQvtt/t3ZR45+vSvaKqZiaK+YsGVE6Mv7sV3fwjUMv3jHT15DdkpxW/+o+uc+bAJQ==",
+      "type": "package",
+      "path": "consoletables/2.6.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Readme.md",
+        "consoletables.2.6.1.nupkg.sha512",
+        "consoletables.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/ConsoleTables.dll",
+        "lib/netstandard2.1/ConsoleTables.pdb"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -106,6 +139,7 @@
       "ChocoInteraction >= 1.0.0",
       "ChocoLog >= 1.0.0",
       "ChocoModels >= 1.0.0",
+      "ConsoleTables >= 2.6.1",
       "Newtonsoft.Json >= 13.0.3"
     ]
   },
@@ -156,6 +190,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "ConsoleTables": {
+            "target": "Package",
+            "version": "[2.6.1, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"

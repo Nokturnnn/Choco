@@ -11,10 +11,19 @@
           "ChocoInteraction": "1.0.0",
           "ChocoList": "1.0.0",
           "ChocoLog": "1.0.0",
-          "ChocoModels": "1.0.0"
+          "ChocoModels": "1.0.0",
+          "ConsoleTables": "2.6.1"
         },
         "runtime": {
           "ChocoProject.Core.dll": {}
+        }
+      },
+      "ConsoleTables/2.6.1": {
+        "runtime": {
+          "lib/netstandard2.1/ConsoleTables.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.6.1.0"
+          }
         }
       },
       "Newtonsoft.Json/13.0.3": {
@@ -26,6 +35,9 @@
         }
       },
       "ChocoInteraction/1.0.0": {
+        "dependencies": {
+          "ConsoleTables": "2.6.1"
+        },
         "runtime": {
           "ChocoInteraction.dll": {}
         }
@@ -35,6 +47,7 @@
           "ChocoInteraction": "1.0.0",
           "ChocoLog": "1.0.0",
           "ChocoModels": "1.0.0",
+          "ConsoleTables": "2.6.1",
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
@@ -43,7 +56,8 @@
       },
       "ChocoLog/1.0.0": {
         "dependencies": {
-          "ChocoInteraction": "1.0.0"
+          "ChocoInteraction": "1.0.0",
+          "ConsoleTables": "2.6.1"
         },
         "runtime": {
           "ChocoLog.dll": {}
@@ -52,7 +66,8 @@
       "ChocoModels/1.0.0": {
         "dependencies": {
           "ChocoInteraction": "1.0.0",
-          "ChocoLog": "1.0.0"
+          "ChocoLog": "1.0.0",
+          "ConsoleTables": "2.6.1"
         },
         "runtime": {
           "ChocoModels.dll": {}
@@ -65,6 +80,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "ConsoleTables/2.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TyU885plpk88kMxgayy5+QQvtt/t3ZR45+vSvaKqZiaK+YsGVE6Mv7sV3fwjUMv3jHT15DdkpxW/+o+uc+bAJQ==",
+      "path": "consoletables/2.6.1",
+      "hashPath": "consoletables.2.6.1.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",

@@ -1,34 +1,37 @@
-﻿namespace ChocoInteraction;
+﻿using System.Threading.Tasks;
 
-public class Interaction
+namespace ChocoInteraction;
+
+public interface Interaction
 {
     public interface IFileRead
     {
-        string ReadFile(string path);
+        Task<string> ReadFileAsync(string path);
     }
     public interface IFileWrite
     {
-        bool WriteFile(string path, string content);
+        Task<bool> WriteFileAsync(string path, string content);
     }
     public interface IFileAppend
     {
-        bool AppendFile(string path, string content);
+        Task<bool> AppendFileAsync(string path, string content);
     }
     public interface IFileExists
     {
-        bool FileExists(string path);
+        bool FileExistsAsync(string path);
     }
     public interface IFileDelete
     {
-        bool DeleteFile(string path);
+        Task<bool> DeleteFileAsync(string path);
     }
+    
     public class FileService : IFileRead, IFileWrite, IFileAppend, IFileExists, IFileDelete
     {
-        public string ReadFile(string filePath)
+        public async Task<string> ReadFileAsync(string filePath)
         {
             try
             {
-                string content = File.ReadAllText(filePath);
+                string content = await File.ReadAllTextAsync(filePath);
                 return content;
             }
             catch (Exception ex)
@@ -36,11 +39,11 @@ public class Interaction
                 return $"File Read Error : {ex.Message}";
             }
         }
-        public bool WriteFile(string filePath, string content)
+        public async Task<bool> WriteFileAsync(string filePath, string content)
         {
             try
             {
-                File.WriteAllText(filePath, content);
+                await File.WriteAllTextAsync(filePath, content);
                 return true;
             }
             catch (Exception ex)
@@ -49,11 +52,11 @@ public class Interaction
                 return false;
             }
         }
-        public bool AppendFile(string filePath, string content)
+        public async Task<bool> AppendFileAsync(string filePath, string content)
         {
             try
             {
-                File.AppendAllText(filePath, content);
+                await File.AppendAllTextAsync(filePath, content);
                 return true;
             }
             catch (Exception ex)
@@ -62,7 +65,7 @@ public class Interaction
                 return false;
             }
         }
-        public bool FileExists(string filePath)
+        public bool FileExistsAsync(string filePath)
         {
             try
             {
@@ -74,7 +77,7 @@ public class Interaction
                 return false;
             }
         }
-        public bool DeleteFile(string filePath)
+        public async Task<bool> DeleteFileAsync(string filePath)
         {
             try
             {

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7difZWjEi0oaLX73qLila4iD8tR0VFONycEvvJco5ouZqLkcyjUSmZ7/JToRkdXKmfX33LU3dvjzXQyBTNwsvg==",
+  "dgSpecHash": "1zuXWkPjwWSom8PvOHqIE2OFqU49iZq2hLG9uBl29QSYlQtSyUaLkKMncQjWyQDzFe2PpMXPzh4mfQGL7sB+Yw==",
   "success": true,
   "projectFilePath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/ChocoModels.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/thomas/.nuget/packages/consoletables/2.6.1/consoletables.2.6.1.nupkg.sha512"
+  ],
   "logs": []
 }

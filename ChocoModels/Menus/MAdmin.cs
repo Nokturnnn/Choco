@@ -1,10 +1,12 @@
 using System.Text;
+using ChocoLog;
 
 namespace ManagementPeople;
 
 public interface IMAdmin
 {
     string GetUserInput(string prompt);
+    bool LogAndConsole(string message);
     string DisplayMenuAdmin();
     string DisplayMenuAdminConnected();
     (string login, string password) AdminConnecting();
@@ -17,10 +19,27 @@ public interface IMAdmin
 }
 public class MAdministrator : IMAdmin
 {
+    private readonly ILogger _logger;
     public string GetUserInput(string prompt)
     {
         Console.Write(prompt);
         return Console.ReadLine();
+    }
+    public bool LogAndConsole(string message)
+    {
+        try
+        {
+            // Display the message =>
+            Console.WriteLine(message);
+            // Call the Log method of the injected logger =>
+            _logger.Log(message);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error : " + e.Message);
+            return false;
+        }
     }
     public string DisplayMenuAdmin()
     {
@@ -28,7 +47,7 @@ public class MAdministrator : IMAdmin
         try
         {
             StringBuilder menu = new StringBuilder();
-            Console.WriteLine("Connect or register =>");
+            Console.WriteLine("\nConnect or register =>");
             Console.WriteLine("1. Connection");
             Console.WriteLine("2. Register");
             Console.WriteLine("Your choice :");
@@ -63,13 +82,13 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
-            string login = GetUserInput("Enter your login : ");
-            string password = GetUserInput("Enter your password : ");
+            string login = GetUserInput("Enter your login: ");
+            string password = GetUserInput("Enter your password: ");
             return (login, password);
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error : " + e.Message);
+            LogAndConsole("Error : " + e.Message);
             return ("", "");
         }
     }
@@ -78,13 +97,13 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
-            string login = GetUserInput("Enter your login : ");
-            string password = GetUserInput("Enter your password : ");
+            string login = GetUserInput("Enter your login: ");
+            string password = GetUserInput("Enter your password: ");
             return (login, password);
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error : " + e.Message);
+            LogAndConsole("Error : " + e.Message);
             return ("", "");
         }
     }
@@ -95,20 +114,18 @@ public class MAdministrator : IMAdmin
             string specialCaracter = "@#%&*()-+!";
             if (password.Length >= 6 && password.Any(specialCaracter.Contains))
             {
-                Console.WriteLine("----");
-                Console.WriteLine("Your password is valid");
+                LogAndConsole("\n----\n Your password is valid :)");
                 return true;
             }
             else
             {
-                Console.WriteLine("----");
-                Console.WriteLine("Your password is not valid - Retry :");
+                LogAndConsole("\n----\n Your password is not valid - Retry:");
             }
             return false;
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error : " + e.Message);
+            LogAndConsole("Error : " + e.Message);
             return false;
         }
     }
@@ -117,13 +134,13 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
-            string reference = GetUserInput("Enter the reference of the article : ");
-            float price = float.Parse(GetUserInput("Enter the price of the article : "));
+            string reference = GetUserInput("Enter the reference of the article: ");
+            float price = float.Parse(GetUserInput("Enter the price of the article: "));
             return (reference, price);
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error : " + e.Message);
+            LogAndConsole("Error : " + e.Message);
             return ("", 0);
         }
     }
@@ -131,12 +148,12 @@ public class MAdministrator : IMAdmin
     {
         try
         {
-            string reference = GetUserInput("Enter the reference of the article : ");
+            string reference = GetUserInput("Enter the reference of the article: ");
             return (reference);
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error : " + e.Message);
+            LogAndConsole("Error : " + e.Message);
             return ("");
         }
     }
@@ -145,15 +162,15 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
-            DateTime startDate = DateTime.Parse(GetUserInput("Enter the start date : "));
-            DateTime endDate = DateTime.Parse(GetUserInput("Enter the end date : "));
+            DateTime startDate = DateTime.Parse(GetUserInput("Enter the start date: "));
+            DateTime endDate = DateTime.Parse(GetUserInput("Enter the end date: "));
             string startDateFormatted = startDate.ToString("yyyy/MM/dd");
             string endDateFormatted = endDate.ToString("yyyy/MM/dd");
             return (DateTime.Parse(startDateFormatted), DateTime.Parse(endDateFormatted));
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error : " + e.Message);
+            LogAndConsole("Error : " + e.Message);
             return (DateTime.Now, DateTime.Now);
         }
     }

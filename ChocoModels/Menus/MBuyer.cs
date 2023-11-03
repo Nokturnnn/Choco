@@ -8,7 +8,7 @@ public interface IMBuyer
     string DisplayMenuBuyer();
     string DisplayBuyerRegistered();
     (string reference, int quantity) AddToList();
-    (string firstname, string lastname) BuyerInfosConnecting();
+    (string firstname, string lastname, string adress, string phone) BuyerInfosConnecting();
     (string firstname, string lastname, string adress, string phone) AddRegister();
 }
 
@@ -31,8 +31,8 @@ public class MBuyer : IMBuyer
     {
         try
         {
-            StringBuilder menu = new StringBuilder(); 
-            Console.WriteLine("----");
+            StringBuilder menu = new StringBuilder();
+            Console.WriteLine("\n----> Menu Buyer :");
             Console.WriteLine("1. Enter your informations");
             Console.WriteLine("2. Please Register");
             Console.WriteLine("Your choice :");
@@ -74,19 +74,21 @@ public class MBuyer : IMBuyer
             return ("", 0);
         }
     }
-    public (string firstname, string lastname) BuyerInfosConnecting()
+    public (string firstname, string lastname, string adress, string phone) BuyerInfosConnecting()
     {
         Console.WriteLine("----");
         try
         {
             string firstname = GetUserInput("Enter your firstname: ");
             string lastname = GetUserInput("Enter your lastname: ");
-            return (firstname, lastname);
+            string adress = GetUserInput("Enter your adress: ");
+            string phone = GetUserInput("Enter your phone: ");
+            return (firstname, lastname, adress, phone);
         }
         catch (Exception e)
         {
             Console.WriteLine("Error : " + e.Message);
-            return ("", "");
+            return ("", "", "", "");
         }
     }
     public (string firstname, string lastname, string adress, string phone) AddRegister()
@@ -96,7 +98,7 @@ public class MBuyer : IMBuyer
         {
             string firstname = GetUserInput("Enter your firstname: ");
             string lastname = GetUserInput("Enter your lastname: ");
-            string adress = GetUserInput("Enter your address: ");
+            string adress = GetUserInput("Enter your adress: ");
             string phone = GetUserInput("Enter your phone: ");
             return (firstname, lastname, adress, phone);
         }

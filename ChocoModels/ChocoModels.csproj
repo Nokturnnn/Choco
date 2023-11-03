@@ -13,7 +13,15 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ArticlesPurchasedBuyer\" />
+      <Folder Include="BillBuyerPerBuyer\" />
+      <Folder Include="BillBuyerPerDate\" />
       <Folder Include="JsonsFiles\" />
+      <Folder Include="SumOfArticlesPurchased\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ConsoleTables" Version="2.6.1" />
     </ItemGroup>
 
 </Project>

@@ -57,8 +57,11 @@ public interface ICore
         {
             if (!isCleared) 
             {
+                // Call the InitializeDB method =>
                 InitializeDB();
+                // Initialize the isCleared variable =>
                 isCleared = true;
+                // Call the DisplayFirstStart method =>
                 _startMenu.DisplayFirstStart();
                 return true;
             }
@@ -71,6 +74,7 @@ public interface ICore
         public void InitializeDB()
         {
             LogAndConsole("\nDatabase initialized :\n");
+            // Call the Initialization method =>
             _clearDB.Initialization();
         }
         public bool Start()
@@ -101,7 +105,7 @@ public interface ICore
                     Start();
                     return true;
                 default:
-                    LogAndConsole("\nInvalid choice, Please try again !");
+                    LogAndConsole("\n----\nInvalid choice, Please try again !\n----\n");
                     // Call the Start method =>
                     Start();
                     return true;
@@ -122,12 +126,16 @@ public interface ICore
                     // Call the RegisterBuyerAccount method =>
                     RegisterBuyerAccount();
                     return true;
+                case "cl":
+                    Console.Clear();
+                    HandleBuyerMenu();
+                    return true;
                 case "B":
                     // Call the Start method =>
                     Start();
                     return true;
                 default:
-                    LogAndConsole("\nInvalid choice, Please try again !");
+                    LogAndConsole("\n----\nInvalid choice, Please try again !\n----");
                     // Call the HandleBuyerMenu method =>
                     HandleBuyerMenu();
                     return false;
@@ -135,44 +143,60 @@ public interface ICore
         }
         public bool HandleBuyerRegistered(string buyerLogin)
         {
-            // Call the DisplayBuyerRegistered method =>
-            _buyerMenu.DisplayBuyerRegistered();
-            string buyerChoice = Console.ReadLine();
-            switch (buyerChoice)
+            // Initialize the buying variable =>
+            bool buying = true;
+            // Initialize the newBuyer variable =>
+            Buyer newBuyer = new Buyer(buyerLogin, buyerLogin, buyerLogin, buyerLogin);
+            // While the buyer is buying =>
+            while (buying)
             {
-                case "1":
-                    // Call the DisplayListOfArticle method =>
-                    _buyerService.DisplayListOfArticle();
-                    // Call the HandleBuyerRegistered method with the buyerLogin =>
-                    HandleBuyerRegistered(buyerLogin);
-                    return true;
-                case "2":
-                    // Initialize the article variable with the return of the AddToList method =>
-                    articleToBuy = _buyerMenu.AddToList();
-                    // Call the BuyerChooseAnArticleToList method with the article and buyerLogin =>
-                    _buyerService.BuyerChooseAnArticleToList(new Article(article.reference, article.price), new Buyer(buyerLogin, buyerLogin, buyerLogin, buyerLogin), articleToBuy.reference, articleToBuy.quantity);
-                    // Call the HandleBuyerRegistered method with the buyerLogin =>
-                    HandleBuyerRegistered(buyerLogin);
-                    return true;
-                case"B":
-                    // Call the Start method =>
-                    Start();
-                    return true;
-                case "F":
-                    LogAndConsole("\nGoodbye");
-                    return false;
-                case "P":
-                    // Call the DisplayOrderInProgress method =>
-                    _buyerService.DisplayOrderInProgress(new Buyer(buyerLogin, buyerLogin, buyerLogin, buyerLogin));
-                    // Call the HandleBuyerRegistered method with the buyerLogin =>
-                    HandleBuyerRegistered(buyerLogin);
-                    return true;
-                default:
-                    LogAndConsole("\nInvalid choice, Please try again !");
-                    // Call the HandleBuyerRegistered method with the buyerLogin =>
-                    HandleBuyerRegistered(buyerLogin);
-                    return true;
+                // Call the DisplayBuyerRegistered method =>
+                _buyerMenu.DisplayBuyerRegistered();
+                // Initialize the buyerChoice variable with the user input =>
+                string buyerChoice = Console.ReadLine();
+                switch (buyerChoice)
+                {
+                    case "1":
+                        // Call the DisplayListOfArticle method =>
+                        _buyerService.DisplayListOfArticle();
+                        break;
+                    case "2":
+                        // Initialize the articleToBuy variable with the return of the AddToList method =>
+                        articleToBuy = _buyerMenu.AddToList();
+                        // Call the BuyerChooseAnArticleToList method with the article, newBuyer, articleToBuy.reference and articleToBuy.quantity =>
+                        _buyerService.BuyerChooseAnArticleToList(new Article(article.reference, article.price), newBuyer, articleToBuy.reference, articleToBuy.quantity);
+                        break;
+                    case "cl":
+                        // Clear the console =>
+                        Console.Clear();
+                        // Call the HandleBuyerRegistered method with the buyerLogin =>
+                        HandleBuyerRegistered(buyerLogin);
+                        return true;
+                    case"B":
+                        // Call the Start method =>
+                        Start();
+                        return true;
+                    case "F":
+                        // Call the FinalizeInvoice method with the newBuyer =>
+                        _buyerService.FinalizeInvoice(newBuyer);
+                        // Purchase is finished =>
+                        buying = false;
+                        break;
+                    case "P":
+                        // Call the DisplayOrderInProgress method =>
+                        _buyerService.DisplayOrderInProgress(new Buyer(buyerLogin, buyerLogin, buyerLogin, buyerLogin));
+                        // Call the HandleBuyerRegistered method with the buyerLogin =>
+                        HandleBuyerRegistered(buyerLogin);
+                        return true;
+                    default:
+                        LogAndConsole("\n----\nInvalid choice, Please try again !\n----\n");
+                        // Call the HandleBuyerRegistered method with the buyerLogin =>
+                        HandleBuyerRegistered(buyerLogin);
+                        return true;
+                }
             }
+
+            return true;
         }
         public bool HandleAdminConnected(string adminLogin)
         {
@@ -216,6 +240,10 @@ public interface ICore
                     // Call the HandleAdminConnected method with the adminLogin =>
                     HandleAdminConnected(adminLogin);
                     return true;
+                case "cl":
+                    Console.Clear();
+                    HandleAdminConnected(adminLogin);
+                    return true;
                 case "B":
                     // Call the Start method =>
                     Start();
@@ -247,12 +275,16 @@ public interface ICore
                     // Call the RegisterAdminAccount method =>
                     RegisterAdminAccount();
                     return true;
+                case "cl":
+                    Console.Clear();
+                    HandleAdminMenu();
+                    return true;
                 case "B":
                     // Call the Start method =>
                     Start();
                     return true;
                 default:
-                    LogAndConsole("\nInvalid choice, Please try again !");
+                    LogAndConsole("\n----\nInvalid choice, Please try again !\n----\n");
                     return false;
             }
         }
@@ -263,7 +295,7 @@ public interface ICore
                 // Initialize the registerCredentials variable with the return of the RegisterAdmin method =>
                 var registerCredentials = _adminMenu.RegisterAdmin();
                 // Check if the login and password are not null =>
-                if (registerCredentials.password != null)
+                if (registerCredentials.login != null && registerCredentials.password != null)
                 {
                     // Initialize the checkPassword variable with the return of the CheckPassword method =>
                     bool checkPassword = _adminMenu.CheckPassword(registerCredentials.password);
@@ -307,7 +339,7 @@ public interface ICore
                 else
                 {
                     // Display an error message if the login or password are not valid =>
-                    LogAndConsole("\nInvalid login or password");
+                    LogAndConsole("\n----\n Invalid login or password");
                     // Call the HandleAdminMenu method =>
                     HandleAdminMenu();
                 }
@@ -315,8 +347,7 @@ public interface ICore
             }
             catch (Exception e)
             {
-                LogAndConsole("Error : " + e.Message);
-                LogAndConsole("\nYou probably have not registered yet. Please try again");
+                LogAndConsole("Error : " + e.Message + "\nYou probably have not registered yet. Please try again");
                 HandleAdminMenu();
             }
             return false;
@@ -328,7 +359,7 @@ public interface ICore
                 // Initialize the buyerCredentials variable with the return of the BuyerInfosConnecting method =>
                 var buyerCredentials = _buyerMenu.BuyerInfosConnecting();
                 // Check if the firstname and lastname are valid =>
-                if (_buyerService.ValidateBuyerLog(buyerCredentials.firstname, buyerCredentials.lastname))
+                if (_buyerService.ValidateBuyerLog(buyerCredentials.firstname, buyerCredentials.lastname, buyerCredentials.adress, buyerCredentials.phone))
                 {
                     // Initialize the currentBuyerLogin variable with the firstname and lastname =>
                     currentBuyerLogin = buyerCredentials.firstname + " " + buyerCredentials.lastname;
@@ -338,7 +369,7 @@ public interface ICore
                 else
                 {
                     // Display an error message if the firstname or lastname are not valid =>
-                    LogAndConsole("You probably have not registered yet. Please try again");
+                    LogAndConsole("\n----\n Invalid firstname or lastname");
                     // Call the HandleBuyerMenu method =>
                     HandleBuyerMenu();
                 }
@@ -346,8 +377,7 @@ public interface ICore
             }
             catch (Exception e)
             {
-                LogAndConsole("Error : " + e.Message);
-                LogAndConsole("\nYou probably have not registered yet. Please try again");
+                LogAndConsole("Error : " + e.Message + "\nYou probably have not registered yet. Please try again");
                 HandleBuyerMenu();
             }
             return false;
