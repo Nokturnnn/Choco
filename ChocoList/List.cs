@@ -458,17 +458,20 @@ public class BuyerService : IBuyersService
             var buyers = JsonSerializer.Deserialize<List<Buyer>>(jsonFile);
 
             // Find the buyer with matching firstname and lastname =>
-            var matchedBuyer = buyers.FirstOrDefault(buyer => 
-                buyer.Firstname.Equals(firstname, StringComparison.OrdinalIgnoreCase) && 
-                buyer.Lastname.Equals(lastname, StringComparison.OrdinalIgnoreCase) &&
-                buyer.Adress.Equals(address, StringComparison.OrdinalIgnoreCase) && 
-                buyer.Phone == phone);
+            if (buyers != null)
+            {
+                var matchedBuyer = buyers.FirstOrDefault(buyer => 
+                    buyer.Firstname.Equals(firstname, StringComparison.OrdinalIgnoreCase) && 
+                    buyer.Lastname.Equals(lastname, StringComparison.OrdinalIgnoreCase) &&
+                    buyer.Adress.Equals(address, StringComparison.OrdinalIgnoreCase) && 
+                    buyer.Phone == phone);
 
-            // Return true if the buyer was found, false otherwise =>
-            if (matchedBuyer != null) 
-            { 
-                await LogAndConsoleAsync($"\n----\n\n----> Buyer registered :\n- Firstname : {matchedBuyer.Firstname}\n- Lastname : {matchedBuyer.Lastname}\n- Address : {matchedBuyer.Adress}\n- Phone : {matchedBuyer.Phone}\n----"); 
-                return true; 
+                // Return true if the buyer was found, false otherwise =>
+                if (matchedBuyer != null) 
+                { 
+                    await LogAndConsoleAsync($"\n----\n\n----> Buyer registered :\n- Firstname : {matchedBuyer.Firstname}\n- Lastname : {matchedBuyer.Lastname}\n- Address : {matchedBuyer.Adress}\n- Phone : {matchedBuyer.Phone}\n----"); 
+                    return true; 
+                }
             }
 
             return false;

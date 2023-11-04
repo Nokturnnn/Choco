@@ -8,10 +8,10 @@ namespace ChocoList;
 
 public interface IClearDB
 {
-    string LogAndConsole(string message);
-    bool ClearFilesJson();
-    bool CreateFilesJson();
-    bool Initialization();
+    Task<string> LogAndConsoleAsync(string message);
+    Task<bool> Initialization();
+    Task<bool> ClearFilesJson();
+    Task<bool> CreateFilesJson();
 }
     public class ClearDB : IClearDB
     {
@@ -24,41 +24,37 @@ public interface IClearDB
         // Constructor =>
         public ClearDB(ILogger logger, Interaction.FileService fileService) => (_logger, _fileService, _filePaths) = (logger, fileService, new string[]{"/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/admin.json", "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/article.json", "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/buyer.json", "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/JsonsFiles/itemPurchased.json"});
         // END Constructor =>
-        public string LogAndConsole(string message)
+        public async Task<string> LogAndConsoleAsync(string message)
         {
             try
             {
-                // Display the message in the console
                 Console.WriteLine(message);
-                // Call the method Log from the class FileLogger
-                _logger.Log(message);
-                // Return the message
+                await _logger.LogAsync(message);
                 return message;
             }
             catch (Exception ex)
             {
-                // Return an error message or code =>
                 return "Error : " + ex.Message;
             }
         }
-        public bool Initialization()
+        public async Task<bool>Initialization()
         {
             try
             {
-                if (ClearFilesJson())
+                if (await ClearFilesJson())
                 {
-                    CreateFilesJson();
+                    await CreateFilesJson();
                     return true;
                 }
                 return false;
             }
             catch (Exception e)
             {
-                LogAndConsole("Error" + e.Message);
+                await LogAndConsoleAsync("Error" + e.Message);
                 return false;
             }
         }
-        public bool ClearFilesJson() 
+        public async Task<bool>ClearFilesJson() 
         {
             try
             {
@@ -68,25 +64,25 @@ public interface IClearDB
                 foreach (var filePath in _filePaths)
                 {
                     // Check if the file exist =>
-                    if (_fileService.FileExists(filePath))
+                    if (_fileService.FileExistsAsync(filePath))
                     {
                         // Delete the file =>
-                        _fileService.DeleteFile(filePath);
+                        await _fileService.DeleteFileAsync(filePath);
                         verify = true;
                     }
                 }
                 if (verify)
-                    LogAndConsole("---->\n- Admin file have been deleted\n- Article file have been deleted\n- Buyer file have been deleted\n- ItemPurchased file have been deleted\n");
+                    await LogAndConsoleAsync("---->\n- Admin file have been deleted\n- Article file have been deleted\n- Buyer file have been deleted\n- ItemPurchased file have been deleted\n");
                 return true;
             }
             catch (Exception e)
             {
                 // Return an error message or code =>
-                LogAndConsole("Error : " + e.Message);
+                await LogAndConsoleAsync("Error : " + e.Message);
                 return false;
             }
         }
-        public bool CreateFilesJson()
+        public async Task<bool> CreateFilesJson()
         {
             try
             {
@@ -96,17 +92,17 @@ public interface IClearDB
                 foreach (var filePath in _filePaths)
                 {
                     // Create the file =>
-                    _fileService.WriteFile(filePath, "");
+                    await _fileService.WriteFileAsync(filePath, "");
                     verify = true;
                 }
                 if (verify)
-                    LogAndConsole("---->\n- Admin file have been created\n- Article file have been created\n- Buyer file have been created\n- ItemPurchased file have been created\n");
+                    await LogAndConsoleAsync("---->\n- Admin file have been created\n- Article file have been created\n- Buyer file have been created\n- ItemPurchased file have been created\n");
                 return true;
             }
             catch (Exception e)
             {
                 // Return an error message or code =>
-                LogAndConsole("Error : " + e.Message);
+                await LogAndConsoleAsync("Error : " + e.Message);
                 return false;
             }
         }

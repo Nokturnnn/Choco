@@ -1,16 +1,17 @@
 using System;
 using System.IO;
 using ChocoLog;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 
 namespace ChocoConsole;
 
 public interface IAppConfiguration
 {
-    string LogAndConsole(string message);
-    bool Initialize();
-    bool LoadConfiguration();
-    bool SaveConfiguration();
+    Task<string> LogAndConsoleAsync(string message);
+    Task<bool> InitializeAsync();
+    Task<bool> LoadConfigurationAsync();
+    Task<bool> SaveConfigurationAsync();
 }
     public class AppConfiguration
     {
@@ -19,20 +20,16 @@ public interface IAppConfiguration
         private readonly ILogger _logger = new FileLogger();
         // Path to the configuration file =>
         private string ConfigurationFilePath => "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoConsole/config.json";
-        public string LogAndConsole(string message)
+        public async Task<string> LogAndConsoleAsync(string message)
         {
             try
             {
-                // Display the message in the console
                 Console.WriteLine(message);
-                // Call the method Log from the class FileLogger
-                _logger.Log(message);
-                // Return the message
+                await _logger.LogAsync(message);
                 return message;
             }
             catch (Exception ex)
             {
-                // Return an error message or code =>
                 return "Error : " + ex.Message;
             }
         }
@@ -41,25 +38,25 @@ public interface IAppConfiguration
             // Initialize the configuration with default values :>
             IsDatabaseInitialized = false;
         }
-        public bool Initialize()
+        public async Task<bool>InitializeAsync()
         {
             try
             {
                 // Check if the configuration file exists => if it does, load it
                 if (File.Exists(ConfigurationFilePath))
                 {
-                    LoadConfiguration();
+                    await LoadConfigurationAsync();
                     return true;
                 }
                 return false;
             }
             catch (Exception e)
             {
-                LogAndConsole("Error" + e.Message);
+                await LogAndConsoleAsync("Error" + e.Message);
                 return false;
             }
         }
-        public bool LoadConfiguration()
+        public async Task<bool> LoadConfigurationAsync()
         {
             try
             {
@@ -73,11 +70,11 @@ public interface IAppConfiguration
             }
             catch (Exception ex)
             {
-                LogAndConsole("Error loading configuration: " + ex.Message);
+                await LogAndConsoleAsync("Error loading configuration: " + ex.Message);
                 return false;
             }
         }
-        public bool SaveConfiguration()
+        public async Task<bool> SaveConfigurationAsync()
         {
             try
             {
@@ -89,7 +86,7 @@ public interface IAppConfiguration
             }
             catch (Exception ex)
             {
-                LogAndConsole("Error saving configuration: " + ex.Message);
+                await LogAndConsoleAsync("Error saving configuration: " + ex.Message);
                 return false;
             }
         }

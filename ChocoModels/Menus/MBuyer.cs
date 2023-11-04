@@ -4,17 +4,16 @@ namespace ManagementPeople;
 
 public interface IMBuyer
 {
-    string GetUserInput(string prompt);
-    string DisplayMenuBuyer();
-    string DisplayBuyerRegistered();
-    (string reference, int quantity) AddToList();
-    (string firstname, string lastname, string adress, string phone) BuyerInfosConnecting();
-    (string firstname, string lastname, string adress, string phone) AddRegister();
+    Task<string> GetUserInputAsync(string prompt);
+    Task<string> DisplayMenuBuyer();
+    Task<string> DisplayBuyerRegistered();
+    Task<(string reference, int quantity)> AddToListAsync();
+    Task<(string firstname, string lastname, string adress, string phone)> BuyerInfosConnectingAsync();
+    Task<(string firstname, string lastname, string adress, string phone)> AddRegisterAsync();
 }
-
 public class MBuyer : IMBuyer
 {
-    public string GetUserInput(string prompt)
+    public async Task<string> GetUserInputAsync(string prompt)
     {
         try
         {
@@ -27,7 +26,7 @@ public class MBuyer : IMBuyer
             return "";
         }
     }
-    public string DisplayMenuBuyer()
+    public async Task<string> DisplayMenuBuyer()
     {
         try
         {
@@ -43,7 +42,7 @@ public class MBuyer : IMBuyer
             return "Error : " + e.Message;
         }
     }
-    public string DisplayBuyerRegistered()
+    public async Task<string> DisplayBuyerRegistered()
     {
         try
         {
@@ -59,13 +58,20 @@ public class MBuyer : IMBuyer
           return "Error : " + e.Message;
         }
     }
-    public (string reference, int quantity) AddToList()
+    public async Task<(string reference, int quantity)> AddToListAsync()
     {
         Console.WriteLine("----");
         try
         {
-            string reference = GetUserInput("Enter the reference of the article you want to buy: ");
-            int quantity = int.Parse(GetUserInput("Enter the quantity of the article you want to buy: "));
+            string reference = await GetUserInputAsync("Enter the reference of the article you want to buy: ");
+            // We should use int.TryParse for better error handling
+            string quantityString = await GetUserInputAsync("Enter the quantity of the article you want to buy: ");
+            bool isValidQuantity = int.TryParse(quantityString, out int quantity);
+            if (!isValidQuantity)
+            {
+                Console.WriteLine("Invalid quantity input. Please enter a valid number.");
+                return ("", 0);
+            }
             return (reference, quantity);
         }
         catch (Exception e)
@@ -74,15 +80,15 @@ public class MBuyer : IMBuyer
             return ("", 0);
         }
     }
-    public (string firstname, string lastname, string adress, string phone) BuyerInfosConnecting()
+    public async Task<(string firstname, string lastname, string adress, string phone)> BuyerInfosConnectingAsync()
     {
         Console.WriteLine("----");
         try
         {
-            string firstname = GetUserInput("Enter your firstname: ");
-            string lastname = GetUserInput("Enter your lastname: ");
-            string adress = GetUserInput("Enter your adress: ");
-            string phone = GetUserInput("Enter your phone: ");
+            string firstname = await GetUserInputAsync("Enter your firstname: ");
+            string lastname = await GetUserInputAsync("Enter your lastname: ");
+            string adress = await GetUserInputAsync("Enter your adress: ");
+            string phone = await GetUserInputAsync("Enter your phone: ");
             return (firstname, lastname, adress, phone);
         }
         catch (Exception e)
@@ -91,15 +97,15 @@ public class MBuyer : IMBuyer
             return ("", "", "", "");
         }
     }
-    public (string firstname, string lastname, string adress, string phone) AddRegister()
+    public async Task<(string firstname, string lastname, string adress, string phone)> AddRegisterAsync()
     {
         Console.WriteLine("----");
         try
         {
-            string firstname = GetUserInput("Enter your firstname: ");
-            string lastname = GetUserInput("Enter your lastname: ");
-            string adress = GetUserInput("Enter your adress: ");
-            string phone = GetUserInput("Enter your phone: ");
+            string firstname = await GetUserInputAsync("Enter your firstname: ");
+            string lastname = await GetUserInputAsync("Enter your lastname: ");
+            string adress = await GetUserInputAsync("Enter your adress: ");
+            string phone = await GetUserInputAsync("Enter your phone: ");
             return (firstname, lastname, adress, phone);
         }
         catch (Exception e)

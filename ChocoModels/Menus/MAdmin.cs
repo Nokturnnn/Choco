@@ -5,43 +5,39 @@ namespace ManagementPeople;
 
 public interface IMAdmin
 {
-    string GetUserInput(string prompt);
-    bool LogAndConsole(string message);
-    string DisplayMenuAdmin();
-    string DisplayMenuAdminConnected();
-    (string login, string password) AdminConnecting();
-    (string login, string password) RegisterAdmin();
-    bool CheckPassword(string password);
-    (string reference, float price) AdminAddArticle();
-    string AdminRemoveArticle();
-    (DateTime startDate, DateTime endDate) AdminAddDate();
-
+    Task<string> GetUserInputAsync(string prompt);
+    Task<string> LogAndConsoleAsync(string message);
+    Task<string> DisplayMenuAdminAsync();
+    Task<string> DisplayMenuAdminConnectedAsync();
+    Task<(string login, string password)> AdminConnectingAsync();
+    Task<(string login, string password)> RegisterAdminAsync();
+    Task<bool> CheckPasswordAsync(string password);
+    Task<(string reference, float price)> AdminAddArticleAsync();
+    Task<string> AdminRemoveArticle();
+    Task<(DateTime startDate, DateTime endDate)> AdminAddDateAsync();
 }
 public class MAdministrator : IMAdmin
 {
     private readonly ILogger _logger;
-    public string GetUserInput(string prompt)
+    public async Task<string> GetUserInputAsync(string prompt)
     {
         Console.Write(prompt);
         return Console.ReadLine();
     }
-    public bool LogAndConsole(string message)
+    public async Task<string> LogAndConsoleAsync(string message)
     {
         try
         {
-            // Display the message =>
             Console.WriteLine(message);
-            // Call the Log method of the injected logger =>
-            _logger.Log(message);
-            return true;
+            await _logger.LogAsync(message);
+            return message;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine("Error : " + e.Message);
-            return false;
+            return "Error : " + ex.Message;
         }
     }
-    public string DisplayMenuAdmin()
+    public async Task<string> DisplayMenuAdminAsync()
     {
         Console.WriteLine("----");
         try
@@ -58,9 +54,9 @@ public class MAdministrator : IMAdmin
             return "Error : " + e.Message;
         }
     }
-    public string DisplayMenuAdminConnected()
+    public async Task<string> DisplayMenuAdminConnectedAsync()
     {
-        Console.WriteLine("----> Menu :");
+        Console.WriteLine("\n----> Menu :");
         try
         {
             StringBuilder menu = new StringBuilder();
@@ -77,101 +73,122 @@ public class MAdministrator : IMAdmin
             return "Error : " + e.Message;
         }
     }
-    public (string login, string password) AdminConnecting()
+    public async Task<(string login, string password)> AdminConnectingAsync()
     {
         Console.WriteLine("----");
         try
         {
-            string login = GetUserInput("Enter your login: ");
-            string password = GetUserInput("Enter your password: ");
+            string login = await GetUserInputAsync("Enter your login: ");
+            string password = await GetUserInputAsync("Enter your password: ");
             return (login, password);
         }
         catch (Exception e)
         {
-            LogAndConsole("Error : " + e.Message);
+            await LogAndConsoleAsync("Error : " + e.Message);
             return ("", "");
         }
     }
-    public (string login, string password) RegisterAdmin()
+    public async Task<(string login, string password)> RegisterAdminAsync()
     {
         Console.WriteLine("----");
         try
         {
-            string login = GetUserInput("Enter your login: ");
-            string password = GetUserInput("Enter your password: ");
+            string login = await GetUserInputAsync("Enter your login: ");
+            string password = await GetUserInputAsync("Enter your password: ");
             return (login, password);
         }
         catch (Exception e)
         {
-            LogAndConsole("Error : " + e.Message);
+            await LogAndConsoleAsync("Error : " + e.Message);
             return ("", "");
         }
     }
-    public bool CheckPassword(string password)
+    public async Task<bool> CheckPasswordAsync(string password)
     {
         try
         {
             string specialCaracter = "@#%&*()-+!";
             if (password.Length >= 6 && password.Any(specialCaracter.Contains))
             {
-                LogAndConsole("\n----\n Your password is valid :)");
+                await LogAndConsoleAsync("\n----\n Your password is valid :)");
                 return true;
             }
             else
             {
-                LogAndConsole("\n----\n Your password is not valid - Retry:");
+                await LogAndConsoleAsync("\n----\n Your password is not valid - Retry:");
             }
             return false;
         }
         catch (Exception e)
         {
-            LogAndConsole("Error : " + e.Message);
+            await LogAndConsoleAsync("Error : " + e.Message);
             return false;
         }
     }
-    public (string reference, float price) AdminAddArticle()
+    public async Task<(string reference, float price)> AdminAddArticleAsync()
     {
         Console.WriteLine("----");
         try
         {
-            string reference = GetUserInput("Enter the reference of the article: ");
-            float price = float.Parse(GetUserInput("Enter the price of the article: "));
+            string reference = await GetUserInputAsync("Enter the reference of the article: ");
+        
+            string priceInput = await GetUserInputAsync("Enter the price of the article: ");
+            bool isValidPrice = float.TryParse(priceInput, out float price);
+            if (!isValidPrice)
+            {
+                await LogAndConsoleAsync("Invalid price input. Please enter a valid number.");
+                return (reference, 0);
+            }
+
             return (reference, price);
         }
         catch (Exception e)
         {
-            LogAndConsole("Error : " + e.Message);
+            await LogAndConsoleAsync("Error : " + e.Message);
             return ("", 0);
         }
     }
-    public string AdminRemoveArticle()
+    public async Task<string> AdminRemoveArticle()
     {
         try
         {
-            string reference = GetUserInput("Enter the reference of the article: ");
+            string reference = await GetUserInputAsync("Enter the reference of the article: ");
             return (reference);
         }
         catch (Exception e)
         {
-            LogAndConsole("Error : " + e.Message);
+            await LogAndConsoleAsync("Error : " + e.Message);
             return ("");
         }
     }
-    public (DateTime startDate, DateTime endDate) AdminAddDate()
+    public async Task<(DateTime startDate, DateTime endDate)> AdminAddDateAsync()
     {
         Console.WriteLine("----");
         try
         {
-            DateTime startDate = DateTime.Parse(GetUserInput("Enter the start date: "));
-            DateTime endDate = DateTime.Parse(GetUserInput("Enter the end date: "));
-            string startDateFormatted = startDate.ToString("yyyy/MM/dd");
-            string endDateFormatted = endDate.ToString("yyyy/MM/dd");
-            return (DateTime.Parse(startDateFormatted), DateTime.Parse(endDateFormatted));
+            string startDateInput = await GetUserInputAsync("Enter the start date (yyyy/MM/dd): ");
+            bool isStartValid = DateTime.TryParse(startDateInput, out DateTime startDate);
+            if (!isStartValid)
+            {
+                await LogAndConsoleAsync("Invalid start date input. Please enter the date in the format yyyy/MM/dd.");
+                return (DateTime.Now, DateTime.Now);
+            }
+
+            string endDateInput = await GetUserInputAsync("Enter the end date (yyyy/MM/dd): ");
+            bool isEndValid = DateTime.TryParse(endDateInput, out DateTime endDate);
+            if (!isEndValid)
+            {
+                await LogAndConsoleAsync("Invalid end date input. Please enter the date in the format yyyy/MM/dd.");
+                return (DateTime.Now, DateTime.Now);
+            }
+
+            return (startDate, endDate);
         }
         catch (Exception e)
         {
-            LogAndConsole("Error : " + e.Message);
+            await LogAndConsoleAsync("Error : " + e.Message);
             return (DateTime.Now, DateTime.Now);
         }
     }
+
 }

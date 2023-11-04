@@ -3,12 +3,13 @@ using System.Text;
 namespace ManagementPeople;
 public interface IMStart
 {
-    string DisplayMenuStart();
-    string DisplayFirstStart();
+    Task<string> DisplayMenuStart();
+    Task<string> DisplayFirstStart();
+    
 }
 public class MStart : IMStart
 {
-    public string DisplayMenuStart()
+    public async Task<string> DisplayMenuStart()
     {
         StringBuilder menu = new StringBuilder();
         Console.WriteLine("**************************************");
@@ -19,7 +20,7 @@ public class MStart : IMStart
         Console.Write("Your choice : ");
         return menu.ToString();
     }
-    public string DisplayFirstStart()
+    public async Task<string> DisplayFirstStart()
     {
         StringBuilder menu = new StringBuilder();
         Console.WriteLine("**************************************");

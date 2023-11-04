@@ -9,7 +9,7 @@ namespace ChocoConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             // Initialize the logger =>
             var logger = new FileLogger();
@@ -21,19 +21,20 @@ namespace ChocoConsole
             // Initialize the configuration =>
             var appConfig = new AppConfiguration();
             // Initialize the menu =>
-            appConfig.Initialize();
+            // Initialize the menu =>
+            await appConfig.InitializeAsync();
             // Check if the database is initialized =>
             if (!appConfig.IsDatabaseInitialized)
             {
                 // Clear the database =>
-                core.Clear();
+                await core.ClearAsync();
                 // Initialize the database =>
                 appConfig.IsDatabaseInitialized = true;
                 // Save the configuration =>
-                appConfig.SaveConfiguration();
+                await appConfig.SaveConfigurationAsync();
             }
             // Start the application =>
-            core.Start();
+            await core.Start();
         }
     }
 }
