@@ -1,0 +1,247 @@
+06/11/2023 10:36 - 
+Database initialized :
+
+06/11/2023 10:36 - ---->
+- Admin file have been deleted
+- Article file have been deleted
+- Buyer file have been deleted
+- ItemPurchased file have been deleted
+
+06/11/2023 10:36 - ---->
+- Admin file have been created
+- Article file have been created
+- Buyer file have been created
+- ItemPurchased file have been created
+
+06/11/2023 10:37 - The Json file is empty or missing
+06/11/2023 10:37 - 
+----
+ Invalid firstname or lastname
+06/11/2023 10:38 - The Json file is empty or missing
+06/11/2023 10:38 - 
+----
+ Invalid firstname or lastname
+06/11/2023 10:38 - The Json file is empty or missing
+06/11/2023 10:38 - 
+----
+ Invalid firstname or lastname
+06/11/2023 10:38 - 
+----Buyer added
+- Firstname: Thomas
+- Lastname: GACE
+- Address: 12 CNAF
+- Phone: 1234567
+----
+06/11/2023 10:38 - 
+----
+ Your password is not valid, please try again : 
+06/11/2023 10:38 - 
+----
+ Your password is valid :)
+06/11/2023 10:38 - 
+----Admin added =
+ - Login : Thomas
+ - Password : Thomas!
+----
+06/11/2023 10:39 - 
+----
+Admin validated =
+ - Login : Thomas
+ - Password : Thomas!
+06/11/2023 10:39 - ---->
+- 'Thomas' add an article ==> 
+- Reference : Kinder Bueno White 
+- Price : 10
+----
+06/11/2023 10:39 - ---->
+- 'Thomas' add an article ==> 
+- Reference : Mars 
+- Price : 20
+----
+06/11/2023 10:39 - 
+----
+ Invalid firstname or lastname
+06/11/2023 10:40 - 
+----
+
+----> Buyer registered :
+- Firstname : Thomas
+- Lastname : GACE
+- Address : 12 CNAF
+- Phone : 1234567
+----
+06/11/2023 10:40 - 
+---->
+Articles N°1
+- Reference: Kinder Bueno White
+- Price: 10
+----
+06/11/2023 10:40 - 
+---->
+Articles N°1
+- Reference: Mars
+- Price: 20
+----
+06/11/2023 10:40 - ---->
+- Reference : Kinder Bueno White
+- Quantity : 10
+- Price at purchase : 100
+- Date of buy : 06/11/2023 10:40:48
+----
+06/11/2023 10:40 - ----
+Item purchased added
+----
+06/11/2023 10:40 - ---->
+- Reference : Mars
+- Quantity : 40
+- Price at purchase : 800
+- Date of buy : 06/11/2023 10:40:57
+----
+06/11/2023 10:40 - ----
+Item purchased added
+----
+06/11/2023 10:41 - 
+----> Article with reference 'Kinder Bueno' not found
+06/11/2023 10:41 - 
+----
+
+----> Buyer registered :
+- Firstname : Thomas
+- Lastname : GACE
+- Address : 12 CNAF
+- Phone : 1234567
+----
+06/11/2023 10:41 - 
+----
+Last item purchased:
+- Reference : Mars
+- Quantity : 40
+- Price : 800
+- Date of Purchase : 06/11/2023 10:40:57
+----
+06/11/2023 10:42 - 
+----
+Admin validated =
+ - Login : Thomas
+ - Password : Thomas!
+06/11/2023 10:42 - 
+----> Bill 1
+- Reference : Kinder Bueno White
+- Quantity : 10
+- Price per unit : 10
+- Total for this article : 100 
+- Date of buy : 06/11/2023 10:40:48
+----
+
+06/11/2023 10:42 - 
+----> Bill 1
+- Reference : Mars
+- Quantity : 40
+- Price per unit : 20
+- Total for this article : 800 
+- Date of buy : 06/11/2023 10:40:57
+----
+
+06/11/2023 10:42 - Total global : 900
+
+06/11/2023 10:42 - Thomas is generating a bill for articles bought by Thomas GACE:
+
+06/11/2023 10:42 - 
+----> Bill 1
+- Buyer : Thomas GACE
+- Reference : Kinder Bueno White
+- Quantity : 10
+- Price per unit : 10
+- Total for this article : 100 
+- Date of buy : 06/11/2023 10:40:48
+----
+
+06/11/2023 10:42 - 
+----> Bill 2
+- Buyer : Thomas GACE
+- Reference : Mars
+- Quantity : 40
+- Price per unit : 20
+- Total for this article : 800 
+- Date of buy : 06/11/2023 10:40:57
+----
+
+06/11/2023 10:42 - Total global : 900
+
+06/11/2023 10:42 - Thomas is generating a bill for articles bought between 06/11/2023 and 06/11/2023 :
+
+06/11/2023 10:42 - 
+----> Bill N°1
+- Reference: Kinder Bueno White
+- Quantity: 10
+- Price per unit: 10
+- Total for this article: 100 
+- Date of buy: 06/11/2023 10:40:48
+----
+
+06/11/2023 10:42 - 
+----> Bill N°2
+- Reference: Mars
+- Quantity: 40
+- Price per unit: 20
+- Total for this article: 800 
+- Date of buy: 06/11/2023 10:40:57
+----
+
+06/11/2023 10:42 - Total global: 900
+
+06/11/2023 10:42 - 
+Invalid choice, Please try again !
+06/11/2023 10:42 - 
+Goodbye
+06/11/2023 14:18 - 
+----
+ Invalid firstname or lastname
+06/11/2023 14:18 - 
+----Buyer added
+- Firstname: Thomas
+- Lastname: GACE
+- Address: CNAF
+- Phone: 12
+----
+06/11/2023 14:18 - 
+----
+
+----> Buyer registered :
+- Firstname : Thomas
+- Lastname : GACE
+- Address : CNAF
+- Phone : 12
+----
+06/11/2023 14:19 - 
+----> Article with reference 'Kinder Bueno White 20' not found
+06/11/2023 14:19 - 
+---->
+Articles N°1
+- Reference: Kinder Bueno White
+- Price: 10
+----
+06/11/2023 14:19 - 
+---->
+Articles N°1
+- Reference: Mars
+- Price: 20
+----
+06/11/2023 14:19 - ---->
+- Reference : Kinder Bueno White
+- Quantity : 20
+- Price at purchase : 200
+- Date of buy : 06/11/2023 14:19:18
+----
+06/11/2023 14:19 - ----
+Item purchased added
+----
+06/11/2023 14:19 - ---->
+- Reference : Mars
+- Quantity : 40
+- Price at purchase : 800
+- Date of buy : 06/11/2023 14:19:25
+----
+06/11/2023 14:19 - ----
+Item purchased added
+----

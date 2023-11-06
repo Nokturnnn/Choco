@@ -13,7 +13,6 @@ public interface IAdmin
     Task<bool> ValidateLoginAsync(string login, string password);
     Task<bool> AddArticleAsync(Article article, Admin admin);
     Task<bool> AddLoginToFileAsync(string login, string password);
-    Task<string> HashPassword(string password);
     Task<bool> DeleteArticleAsync(Admin admin, string reference);
     Task<bool> GetArticlesAsync(Admin admin);
     Task<Article> GetArticleByReferenceAsync(string reference);
@@ -55,7 +54,7 @@ public class AdminService : IAdmin
             if (!_fileService.FileExistsAsync(_filePaths[0])) 
                 await _fileService.WriteFileAsync(_filePaths[0], "");
             // Create a new admin =>
-            Admin admin = new Admin(login, await HashPassword(password));
+            Admin admin = new Admin(login, password);
             // Read the current content of the file =>
             string jsonFile = await _fileService.ReadFileAsync(_filePaths[0]);
             // Deserialize the JSON file into a list of Admin objects =>
@@ -67,7 +66,7 @@ public class AdminService : IAdmin
             // Serialize the list of admins into a JSON string =>
             await _fileService.WriteFileAsync(_filePaths[0], JsonSerializer.Serialize(admins));
             // Display the message =>
-            await LogAndConsoleAsync($"\n----Admin added =\n - Login: {login}\n - Password: {password}\n----");
+            await LogAndConsoleAsync($"\n----Admin added =\n - Login : {login}\n - Password : {password}\n----");
             // Return true if the admin was added =>
             return true;
         }
@@ -77,10 +76,6 @@ public class AdminService : IAdmin
             await LogAndConsoleAsync("Error when adding an admin: " + e.Message);
             return false;
         }
-    }
-    public Task<string> HashPassword(string password)
-    {
-        return Task.FromResult(BCrypt.Net.BCrypt.HashPassword(password));
     }
     public async Task<bool> ValidateLoginAsync(string login, string password) 
     {
@@ -102,7 +97,7 @@ public class AdminService : IAdmin
             if (matchedAdmin != null) 
             {
                 // Display the message =>
-                await LogAndConsoleAsync($"\n----\nAdmin validated =\n - Login: {login}\n - Password: {password}");
+                await LogAndConsoleAsync($"\n----\nAdmin validated =\n - Login : {login}\n - Password : {password}");
                 return true;
             }
             return false;
@@ -110,7 +105,7 @@ public class AdminService : IAdmin
         catch (Exception e)
         {
             // Log the error =>
-            await LogAndConsoleAsync("Error when validating an admin: " + e.Message);
+            await LogAndConsoleAsync("Error when validating an admin : " + e.Message);
             return false;
         }
     }
@@ -135,13 +130,13 @@ public class AdminService : IAdmin
             // Serialize the list of articles into a JSON string =>
             await _fileService.WriteFileAsync(_filePaths[1], JsonSerializer.Serialize(articles));
             // Display the message =>
-            await LogAndConsoleAsync($"---->\n- '{admin.Login}' add an article ==> \n- Reference: {article.Reference} \n- Price: {article.Price}\n----");
+            await LogAndConsoleAsync($"---->\n- '{admin.Login}' add an article ==> \n- Reference : {article.Reference} \n- Price : {article.Price}\n----");
             return true;
         }
         catch (Exception e)
         {
             // Log the error =>
-            await LogAndConsoleAsync("Error when adding an article: " + e.Message);
+            await LogAndConsoleAsync("Error when adding an article : " + e.Message);
             return false;
         }
     }
@@ -169,7 +164,7 @@ public class AdminService : IAdmin
                 // Serialize the list of articles into a JSON string =>
                 await _fileService.WriteFileAsync(_filePaths[1], JsonSerializer.Serialize(articles));
                 // Display the message =>
-                await LogAndConsoleAsync($"----\nArticle deleted by '{admin.Login}':\n- Reference: {selectedArticle.Reference}\n----");
+                await LogAndConsoleAsync($"----\nArticle deleted by '{admin.Login}':\n- Reference : {selectedArticle.Reference}\n----");
                 return true;
             }
             return false;
@@ -177,7 +172,7 @@ public class AdminService : IAdmin
         catch (Exception e)
         {
             // Log the error =>
-            await LogAndConsoleAsync("----\nError when deleting an article: " + e.Message + "\n----");
+            await LogAndConsoleAsync("----\nError when deleting an article : " + e.Message + "\n----");
             return false;
         }
     }
@@ -243,7 +238,7 @@ public class AdminService : IAdmin
         }
         catch (Exception e)
         {
-            await LogAndConsoleAsync("Error when getting articles: " + e.Message);
+            await LogAndConsoleAsync("Error when getting articles : " + e.Message);
             return false;
         }
     }
@@ -260,7 +255,7 @@ public class AdminService : IAdmin
         catch (Exception e)
         {
             // Log the error =>
-            await LogAndConsoleAsync("Error when getting an article: " + e.Message);
+            await LogAndConsoleAsync("Error when getting an article : " + e.Message);
             return null!;
         }
     }
@@ -320,7 +315,7 @@ public class AdminService : IAdmin
         }
         catch (Exception e)
         {
-            await LogAndConsoleAsync("Error when getting articles by buyers: " + e.Message);
+            await LogAndConsoleAsync("Error when getting articles by buyers : " + e.Message);
             return false;
         }
     }
@@ -384,7 +379,7 @@ public class AdminService : IAdmin
         }
         catch (Exception e)
         {
-            await LogAndConsoleAsync("Error when generating a bill for buyers by date: " + e.Message);
+            await LogAndConsoleAsync("Error when generating a bill for buyers by date : " + e.Message);
             return false;
         }
     }
@@ -447,7 +442,7 @@ public class BuyerService : IBuyersService
             // Deserialize the JSON file into a list of Buyer objects =>
             var buyers = string.IsNullOrWhiteSpace(jsonFile) ? new List<Buyer>() : JsonSerializer.Deserialize<List<Buyer>>(jsonFile);
             // Add the new buyer to the list =>
-            buyers.Add(newBuyer);
+            buyers?.Add(newBuyer);
             // Serialize the list of buyers into a JSON string =>
             await _fileService.WriteFileAsync(_filePaths[2], JsonSerializer.Serialize(buyers));
             // Display the message =>
@@ -457,7 +452,7 @@ public class BuyerService : IBuyersService
         catch (Exception e)
         {
             // Log the error =>
-            await LogAndConsoleAsync("\n----Error when creating a buyer: " + e.Message);
+            await LogAndConsoleAsync("\n----Error when creating a buyer : " + e.Message);
             return false;
         }
     }
@@ -565,7 +560,7 @@ public class BuyerService : IBuyersService
         catch (Exception e)
         {
             // Log the error =>
-            await LogAndConsoleAsync("\n----> Error when choosing an article to list: " + e.Message);
+            await LogAndConsoleAsync("\n----> Error when choosing an article to list : " + e.Message);
             return false; 
         }
     }
@@ -635,7 +630,7 @@ public class BuyerService : IBuyersService
         catch (Exception e)
         {
             // Log the error
-            await LogAndConsoleAsync($"Error when adding an item purchased: {e.Message}");
+            await LogAndConsoleAsync($"Error when adding an item purchased : {e.Message}");
             return false;
         }
     }

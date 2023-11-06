@@ -18,7 +18,14 @@ public interface IMAdmin
 }
 public class MAdministrator : IMAdmin
 {
+    // Initialization variable =>
     private readonly ILogger _logger;
+    // End of initialization variable =>
+    
+    // Constructor =>
+    public MAdministrator(ILogger logger) => _logger = logger;
+    // End of constructor =>
+
     public async Task<string> GetUserInputAsync(string prompt)
     {
         Console.Write(prompt);
@@ -114,8 +121,8 @@ public class MAdministrator : IMAdmin
         {
             // Stock the special caracter =>
             string specialCaracter = "@#%&*()-+!";
-            // Check if the password is valid =>
-            if (password.Length >= 6 && password.Any(specialCaracter.Contains))
+            // Check if the password is valid (6 character, special character and a majuscule) =>
+            if (password.Length >= 6 && password.Any(specialCaracter.Contains) && password.Any(char.IsUpper))
             {
                 // Log the message =>
                 await LogAndConsoleAsync("\n----\n Your password is valid :)");
@@ -136,7 +143,7 @@ public class MAdministrator : IMAdmin
         try
         {
             // Start the adding =>
-            string reference = await GetUserInputAsync("Enter the reference of the article: ");
+            string reference = await GetUserInputAsync("Enter the reference of the article:  ");
             string priceInput = await GetUserInputAsync("Enter the price of the article: ");
             // Stock the price =>
             bool isValidPrice = float.TryParse(priceInput, out float price);
@@ -144,7 +151,7 @@ public class MAdministrator : IMAdmin
             if (!isValidPrice && priceInput == "")
             {
                 // Log the message =>
-                await LogAndConsoleAsync("Invalid price input. Please enter a valid number.");
+                await LogAndConsoleAsync("Invalid price input. Please enter a valid number :");
                 return (reference, 0);
             }
             return (reference, price);
@@ -180,7 +187,7 @@ public class MAdministrator : IMAdmin
             bool isStartValid = DateTime.TryParse(startDateInput, out DateTime startDate);
             if (!isStartValid)
             {
-                await LogAndConsoleAsync("Invalid start date input. Please enter the date in the format yyyy/MM/dd.");
+                await LogAndConsoleAsync("Invalid start date input. Please enter the date in the format dd/MM/YYYY :");
                 return (DateTime.Now, DateTime.Now);
             }
 
@@ -188,7 +195,7 @@ public class MAdministrator : IMAdmin
             bool isEndValid = DateTime.TryParse(endDateInput, out DateTime endDate);
             if (!isEndValid)
             {
-                await LogAndConsoleAsync("Invalid end date input. Please enter the date in the format yyyy/MM/dd.");
+                await LogAndConsoleAsync("Invalid end date input. Please enter the date in the format dd/MM/YYYY :");
                 return (DateTime.Now, DateTime.Now);
             }
 

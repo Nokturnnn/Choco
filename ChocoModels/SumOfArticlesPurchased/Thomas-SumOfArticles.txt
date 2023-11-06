@@ -1,0 +1,26 @@
+
+                        ****************************************
+                                     SUM OF ARTICLES            
+                        ****************************************
+
+                        Admin : Thomas
+
+                        ****************************************
+                                  Details of Purchases :
+                        ----------------------------------------
+                        
+                        Reference of article   : Kinder Bueno White
+                        Price per unit         : €10,00
+                        Quantity purchased     : 10
+                        Total for this article : €100,00
+
+                        ----------------------------------------
+                        
+                        Reference of article   : Mars
+                        Price per unit         : €20,00
+                        Quantity purchased     : 40
+                        Total for this article : €800,00
+
+                        ---------------------------------------- 
+
+                         Total global : €900,00

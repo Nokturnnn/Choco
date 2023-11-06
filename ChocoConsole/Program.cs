@@ -21,14 +21,13 @@ namespace ChocoConsole
             // Initialize the configuration =>
             var appConfig = new AppConfiguration(logger);
             // Initialize the menu =>
-            // Initialize the menu =>
             await appConfig.InitializeAsync();
             // Check if the database is initialized =>
             if (!appConfig.IsDatabaseInitialized)
             {
-                // Clear the database =>
+                // Clear the database with the method ClearAsync =>
                 await core.ClearAsync();
-                // Initialize the database =>
+                // Initialize the database a true =>
                 appConfig.IsDatabaseInitialized = true;
                 // Save the configuration =>
                 await appConfig.SaveConfigurationAsync();

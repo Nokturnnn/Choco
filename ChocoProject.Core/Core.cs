@@ -34,7 +34,7 @@ public interface ICore
         private (string reference, int quantity) _articleToBuy;
         private (DateTime startDate, DateTime endDate) _date;
         private bool _isCleared = false;
-        public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger) => (_adminService, _buyerService, _logger, _adminMenu, _buyerMenu, _startMenu, _clearDb) = (adminService, buyerService, logger, new MAdministrator(), new MBuyer(), new MStart(), new ClearDB(logger, new Interaction.FileService()));
+        public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger) => (_adminService, _buyerService, _logger, _adminMenu, _buyerMenu, _startMenu, _clearDb) = (adminService, buyerService, logger, new MAdministrator(logger), new MBuyer(), new MStart(), new ClearDB(logger, new Interaction.FileService()));
         public async Task<string> LogAndConsoleAsync(string message)
         {
             try

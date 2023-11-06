@@ -129,7 +129,7 @@ public class MBuyer : IMBuyer
                 Console.WriteLine("Error: You must fill all the fields");
                 return Task.FromResult(false);
             }
-            // Check if there is =>
+            // Check if there is (number) =>
             var hasNumber = new Regex(@"\d");
             // Check if the firstname and lastname contains numbers =>
             if (hasNumber.IsMatch(firstname) || hasNumber.IsMatch(lastname))
@@ -145,5 +145,4 @@ public class MBuyer : IMBuyer
             return Task.FromResult(false);
         }
     }
-
 }

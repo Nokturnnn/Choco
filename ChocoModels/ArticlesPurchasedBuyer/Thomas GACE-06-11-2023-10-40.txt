@@ -1,0 +1,25 @@
+
+                    ****************************************
+                                PURCHASE INVOICE            
+                    ****************************************
+
+                    Buyer : Thomas GACE
+                    Date  : 06/11/2023
+
+                    ****************************************
+                              Details of Purchases :
+                    ----------------------------------------
+                    
+                    Référence of article : Kinder Bueno White
+                    Price per unit       : €10,00
+                    Quantity purchased   : 10
+                    Total payable for this article : €100,00
+
+                    ----------------------------------------
+                    
+                    Référence of article : Mars
+                    Price per unit       : €20,00
+                    Quantity purchased   : 40
+                    Total payable for this article : €800,00
+
+                    ----------------------------------------

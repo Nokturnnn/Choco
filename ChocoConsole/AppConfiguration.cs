@@ -48,6 +48,7 @@ public interface IAppConfiguration
                 // Check if the configuration file exists => if it does, load it
                 if (File.Exists(ConfigurationFilePath))
                 {
+                    // Load the configuration =>
                     await LoadConfigurationAsync();
                     return true;
                 }
