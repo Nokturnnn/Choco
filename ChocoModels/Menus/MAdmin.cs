@@ -29,6 +29,7 @@ public class MAdministrator : IMAdmin
         try
         {
             Console.WriteLine(message);
+            // Log the message =>
             await _logger.LogAsync(message);
             return message;
         }
@@ -42,6 +43,7 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
+            // Initialize the menu =>
             StringBuilder menu = new StringBuilder();
             Console.WriteLine("\nConnect or register =>");
             Console.WriteLine("1. Connection");
@@ -59,6 +61,7 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("\n----> Menu :");
         try
         {
+            // Initialize the menu =>
             StringBuilder menu = new StringBuilder();
             Console.WriteLine("1. Add a article");
             Console.WriteLine("2. Remove a article");
@@ -78,6 +81,7 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
+            // Start the connection =>
             string login = await GetUserInputAsync("Enter your login: ");
             string password = await GetUserInputAsync("Enter your password: ");
             return (login, password);
@@ -93,6 +97,7 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
+            // Start the registration =>
             string login = await GetUserInputAsync("Enter your login: ");
             string password = await GetUserInputAsync("Enter your password: ");
             return (login, password);
@@ -107,20 +112,20 @@ public class MAdministrator : IMAdmin
     {
         try
         {
+            // Stock the special caracter =>
             string specialCaracter = "@#%&*()-+!";
+            // Check if the password is valid =>
             if (password.Length >= 6 && password.Any(specialCaracter.Contains))
             {
+                // Log the message =>
                 await LogAndConsoleAsync("\n----\n Your password is valid :)");
                 return true;
-            }
-            else
-            {
-                await LogAndConsoleAsync("\n----\n Your password is not valid - Retry:");
             }
             return false;
         }
         catch (Exception e)
         {
+            // Log the message =>
             await LogAndConsoleAsync("Error : " + e.Message);
             return false;
         }
@@ -130,20 +135,23 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
+            // Start the adding =>
             string reference = await GetUserInputAsync("Enter the reference of the article: ");
-        
             string priceInput = await GetUserInputAsync("Enter the price of the article: ");
+            // Stock the price =>
             bool isValidPrice = float.TryParse(priceInput, out float price);
-            if (!isValidPrice)
+            // Check if the price is valid =>
+            if (!isValidPrice && priceInput == "")
             {
+                // Log the message =>
                 await LogAndConsoleAsync("Invalid price input. Please enter a valid number.");
                 return (reference, 0);
             }
-
             return (reference, price);
         }
         catch (Exception e)
         {
+            // Log the message =>
             await LogAndConsoleAsync("Error : " + e.Message);
             return ("", 0);
         }
@@ -152,11 +160,13 @@ public class MAdministrator : IMAdmin
     {
         try
         {
+            // Start the removing =>
             string reference = await GetUserInputAsync("Enter the reference of the article: ");
             return (reference);
         }
         catch (Exception e)
         {
+            // Log the message =>
             await LogAndConsoleAsync("Error : " + e.Message);
             return ("");
         }
@@ -166,7 +176,7 @@ public class MAdministrator : IMAdmin
         Console.WriteLine("----");
         try
         {
-            string startDateInput = await GetUserInputAsync("Enter the start date (yyyy/MM/dd): ");
+            string startDateInput = await GetUserInputAsync("Enter the start date (dd/MM/YYYY): ");
             bool isStartValid = DateTime.TryParse(startDateInput, out DateTime startDate);
             if (!isStartValid)
             {
@@ -174,7 +184,7 @@ public class MAdministrator : IMAdmin
                 return (DateTime.Now, DateTime.Now);
             }
 
-            string endDateInput = await GetUserInputAsync("Enter the end date (yyyy/MM/dd): ");
+            string endDateInput = await GetUserInputAsync("Enter the end date (dd/MM/YYYY): ");
             bool isEndValid = DateTime.TryParse(endDateInput, out DateTime endDate);
             if (!isEndValid)
             {
@@ -190,5 +200,4 @@ public class MAdministrator : IMAdmin
             return (DateTime.Now, DateTime.Now);
         }
     }
-
 }

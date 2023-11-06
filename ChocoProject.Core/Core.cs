@@ -9,7 +9,7 @@ public interface ICore
 {
     Task<string> LogAndConsoleAsync(string message);
     Task<bool> ClearAsync();
-    Task<bool> InitializeDBAsync();
+    Task<bool> InitializeDbAsync();
     Task<bool> Start();
     Task<bool> HandleBuyerMenuAsync();
     Task<bool> HandleBuyerRegisteredAsync(string buyerLogin);
@@ -28,13 +28,13 @@ public interface ICore
         private readonly MAdministrator _adminMenu;
         private readonly MBuyer _buyerMenu;
         private readonly MStart _startMenu;
-        private readonly ClearDB _clearDB;
-        private string currentBuyerLogin;
-        private (string reference, float price) article;
-        private (string reference, int quantity) articleToBuy;
-        private (DateTime startDate, DateTime endDate) date;
-        private bool isCleared = false;
-        public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger) => (_adminService, _buyerService, _logger, _adminMenu, _buyerMenu, _startMenu, _clearDB) = (adminService, buyerService, logger, new MAdministrator(), new MBuyer(), new MStart(), new ClearDB(logger, new Interaction.FileService()));
+        private readonly ClearDB _clearDb;
+        private string _currentBuyerLogin = "";
+        private (string reference, float price) _article;
+        private (string reference, int quantity) _articleToBuy;
+        private (DateTime startDate, DateTime endDate) _date;
+        private bool _isCleared = false;
+        public Core(IAdmin adminService, IBuyersService buyerService, ILogger logger) => (_adminService, _buyerService, _logger, _adminMenu, _buyerMenu, _startMenu, _clearDb) = (adminService, buyerService, logger, new MAdministrator(), new MBuyer(), new MStart(), new ClearDB(logger, new Interaction.FileService()));
         public async Task<string> LogAndConsoleAsync(string message)
         {
             try
@@ -50,12 +50,12 @@ public interface ICore
         }
         public async Task<bool> ClearAsync()
         {
-            if (!isCleared) 
+            if (!_isCleared) 
             {
                 // Call the InitializeDB method =>
-                await InitializeDBAsync();
+                await InitializeDbAsync();
                 // Initialize the isCleared variable =>
-                isCleared = true;
+                _isCleared = true;
                 // Call the DisplayFirstStart method =>
                 await _startMenu.DisplayFirstStart();
                 return true;
@@ -66,11 +66,11 @@ public interface ICore
                 return false;
             }
         }
-        public async Task<bool> InitializeDBAsync()
+        public async Task<bool> InitializeDbAsync()
         {
             await LogAndConsoleAsync("\nDatabase initialized :\n");
             // Call the Initialization method =>
-            await _clearDB.Initialization();
+            await _clearDb.Initialization();
             return true;
         }
         public async Task<bool> Start()
@@ -158,9 +158,9 @@ public interface ICore
                         break;
                     case "2":
                         // Initialize the articleToBuy variable with the return of the AddToList method =>
-                        articleToBuy = await _buyerMenu.AddToListAsync();
+                        _articleToBuy = await _buyerMenu.AddToListAsync();
                         // Call the BuyerChooseAnArticleToList method with the article, newBuyer, articleToBuy.reference and articleToBuy.quantity =>
-                        await _buyerService.BuyerChooseAnArticleToListAsync(new Article(article.reference, article.price), newBuyer, articleToBuy.reference, articleToBuy.quantity);
+                        await _buyerService.BuyerChooseAnArticleToListAsync(new Article(_article.reference, _article.price), newBuyer, _articleToBuy.reference, _articleToBuy.quantity);
                         break;
                     case "cl":
                         // Clear the console =>
@@ -203,9 +203,9 @@ public interface ICore
             {
                 case "1":
                     // Initialize the article variable with the return of the AdminAddArticle method =>
-                    article = await _adminMenu.AdminAddArticleAsync();
+                    _article = await _adminMenu.AdminAddArticleAsync();
                     // Call the AddArticle method with the article and adminLogin =>
-                    await _adminService.AddArticleAsync(new Article(article.reference, article.price), new Admin(adminLogin, adminLogin));
+                    await _adminService.AddArticleAsync(new Article(_article.reference, _article.price), new Admin(adminLogin, adminLogin));
                     // Call the HandleAdminConnected method with the adminLogin =>
                     await HandleAdminConnectedAsync(adminLogin);
                     return true;
@@ -224,15 +224,15 @@ public interface ICore
                     return true;
                 case "4":
                     // Call the GetArticlesByBuyers method with the adminLogin =>
-                    await _adminService.GetArticlesByBuyersAsync(new Buyer(currentBuyerLogin, currentBuyerLogin, currentBuyerLogin, currentBuyerLogin), new Article(article.reference, article.price), new Admin(adminLogin, adminLogin));
+                    await _adminService.GetArticlesByBuyersAsync(new Buyer(_currentBuyerLogin, _currentBuyerLogin, _currentBuyerLogin, _currentBuyerLogin), new Article(_article.reference, _article.price), new Admin(adminLogin, adminLogin));
                     // Call the HandleAdminConnected method with the adminLogin =>
                     await HandleAdminConnectedAsync(adminLogin);
                     return true;
                 case "5":
                     // Initialize the date variable with the return of the AdminAddDate method =>
-                    date = await _adminMenu.AdminAddDateAsync();
+                    _date = await _adminMenu.AdminAddDateAsync();
                     // Call the GenerateBillForBuyerByDate method with the date, article and adminLogin =>
-                    await _adminService.GenerateBillForBuyerByDateAsync(date.startDate, date.endDate, new Article(article.reference, article.price), new Admin(adminLogin, adminLogin));
+                    await _adminService.GenerateBillForBuyerByDateAsync(_date.startDate, _date.endDate, new Article(_article.reference, _article.price), new Admin(adminLogin, adminLogin));
                     // Call the HandleAdminConnected method with the adminLogin =>
                     await HandleAdminConnectedAsync(adminLogin);
                     return true;
@@ -290,27 +290,24 @@ public interface ICore
             {
                 // Initialize the registerCredentials variable with the return of the RegisterAdmin method =>
                 var registerCredentials = await _adminMenu.RegisterAdminAsync();
-                // Check if the login and password are not null =>
-                if (registerCredentials.login != null && registerCredentials.password != null)
+                // Initialize the checkPassword variable with the return of the CheckPassword method =>
+                bool checkPassword = await _adminMenu.CheckPasswordAsync(registerCredentials.password);
+                // Check if the password is valid =>
+                while (!checkPassword)
                 {
-                    // Initialize the checkPassword variable with the return of the CheckPassword method =>
-                    bool checkPassword = await _adminMenu.CheckPasswordAsync(registerCredentials.password);
+                    await LogAndConsoleAsync("\n----\n Your password is not valid, please try again : ");
+                    // Display an error message if the password is not valid =>
+                    registerCredentials = await _adminMenu.RegisterAdminAsync();
                     // Check if the password is valid =>
-                    while (!checkPassword)
-                    {
-                        // Display an error message if the password is not valid =>
-                        registerCredentials = await _adminMenu.RegisterAdminAsync();
-                        // Check if the password is valid =>
-                        checkPassword = await _adminMenu.CheckPasswordAsync(registerCredentials.password);
-                    }
-                    // Check if the password is valid =>
-                    if (checkPassword)
-                    {
-                        // Call the AddLoginToFile method with the login and password =>
-                        await _adminService.AddLoginToFileAsync(registerCredentials.login, registerCredentials.password);
-                        // Call the Start method =>
-                        await Start();
-                    }
+                    checkPassword = await _adminMenu.CheckPasswordAsync(registerCredentials.password);
+                }
+                // Check if the password is valid =>
+                if (checkPassword)
+                {
+                    // Call the AddLoginToFile method with the login and password =>
+                    await _adminService.AddLoginToFileAsync(registerCredentials.login, registerCredentials.password);
+                    // Call the Start method =>
+                    await Start();
                 }
                 return true;
             }
@@ -358,9 +355,9 @@ public interface ICore
                 if (await _buyerService.ValidateBuyerLogAsync(buyerCredentials.firstname, buyerCredentials.lastname, buyerCredentials.adress, buyerCredentials.phone))
                 {
                     // Initialize the currentBuyerLogin variable with the firstname and lastname =>
-                    currentBuyerLogin = buyerCredentials.firstname + " " + buyerCredentials.lastname;
+                    _currentBuyerLogin = buyerCredentials.firstname + " " + buyerCredentials.lastname;
                     // Call the HandleBuyerRegistered method with the currentBuyerLogin =>
-                    await HandleBuyerRegisteredAsync(buyerLogin: currentBuyerLogin);
+                    await HandleBuyerRegisteredAsync(buyerLogin: _currentBuyerLogin);
                 }
                 else
                 {
@@ -378,20 +375,29 @@ public interface ICore
             }
             return false;
         }
-        public async Task<bool> RegisterBuyerAccountAsync()
+        private async Task<bool> RegisterBuyerAccountAsync()
         {
             try
             {
                 // Initialize the registerCredentials variable with the return of the RegisterBuyer method =>
                 var registerCredentials = await _buyerMenu.AddRegisterAsync();
-                // Check if the firstname and lastname are not null =>
-                if (registerCredentials.firstname != null && registerCredentials.lastname != null)
+                // Check Entries Buyer =>
+                bool checkEntries = await _buyerMenu.CheckEntriesBuyerAsync(registerCredentials.firstname,
+                    registerCredentials.lastname, registerCredentials.adress, registerCredentials.phone);
+                // Check if the entries are valid =>
+                while (!checkEntries)
                 {
-                    // Call the AddLoginToFile method with the firstname and lastname =>
-                    await _buyerService.CreateBuyerAsync(registerCredentials.firstname, registerCredentials.lastname, registerCredentials.adress, registerCredentials.phone);
-                    // Call the Start method =>
-                    await Start();
+                    await LogAndConsoleAsync("\n----\n Your entries are not valid, please try again : ");
+                    // Display an error message if the entries are not valid =>
+                    registerCredentials = await _buyerMenu.AddRegisterAsync();
+                    // Check if the entries are valid =>
+                    checkEntries = await _buyerMenu.CheckEntriesBuyerAsync(registerCredentials.firstname,
+                        registerCredentials.lastname, registerCredentials.adress, registerCredentials.phone);
                 }
+                // Call the AddLoginToFile method with the firstname and lastname =>
+                await _buyerService.CreateBuyerAsync(registerCredentials.firstname, registerCredentials.lastname, registerCredentials.adress, registerCredentials.phone);
+                // Call the Start method =>
+                await Start();
                 return true;
             }
             catch (Exception e)

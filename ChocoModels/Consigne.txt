@@ -43,7 +43,7 @@ Administrateur ajout les kinder bueno à 10h00 à la liste d'article.
 
 Préconisation:
 1 projet contenant les models
-1 projet contenant les services d'interaction avec les fichiers (ecriture, lecture) == DONE
+1 projet contenant les services d'interaction avec les fichiers (ecriture, lecture)
 1 projet contenant les services permettant la gestion des différentes listes (Administrateurs, Acheteurs, Articles)
 1 projet contenant les services de logs
 1 projet contenant les différents appel vers les services qu'on appelera "Projet".Core

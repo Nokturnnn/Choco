@@ -17,10 +17,12 @@ public interface IAppConfiguration
     {
         // Initialization =>
         public bool IsDatabaseInitialized { get; set; }
-        private readonly ILogger _logger = new FileLogger();
+        private readonly ILogger _logger;
+        // End of initialization =>
+        
         // Path to the configuration file =>
         private string ConfigurationFilePath => "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoConsole/config.json";
-        public async Task<string> LogAndConsoleAsync(string message)
+        private async Task<string> LogAndConsoleAsync(string message)
         {
             try
             {
@@ -33,8 +35,9 @@ public interface IAppConfiguration
                 return "Error : " + ex.Message;
             }
         }
-        public AppConfiguration()
+        public AppConfiguration(ILogger logger)
         {
+            _logger = logger;
             // Initialize the configuration with default values :>
             IsDatabaseInitialized = false;
         }
@@ -56,7 +59,7 @@ public interface IAppConfiguration
                 return false;
             }
         }
-        public async Task<bool> LoadConfigurationAsync()
+        private async Task<bool> LoadConfigurationAsync()
         {
             try
             {
@@ -65,7 +68,7 @@ public interface IAppConfiguration
                 // Deserialize the JSON into an instance of this class =>
                 var config = JsonConvert.DeserializeObject<AppConfiguration>(configJson);
                 // Copy the values from the loaded configuration into this instance =>
-                IsDatabaseInitialized = config.IsDatabaseInitialized;
+                if (config != null) IsDatabaseInitialized = config.IsDatabaseInitialized;
                 return true;
             }
             catch (Exception ex)
@@ -81,7 +84,7 @@ public interface IAppConfiguration
                 // Serialize this instance into JSON =>
                 var configJson = JsonConvert.SerializeObject(this);
                 // Write the JSON to the configuration file =>
-                File.WriteAllText(ConfigurationFilePath, configJson);
+                await File.WriteAllTextAsync(ConfigurationFilePath, configJson);
                 return true;
             }
             catch (Exception ex)

@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ManagementPeople;
 
@@ -10,6 +11,7 @@ public interface IMBuyer
     Task<(string reference, int quantity)> AddToListAsync();
     Task<(string firstname, string lastname, string adress, string phone)> BuyerInfosConnectingAsync();
     Task<(string firstname, string lastname, string adress, string phone)> AddRegisterAsync();
+    Task<bool> CheckEntriesBuyerAsync(string firstname, string lastname, string adress, string phone);
 }
 public class MBuyer : IMBuyer
 {
@@ -114,4 +116,34 @@ public class MBuyer : IMBuyer
             return ("", "", "", "");
         }
     }
+    public Task<bool> CheckEntriesBuyerAsync(string firstname, string lastname, string address, string phone)
+    {
+        try
+        {
+            // Check if the fields are empty =>
+            if (string.IsNullOrWhiteSpace(firstname) || 
+                string.IsNullOrWhiteSpace(lastname) || 
+                string.IsNullOrWhiteSpace(address) || 
+                string.IsNullOrWhiteSpace(phone))
+            {
+                Console.WriteLine("Error: You must fill all the fields");
+                return Task.FromResult(false);
+            }
+            // Check if there is =>
+            var hasNumber = new Regex(@"\d");
+            // Check if the firstname and lastname contains numbers =>
+            if (hasNumber.IsMatch(firstname) || hasNumber.IsMatch(lastname))
+            {
+                Console.WriteLine("Error : Firstname, Lastname cannot contain numbers");
+                return Task.FromResult(false);
+            }
+            return Task.FromResult(true);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error: " + e.Message);
+            return Task.FromResult(false);
+        }
+    }
+
 }

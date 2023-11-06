@@ -26,3 +26,4 @@
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoConsole/bin/Debug/net7.0/ChocoProject.Core.pdb
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoConsole/bin/Debug/net7.0/Newtonsoft.Json.dll
 /Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoConsole/bin/Debug/net7.0/ConsoleTables.dll
+/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoConsole/bin/Debug/net7.0/BCrypt.Net-Next.dll

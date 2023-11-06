@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1zuXWkPjwWSom8PvOHqIE2OFqU49iZq2hLG9uBl29QSYlQtSyUaLkKMncQjWyQDzFe2PpMXPzh4mfQGL7sB+Yw==",
+  "dgSpecHash": "hdA9uXShbi+433uv6cD0CrdvuwlRIKJvG/yq/A9e67pTcOQS6NbWEUdsOB+r3cmkP99fcjtz6xdyk0a47Eak2w==",
   "success": true,
   "projectFilePath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoModels/ChocoModels.csproj",
   "expectedPackageFiles": [
+    "/Users/thomas/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/thomas/.nuget/packages/consoletables/2.6.1/consoletables.2.6.1.nupkg.sha512"
   ],
   "logs": []

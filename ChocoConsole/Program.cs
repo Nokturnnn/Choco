@@ -19,7 +19,7 @@ namespace ChocoConsole
             // Initialize the core =>
             var core = new Core(adminService, buyerService, logger);
             // Initialize the configuration =>
-            var appConfig = new AppConfiguration();
+            var appConfig = new AppConfiguration(logger);
             // Initialize the menu =>
             // Initialize the menu =>
             await appConfig.InitializeAsync();

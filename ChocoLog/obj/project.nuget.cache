@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "yn/qQHAZGbnLx2yoqSNHCFG+eNt1DkHRZK9+zTddWUWLYq/j9avpeTfhb/cZfv+9fpeJ1oCadW+0Rb/CAEQEhA==",
+  "dgSpecHash": "WoPaioqYk8c8PJRgQr029EJkQaTR6sbKZd1QxKZkmAS8qSu/pRJF/dag/fm1w3MboEdRNc7nc+PdJPeJwca7Pg==",
   "success": true,
   "projectFilePath": "/Users/thomas/Documents/RPI/2023-2025/DEV/Choco/ChocoLog/ChocoLog.csproj",
   "expectedPackageFiles": [
+    "/Users/thomas/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/thomas/.nuget/packages/consoletables/2.6.1/consoletables.2.6.1.nupkg.sha512"
   ],
   "logs": []

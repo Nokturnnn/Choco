@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "ChocoConsole/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "ChocoInteraction": "1.0.0",
           "ChocoList": "1.0.0",
           "ChocoLog": "1.0.0",
@@ -17,6 +18,14 @@
         },
         "runtime": {
           "ChocoConsole.dll": {}
+        }
+      },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
+          }
         }
       },
       "ConsoleTables/2.6.1": {
@@ -37,6 +46,7 @@
       },
       "ChocoInteraction/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "ConsoleTables": "2.6.1"
         },
         "runtime": {
@@ -45,6 +55,7 @@
       },
       "ChocoList/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "ChocoInteraction": "1.0.0",
           "ChocoLog": "1.0.0",
           "ChocoModels": "1.0.0",
@@ -57,6 +68,7 @@
       },
       "ChocoLog/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "ChocoInteraction": "1.0.0",
           "ConsoleTables": "2.6.1"
         },
@@ -66,6 +78,7 @@
       },
       "ChocoModels/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "ChocoInteraction": "1.0.0",
           "ChocoLog": "1.0.0",
           "ConsoleTables": "2.6.1"
@@ -76,6 +89,7 @@
       },
       "ChocoProject.Core/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "ChocoInteraction": "1.0.0",
           "ChocoList": "1.0.0",
           "ChocoLog": "1.0.0",
@@ -93,6 +107,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
     "ConsoleTables/2.6.1": {
       "type": "package",
